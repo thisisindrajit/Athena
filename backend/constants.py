@@ -1,0 +1,2 @@
+AZURE_GPT_4O_MINI = "gpt-4o-mini"
+AZURE_DEEPSEEK_V3 = "DeepSeek-V3-0324"

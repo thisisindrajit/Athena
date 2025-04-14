@@ -1,4 +1,6 @@
-## Athena Backend
+## Athena - backend
+
+Official backend repository for Athena.
 
 ## Local installation
 ```bash

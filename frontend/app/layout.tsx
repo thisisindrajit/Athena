@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
+import { Onest } from "next/font/google";
 import { APP_NAME, APP_DESCRIPTION } from "@/constants/common";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 
 import "./globals.css";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const onest = Onest({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700"],
 });
@@ -23,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ibmPlexSans.className} antialiased p-4 md:p-6`}>
+      <body
+        className={`${onest.className} antialiased m-auto 2xl:max-w-[1920px] p-4 lg:p-6 flex flex-col gap-16`}
+      >
         {children}
         <Analytics />
         <SpeedInsights />

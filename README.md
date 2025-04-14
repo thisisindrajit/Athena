@@ -21,7 +21,7 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 2.  **Intelligent Planning & Research:** A `CoursePlannerAgent` designs a logical course structure (modules, lessons). A `ResearchAgent`, equipped with web-search capabilities, gathers relevant and up-to-date information for each section.
 3.  **Tailored Content Generation:** A `ContentWriterAgent` synthesizes the researched information and crafts explanations, examples, and analogies specifically tailored to the user's stated preferences (pace, depth, style).
 4.  **Quality Assurance:** A `ContentValidatorAgent` checks the generated content for factual accuracy and appropriateness. A `CritiqueAgent` evaluates the content and quizzes against pedagogical principles and user preferences, ensuring clarity, engagement, and relevance.
-5.  **Active Learning Integration:** A `QuizMasterAgent` generates quizzes, true/false questions, or other simple exercises based on the validated content to reinforce learning.
+5.  **Active Learning Integration:** An `ActivityAgent` generates creates quizzes, true/false, fill in the blanks, reorder and other kinds of active learning activities based on the validated content to reinforce learning.
 6.  **Course Assembly:** The agents collaborate to assemble these components into a cohesive, structured, and personalized course ready for the user.
 
 By automating and personalizing course creation, Athena provides a dynamic, efficient, and effective learning experience tailored to the individual.
@@ -31,7 +31,7 @@ By automating and personalizing course creation, Athena provides a dynamic, effi
 * **Personalized Course Generation:** Creates courses based on any user-specified topic and learning preferences (pace, depth, style).
 * **Dynamic Content Creation:** AI agents write unique explanations, examples, and analogies.
 * **Active Learning Integration:** Automatically generates quizzes and other exercises related to the content.
-* **Multi-Agent Architecture:** Utilizes AutoGen to orchestrate specialized AI agents (Planner, Researcher, Writer, Validator, Critic, QuizMaster).
+* **Multi-Agent Architecture:** Utilizes AutoGen to orchestrate specialized AI agents (Planner, Researcher, Writer, Validator, Critic, Activity, Snippet).
 * **Built-in Quality Control:** Includes agents dedicated to validating factual accuracy and critiquing pedagogical quality.
 * **Adaptable Knowledge Base:** Leverages LLMs and web search tools to cover a vast range of topics.
 
@@ -44,10 +44,11 @@ Athena employs a collaborative AutoGen workflow:
 3.  **Research:** `ResearchAgent` gathers information using web search tools.
 4.  **Writing:** `ContentWriterAgent` drafts lesson content tailored to preferences.
 5.  **Validation:** `ContentValidatorAgent` checks content accuracy.
-6.  **Quiz Gen:** `QuizMasterAgent` creates exercises based on validated content.
-7.  **Critique:** `CritiqueAgent` reviews content and quiz quality against preferences.
-8.  **Iteration/Assembly:** `CoursePlannerAgent` manages revisions (if needed) and assembles the final course.
-9.  **Output:** `UserProxyAgent` presents the final course.
+6.  **Activity Gen:** `ActivityAgent` creates quizzes, true/false, fill in the blanks, reorder and other kinds of active learning activities based on validated content.
+7.  **Snippet Gen:** `SnippetAgent` creates concise summaries of each module, distilling key points into bite-sized overviews that capture the essence of the module content.
+8.  **Critique:** `CritiqueAgent` reviews content and quiz quality against preferences.
+9.  **Iteration/Assembly:** `CoursePlannerAgent` manages revisions (if needed) and assembles the final course.
+10. **Output:** `UserProxyAgent` presents the final course.
 
 ---
 

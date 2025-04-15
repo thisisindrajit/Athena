@@ -5,5 +5,6 @@
 
 ## Indrajit
 - [ ] Create tables in DB
+- [ ] Add theme
 - [ ] Add authentication using Better Auth
 - [ ] Develop the landing page and dashboard

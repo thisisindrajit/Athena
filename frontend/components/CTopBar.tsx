@@ -14,7 +14,7 @@ import CSignInWithGoogleBox from "./auth/CSignInWithGoogleBox";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FC, useState } from "react";
 import { signOut, useSession } from "@/lib/client";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 
@@ -25,6 +25,7 @@ interface ITopBarProps {
 const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
   const [isSigningOut, setIsSigningOut] = useState<boolean>(false);
   const { data: session, isPending } = useSession();
+  const router = useRouter();
 
   const signOutFromAthena = async () => {
     await signOut({
@@ -35,7 +36,7 @@ const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
         },
         onSuccess: () => {
           toast.success("You have been logged out successfully!");
-          redirect("/"); // redirect to home page
+          router.push("/"); // redirect to home page
         },
       },
     });

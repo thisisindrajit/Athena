@@ -1,20 +1,34 @@
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+"use client";
 
-export default function Home() {
+import CTopBar from "@/components/CTopBar";
+import Loader from "@/components/Loader";
+import { Separator } from "@/components/ui/separator";
+import { useSession } from "@/lib/client";
+import { redirect } from "next/navigation";
+
+const Home = () => {
+  const { data: session, isPending } = useSession();
+
+  if (isPending) {
+    return (
+      <>
+        <CTopBar showOnlyLogo />
+        <Loader />
+      </>
+    );
+  }
+
+  /// If user is authenticated, navigate to dashboard page
+  if (session?.session) {
+    redirect("/dashboard");
+  }
+
   return (
     <>
-      {/* TopBar */}
-      <div className="flex items-center justify-between">
-        <div className="font-medium uppercase underline underline-offset-4">
-          Athena
-        </div>
-        <div>
-          <Button size="sm" className="font-semibold">Login</Button>
-        </div>
-      </div>
+      {/* Top Bar */}
+      <CTopBar />
       {/* Motto */}
-      <div className="text-2xl/snug xs:text-3xl/snug lg:text-4xl/snug font-bold self-center text-center sm:my-2 lg:my-4">
+      <div className="text-2xl/snug xs:text-3xl/snug lg:text-4xl/snug font-bold self-center text-center my-2 sm:my-4 lg:my-6">
         <div className="hidden xs:block sm:hidden">
           <div>Where Knowledge is </div>
           <div className="text-primary">Crafted for you.</div>
@@ -38,4 +52,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

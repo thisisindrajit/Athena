@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import CTopBar from "@/components/CTopBar";
+import TopBar from "@/components/TopBar";
 
 import "./globals.css";
 
@@ -50,7 +50,7 @@ const RootLayout = ({
       >
         <div className="flex flex-col gap-12 p-4 lg:p-6 m-auto 2xl:max-w-[1920px] min-h-screen">
           {/* Top Bar */}
-          <CTopBar />
+          <TopBar />
           {children}
           <Toaster richColors closeButton />
           <Analytics />

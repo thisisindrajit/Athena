@@ -36,7 +36,7 @@ const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
         },
         onSuccess: () => {
           toast.success("You have been logged out successfully!");
-          router.push("/"); // redirect to home page
+          router.refresh();
         },
       },
     });
@@ -53,7 +53,7 @@ const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
         <CThemeToggle />
         {!showOnlyLogo &&
           !isPending &&
-          (session?.session ? (
+          (session ? (
             <>
               <Avatar className="size-8">
                 <AvatarImage src={session.user?.image ?? undefined} />

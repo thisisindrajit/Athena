@@ -19,7 +19,7 @@ const Home = () => {
   }
 
   /// If user is authenticated, navigate to dashboard page
-  if (session?.session) {
+  if (session) {
     redirect("/dashboard");
   }
 

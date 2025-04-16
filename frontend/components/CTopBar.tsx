@@ -17,6 +17,7 @@ import { signOut, useSession } from "@/lib/client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import { APP_NAME } from "@/constants/common";
 
 interface ITopBarProps {
   showOnlyLogo?: boolean;
@@ -43,10 +44,10 @@ const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between sticky top-4 lg:top-6">
       <Link href="/">
-        <div className="font-medium uppercase underline underline-offset-4">
-          Athena
+        <div className="font-semibold uppercase underline-offset-4 bg-background/80 backdrop-blur-xl py-1.5 px-3 rounded-lg text-sm border">
+          {APP_NAME}
         </div>
       </Link>
       <div className="flex items-center gap-2">
@@ -71,7 +72,7 @@ const CTopBar: FC<ITopBarProps> = ({ showOnlyLogo = false }) => {
           ) : (
             <Dialog>
               <DialogTrigger asChild>
-                <Button size="sm" className="font-semibold">
+                <Button size="sm" className="font-medium">
                   Login
                 </Button>
               </DialogTrigger>

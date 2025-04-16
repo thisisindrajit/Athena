@@ -18,8 +18,8 @@ const CSignInWithGoogleBox = () => {
     await signIn.social(
       {
         provider: "google",
-        newUserCallbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard?is-new-user=1`,
-        callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard`,
+        newUserCallbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/user/dashboard?is-new-user=1`,
+        callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/user/dashboard`,
       },
       {
         onRequest: () => {
@@ -28,7 +28,7 @@ const CSignInWithGoogleBox = () => {
         },
         onError: (ctx: ErrorContext) => {
           // display the error message
-          console.error(
+          console.log(
             "Some error occurred while trying to sign in with Google:",
             ctx
           );

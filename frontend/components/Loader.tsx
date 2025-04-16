@@ -10,7 +10,7 @@ const Loader: FC<ILoaderProps> = ({ loadingText }) => {
         className="border-t-2 rounded-full border-primary animate-spin
 aspect-square size-6 flex justify-center items-center"
       ></div>
-      <span>{loadingText ?? "Loading"}</span>
+      <span>{loadingText ?? "Loading"}...</span>
     </div>
   );
 };

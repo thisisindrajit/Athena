@@ -1,32 +1,28 @@
-"use client";
-
-import CTopBar from "@/components/CTopBar";
-import Loader from "@/components/Loader";
+import SnippetCard from "@/components/SnippetCard";
 import { Separator } from "@/components/ui/separator";
-import { useSession } from "@/lib/client";
+import { APP_DESCRIPTION, APP_NAME } from "@/constants/common";
+import { Metadata } from "next";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const Home = () => {
-  const { data: session, isPending } = useSession();
+export const metadata: Metadata = {
+  title: APP_NAME,
+  description: APP_DESCRIPTION,
+};
 
-  if (isPending) {
-    return (
-      <>
-        <CTopBar showOnlyLogo />
-        <Loader />
-      </>
-    );
-  }
+const Home = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   /// If user is authenticated, navigate to dashboard page
   if (session) {
-    redirect("/dashboard");
+    redirect("/user/dashboard");
   }
 
   return (
     <>
-      {/* Top Bar */}
-      <CTopBar />
       {/* Motto */}
       <div className="text-2xl/snug xs:text-3xl/snug lg:text-4xl/snug font-bold self-center text-center my-2 sm:my-4 lg:my-6">
         <div className="hidden xs:block sm:hidden">
@@ -39,15 +35,19 @@ const Home = () => {
         </div>
       </div>
       {/* Trending snippets */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
           <div className="text-lg md:text-xl min-w-fit">
             <span className="font-bold uppercase">Trending</span> Snippets
           </div>
           <Separator className="shrink-1 bg-gradient-to-r from-primary to-transparent" />
         </div>
-        <div className="h-[100vh] w-full flex items-center justify-center bg-foreground/5">
-          Content
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <SnippetCard />
+          <SnippetCard />
+          <SnippetCard />
+          <SnippetCard />
+          <SnippetCard />
         </div>
       </div>
     </>

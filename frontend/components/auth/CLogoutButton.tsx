@@ -18,8 +18,8 @@ const CLogoutButton = () => {
           setIsSigningOut(true);
         },
         onSuccess: () => {
-          toast.success("You have been logged out successfully!");
           router.refresh();
+          toast.success("You have been logged out successfully!");
         },
       },
     });

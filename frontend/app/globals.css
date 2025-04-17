@@ -6,6 +6,7 @@
 
 @theme {
   --breakpoint-xs: 22rem;
+  --breakpoint-xsm: 32rem;
 }
 
 @theme inline {

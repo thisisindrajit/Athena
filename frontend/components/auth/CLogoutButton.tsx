@@ -27,7 +27,7 @@ const CLogoutButton = () => {
 
   return (
     <Button
-      variant="outline"
+      variant="secondary"
       onClick={isSigningOut ? () => {} : signOutFromAthena}
     >
       {isSigningOut ? "Logging out..." : "Logout"}

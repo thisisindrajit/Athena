@@ -13,7 +13,7 @@ const TopBar = async () => {
   });
 
   return (
-    <div className="flex items-center justify-between sticky top-4 lg:top-6">
+    <div className="flex items-center justify-between sticky top-4 lg:top-6 z-25">
       <Link href={session ? "dashboard" : "/"}>
         <div className="font-semibold uppercase underline-offset-4 bg-background/80 backdrop-blur-xl py-1.5 px-3 rounded-lg text-sm border">
           {APP_NAME}

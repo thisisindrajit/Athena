@@ -2,10 +2,10 @@ import { Separator } from "./ui/separator";
 
 const SnippetCard = () => {
   return (
-    <div className="p-4 rounded-lg border flex flex-col gap-2">
+    <div className="p-4 rounded-lg border border-foreground/25 dark:bg-foreground/5 flex flex-col gap-2 shadow-lg">
       {/* Title */}
       <div className="text-lg font-bold">Snippet Title</div>
-      <Separator className="bg-gradient-to-r from-secondary to-transparent" />
+      <Separator className="bg-gradient-to-r from-primary to-transparent" />
       {/* Description */}
       <div className="text-base/loose text-justify text-muted-foreground">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod

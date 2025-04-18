@@ -12,7 +12,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const CSignInWithGoogleBox = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
 
   const signInWithGoogle = async () => {
     await signIn.social(
@@ -23,8 +23,8 @@ const CSignInWithGoogleBox = () => {
       },
       {
         onRequest: () => {
-          //show loading
-          setLoading(true);
+          // set isSigningIn to true
+          setIsSigningIn(true);
         },
         onError: (ctx: ErrorContext) => {
           // display the error message
@@ -32,7 +32,7 @@ const CSignInWithGoogleBox = () => {
             "Some error occurred while trying to sign in with Google:",
             ctx
           );
-          setLoading(false);
+          setIsSigningIn(false);
           toast.error(
             <div className="flex flex-col gap-2">
               <div className="font-bold text-base flex items-center gap-1.5 uppercase w-fit">
@@ -58,11 +58,11 @@ const CSignInWithGoogleBox = () => {
     <div className="bg-[#DB4437]/10 flex flex-col items-center justify-center h-24 border border-dashed w-full border-[#DB4437]/50 rounded-md">
       <Button
         className={`bg-[#DB4437] text-white after:flex-1 hover:bg-[#DB4437]/90 ${
-          loading && "cursor-not-allowed"
+          isSigningIn && "cursor-not-allowed"
         }`}
-        onClick={loading ? () => {} : signInWithGoogle}
+        onClick={isSigningIn ? () => {} : signInWithGoogle}
       >
-        {loading ? (
+        {isSigningIn ? (
           <>
             <span className="pointer-events-none me-2 flex-1">
               <RiLoader4Fill

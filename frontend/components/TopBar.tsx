@@ -6,6 +6,7 @@ import CLoginButton from "./auth/CLoginButton";
 import CLogoutButton from "./auth/CLogoutButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Script from "next/script";
 
 const TopBar = async () => {
   const session = await auth.api.getSession({
@@ -13,29 +14,42 @@ const TopBar = async () => {
   });
 
   return (
-    <div className="flex items-center justify-between sticky top-4 lg:top-6 z-25">
-      <Link href={session ? "dashboard" : "/"}>
-        <div className="font-semibold uppercase underline-offset-4 bg-background/80 backdrop-blur-xl py-1.5 px-3 rounded-lg text-sm border">
-          {APP_NAME}
+    <>
+      <Script id="top-bar-script">
+        {`
+          window.onscroll = () => {
+            if (window.scrollY > 50) {
+              document.querySelector(".top-bar").classList.add("top-bar-active");
+            } else {
+              document.querySelector(".top-bar").classList.remove("top-bar-active");
+            }
+          };
+        `}
+      </Script>
+      <div className="top-bar flex items-center justify-between sticky top-4 z-25 transition-all">
+        <Link href={session ? "dashboard" : "/"}>
+          <div className="font-semibold uppercase underline-offset-4 bg-background/80 backdrop-blur-xl py-1.5 px-3 rounded-md text-sm border border-primary">
+            {APP_NAME}
+          </div>
+        </Link>
+        <div className="flex items-center gap-2">
+          <CThemeToggle />
+          {session ? (
+            <>
+              <Avatar className="size-8">
+                <AvatarImage src={session.user?.image ?? undefined} />
+                <AvatarFallback>
+                  {session.user?.name.substring(0, 1)}
+                </AvatarFallback>
+              </Avatar>
+              <CLogoutButton />
+            </>
+          ) : (
+            <CLoginButton />
+          )}
         </div>
-      </Link>
-      <div className="flex items-center gap-2">
-        <CThemeToggle />
-        {session ? (
-          <>
-            <Avatar className="size-8">
-              <AvatarImage src={session.user?.image ?? undefined} />
-              <AvatarFallback>
-                {session.user?.name.substring(0, 1)}
-              </AvatarFallback>
-            </Avatar>
-            <CLogoutButton />
-          </>
-        ) : (
-          <CLoginButton />
-        )}
       </div>
-    </div>
+    </>
   );
 };
 

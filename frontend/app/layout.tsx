@@ -48,7 +48,7 @@ const RootLayout = ({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="flex flex-col gap-4 p-4 lg:p-6 m-auto 2xl:max-w-[1920px] min-h-screen">
+        <div className="flex flex-col gap-4 p-4 m-auto 2xl:max-w-[1920px] min-h-screen">
           {/* Top Bar */}
           <TopBar />
           {children}

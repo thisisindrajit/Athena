@@ -126,3 +126,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.top-bar-active {
+    @apply bg-background/75 backdrop-blur-xl border p-2 rounded-2xl;
+  }

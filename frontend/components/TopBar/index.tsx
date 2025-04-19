@@ -1,12 +1,11 @@
-import CThemeToggle from "@/components/CThemeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import CThemeToggle from "@/components/TopBar/CThemeToggle";
 import Link from "next/link";
 import { APP_NAME } from "@/constants/common";
-import CLoginButton from "./auth/CLoginButton";
-import CLogoutButton from "./auth/CLogoutButton";
+import CLoginButton from "../auth/CLoginButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Script from "next/script";
+import CUserMenu from "./CUserMenu";
 
 const TopBar = async () => {
   const session = await auth.api.getSession({
@@ -18,7 +17,7 @@ const TopBar = async () => {
       <Script id="top-bar-script">
         {`
           window.onscroll = () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 10) {
               document.querySelector(".top-bar").classList.add("top-bar-active");
             } else {
               document.querySelector(".top-bar").classList.remove("top-bar-active");
@@ -35,15 +34,7 @@ const TopBar = async () => {
         <div className="flex items-center gap-2">
           <CThemeToggle />
           {session ? (
-            <>
-              <Avatar className="size-8">
-                <AvatarImage src={session.user?.image ?? undefined} />
-                <AvatarFallback>
-                  {session.user?.name.substring(0, 1)}
-                </AvatarFallback>
-              </Avatar>
-              <CLogoutButton />
-            </>
+            <CUserMenu session={session ?? undefined} />
           ) : (
             <CLoginButton />
           )}

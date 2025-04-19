@@ -1,4 +1,4 @@
-import Loader from "@/components/Loader";
+import Loader from "@/components/common/Loader";
 
 const Loading = () => {
   return <Loader loadingText="Loading dashboard" />;

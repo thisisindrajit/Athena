@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import TopBar from "@/components/TopBar";
+import Footer from "@/components/common/Footer";
 
 import "./globals.css";
 
@@ -48,10 +49,12 @@ const RootLayout = ({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="flex flex-col gap-4 p-4 m-auto 2xl:max-w-[1920px] min-h-screen">
-          {/* Top Bar */}
-          <TopBar />
-          {children}
+        <div className="flex flex-col m-auto 2xl:max-w-[1920px] min-h-screen">
+          <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-4.3rem)]">
+            <TopBar />
+            {children}
+          </div>
+          <Footer />
           <Toaster richColors closeButton />
           <Analytics />
           <SpeedInsights />

@@ -5,6 +5,7 @@ import { APP_NAME } from "@/constants/common";
 import SnippetCard from "@/components/SnippetCard";
 import { Input } from "@/components/ui/input";
 import TitleHolder from "@/components/holders/TitleHolder";
+import { Bookmark, House, TrendingUp } from "lucide-react";
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await auth.api.getSession({
@@ -38,9 +39,24 @@ const Dashboard = async () => {
       </div>
       {/* User dashboard */}
       <div className="flex gap-4">
-        {/* Sidebar */}
-        <div className="hidden lg:flex h-[calc(100vh-16rem)] shadow-xl min-w-80 p-4 rounded-lg sticky top-22 items-center justify-center mt-1 border bg-primary/5 border-primary/25 text-primary">
-          This is the sidebar
+        {/* Sidebar (For size lg and greater) */}
+        <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100vh-18rem)] min-w-80 max-h-80 p-3 rounded-xl sticky top-20 mt-1 border bg-primary/5 border-primary/25 text-primary">
+          <div className="text-primary-foreground bg-primary w-full p-3 rounded-md flex items-center gap-3 font-medium">
+            <House className="h-5 w-5" />
+            Home
+          </div>
+          <div className="text-primary w-full p-3 rounded-md flex items-center gap-3 font-medium hover:bg-primary/10 transition-all cursor-pointer">
+            <TrendingUp className="h-5 w-5" />
+            Trending
+          </div>
+          <div className="text-primary w-full p-3 rounded-md flex items-center gap-3 font-medium hover:bg-primary/10 transition-all cursor-pointer">
+            <Bookmark className="h-5 w-5" />
+            Saved
+          </div>
+        </div>
+        {/* Bottom bar (For size upto lg) */}
+        <div className="fixed lg:hidden left-0 bottom-0 p-3 h-12 bg-secondary text-secondary-foreground flex items-center justify-center w-full">
+          Bottom bar
         </div>
         {/* Right side */}
         <div className="w-full">
@@ -63,7 +79,7 @@ const Dashboard = async () => {
               lightTextFirst
               makeBoldTextUppercase
             />
-            <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
               <SnippetCard />
               <SnippetCard />
               <SnippetCard />

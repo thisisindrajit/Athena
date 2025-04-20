@@ -28,7 +28,7 @@ const CSignInWithGoogleBox = () => {
         },
         onError: (ctx: ErrorContext) => {
           // display the error message
-          console.log(
+          console.error(
             "Some error occurred while trying to sign in with Google:",
             ctx
           );

@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { Session, signOut } from "@/lib/client";
 import { toast } from "sonner";
+import { APP_NAME } from "@/constants/common";
 
 interface ICUserMenuProps {
   session?: Session;
@@ -36,7 +37,7 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
           setIsSigningOut(false);
         },
         onError: (error) => {
-          console.log("Error during logout:", error);
+          console.error("Error during logout:", error);
           toast.error("An error occurred while logging out. Please try again.");
           setIsSigningOut(false);
         },
@@ -68,7 +69,7 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
           <DropdownMenuLabel>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">
-                {session?.user?.name ?? "Athena User"}
+                {session?.user?.name ?? `${APP_NAME} User`}
               </span>
               {session?.user?.email && (
                 <span className="truncate text-xs text-muted-foreground">

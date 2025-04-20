@@ -39,7 +39,7 @@ const RootLayout = ({
         sizes="180x180"
         href="/favicons/apple-touch-icon.png"
       />
-      <meta name="apple-mobile-web-app-title" content="Athena" />
+      <meta name="apple-mobile-web-app-title" content={APP_NAME} />
       <link rel="manifest" href="/favicons/site.webmanifest" />
     </head>
     <body className={`${onest.className} antialiased`}>
@@ -49,8 +49,8 @@ const RootLayout = ({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="flex flex-col m-auto 2xl:max-w-[1920px] min-h-screen">
-          <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-4.3rem)]">
+        <div className="m-auto 2xl:max-w-[1920px]">
+          <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
             <TopBar />
             {children}
           </div>

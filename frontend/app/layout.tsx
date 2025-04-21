@@ -49,7 +49,7 @@ const RootLayout = ({
         content="width=device-width,initial-scale=1,viewport-fit=cover"
       />
     </head>
-    <body className={`${onest.className} antialiased max-h-[100dvh] overflow-auto`}>
+    <body className={`${onest.className} antialiased`}>
       <CQueryClientProvider>
         <CAuthQueryProvider>
           <CThemeProvider

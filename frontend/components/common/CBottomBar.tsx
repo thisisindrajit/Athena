@@ -35,7 +35,7 @@ const CBottomBar = () => {
 
   /* Bottom bar (For size upto lg) */
   return isUserRoute ? (
-    <div className="sticky lg:hidden left-0 pt-2 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.5rem+env(safe-area-inset-bottom))]">
+    <div className="sticky lg:hidden left-0 pt-2 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.75rem+env(safe-area-inset-bottom))]">
       {routes.map((route) => (
         <Link href={route.href} key={route.href} className="w-full">
           <div

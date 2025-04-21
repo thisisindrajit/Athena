@@ -7,9 +7,6 @@ module.exports = {
   theme: {
     extend: {
       // You can extend the theme here
-      padding: {
-        'safe': 'env(safe-area-inset-bottom)'
-      }
     },
   },
   plugins: [
@@ -25,5 +22,6 @@ module.exports = {
         { values: flattenColorPalette(theme("colors")), type: "color" }
       );
     },
+    require("tailwindcss-safe-area"),
   ],
 };

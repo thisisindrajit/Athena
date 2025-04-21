@@ -1,14 +1,16 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import { APP_NAME, APP_DESCRIPTION } from "@/constants/common";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import CThemeProvider from "@/providers/ThemeProvider";
+import CThemeProvider from "@/providers/CThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/common/Footer";
-
-import "./globals.css";
+import CQueryClientProvider from "@/providers/CQueryClientProvider";
+import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -43,23 +45,27 @@ const RootLayout = ({
       <link rel="manifest" href="/favicons/site.webmanifest" />
     </head>
     <body className={`${onest.className} antialiased`}>
-      <CThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <div className="m-auto 2xl:max-w-[1920px]">
-          <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
-            <TopBar />
-            {children}
-          </div>
-          <Footer />
-          <Toaster richColors closeButton />
-          <Analytics />
-          <SpeedInsights />
-        </div>
-      </CThemeProvider>
+      <CQueryClientProvider>
+        <CAuthQueryProvider>
+          <CThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="m-auto 2xl:max-w-[1920px]">
+              <div className="p-4 flex flex-col gap-4 min-h-screen">
+                <TopBar />
+                {children}
+              </div>
+              <Footer />
+              <Toaster richColors closeButton />
+              <Analytics />
+              <SpeedInsights />
+            </div>
+          </CThemeProvider>
+        </CAuthQueryProvider>
+      </CQueryClientProvider>
     </body>
   </html>
 );

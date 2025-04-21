@@ -34,7 +34,7 @@ const TopBar = async () => {
         <div className="flex items-center gap-2">
           <CThemeToggle />
           {session ? (
-            <CUserMenu session={session ?? undefined} />
+            <CUserMenu session={session} />
           ) : (
             <CLoginButton />
           )}

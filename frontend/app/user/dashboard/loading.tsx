@@ -4,7 +4,7 @@ const Loading = () => {
   return (
     <Loader
       loadingText="Loading dashboard"
-      className="h-[calc(100dvh-22rem)] lg:h-auto"
+      className="h-[calc(100vh-22rem)] lg:h-auto"
     />
   );
 };

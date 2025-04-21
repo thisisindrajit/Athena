@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { APP_NAME } from "@/constants/common";
 
 interface ICUserMenuProps {
-  session?: Session;
+  session: Session;
 }
 
 const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
@@ -55,9 +55,9 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="size-8 cursor-pointer">
-            <AvatarImage src={session?.user?.image ?? undefined} />
+            <AvatarImage src={session.user?.image ?? undefined} />
             <AvatarFallback>
-              {session?.user?.name.substring(0, 1) ?? ":)"}
+              {session.user?.name.substring(0, 1) ?? ":)"}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
@@ -69,9 +69,9 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
           <DropdownMenuLabel>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">
-                {session?.user?.name ?? `${APP_NAME} User`}
+                {session.user?.name ?? `${APP_NAME} User`}
               </span>
-              {session?.user?.email && (
+              {session.user?.email && (
                 <span className="truncate text-xs text-muted-foreground">
                   {session.user.email}
                 </span>

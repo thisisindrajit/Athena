@@ -4,12 +4,13 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Bookmark, House, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useEffect } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const routes = [
     {
-      label: "Dashboard",
+      label: "Home",
       icon: House,
       href: "/user/dashboard",
       active: pathname === "/user/dashboard",
@@ -28,6 +29,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     },
   ];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       {/* Search bar */}
@@ -35,7 +40,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]"></div>
         <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 md:gap-3 w-[90%] xsm:w-4/5 xl:w-3/5 mb-2 md:mb-0">
-          <span className="min-w-fit">Build my learning path for </span>
+          <span className="min-w-fit">Build a learning path for </span>
           <Input
             type="text"
             placeholder="Type in any TOPIC..."
@@ -76,7 +81,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               }`}
             >
               <route.icon className="h-4 w-4" />
-              <span className="hidden xsm:block">{route.label}</span>
+              <span className="hidden xs:block">{route.label}</span>
             </div>
           </Link>
         ))}

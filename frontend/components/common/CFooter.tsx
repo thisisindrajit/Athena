@@ -13,7 +13,7 @@ const CFooter = () => {
     <div
       className={cn(
         "bg-primary/5 text-primary m-auto w-full p-4 rounded-t-lg text-sm border-t border-primary/50 border-dashed flex items-center justify-center gap-2",
-        isUserRoute && "mb-[calc(4.15rem+env(safe-area-inset-bottom))] lg:mb-0"
+        isUserRoute && "mb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:mb-0"
       )}
     >
       <CDialogHolder

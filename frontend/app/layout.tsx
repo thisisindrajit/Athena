@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/CThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import CFooter from "@/components/common/CFooter";
+import CFooterAndBottomBar from "@/components/common/CFooterAndBottomBar";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
 import TopBar from "@/components/common/TopBar";
@@ -58,11 +58,11 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
+              <div className="p-4 flex flex-col gap-4 min-h-screen">
                 <TopBar />
                 {children}
               </div>
-              <CFooter />
+              <CFooterAndBottomBar />
               <Toaster richColors closeButton />
               <Analytics />
               <SpeedInsights />

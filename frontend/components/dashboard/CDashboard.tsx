@@ -11,7 +11,7 @@ const CDashboard = () => {
   if (isPending) {
     return (
       <Loader
-        loadingText="Checking if authenticated"
+        loadingText="Loading user details"
         className="h-[calc(100vh-22rem)] lg:h-auto"
       />
     );
@@ -20,7 +20,7 @@ const CDashboard = () => {
   if (error) {
     return (
       <div className="m-auto text-destructive h-[calc(100vh-22rem)] lg:h-auto flex items-center justify-center">
-        Error loading session!
+        Error while loading user session!
       </div>
     );
   }

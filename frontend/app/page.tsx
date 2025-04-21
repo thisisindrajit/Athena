@@ -17,9 +17,9 @@ const Home = async () => {
   });
 
   // If user is authenticated, navigate to dashboard page
-  // if (session) {
-  //   redirect("/user/dashboard");
-  // }
+  if (session) {
+    redirect("/user/dashboard");
+  }
 
   return (
     <>

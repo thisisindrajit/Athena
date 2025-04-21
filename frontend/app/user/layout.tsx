@@ -38,8 +38,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Search bar */}
       <div className="h-48 md:h-42 w-full bg-dot-black/[0.2] dark:bg-dot-white/[0.2] relative flex items-center justify-center text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center text-center">
         {/* Radial gradient for the container to give a faded look */}
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]"></div>
-        <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 md:gap-3 w-[90%] xsm:w-4/5 xl:w-3/5 mb-2 md:mb-0">
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"></div>
+        <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 md:gap-3 w-[85%] xsm:w-4/5 xl:w-3/5 mb-2 md:mb-0">
           <span className="min-w-fit">Build a learning path for </span>
           <Input
             type="text"

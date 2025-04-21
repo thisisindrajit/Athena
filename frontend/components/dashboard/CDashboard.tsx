@@ -1,6 +1,6 @@
 "use client";
 
-import SnippetCard from "@/components/SnippetCard";
+import SnippetCard from "@/components/common/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";

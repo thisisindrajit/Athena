@@ -1,5 +1,3 @@
-export const revalidate = 600; // 10 minutes
-
 import { Metadata } from "next";
 import CDashboard from "@/components/dashboard/CDashboard";
 import { APP_NAME } from "@/constants/common";
@@ -17,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const Dashboard = async () => {
+const Dashboard = () => {
   return <CDashboard />;
 };
 

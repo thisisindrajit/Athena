@@ -16,7 +16,7 @@ const Home = async () => {
     headers: await headers(),
   });
 
-  /// If user is authenticated, navigate to dashboard page
+  // If user is authenticated, navigate to dashboard page
   if (session) {
     redirect("/user/dashboard");
   }

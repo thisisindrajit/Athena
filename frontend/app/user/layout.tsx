@@ -70,11 +70,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="w-full flex flex-col gap-4">{children}</div>
       </div>
       {/* Bottom bar (For size upto lg) */}
-      <div className="fixed lg:hidden left-0 bottom-0 p-3 h-14 bg-background flex items-center justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground">
+      <div className="fixed lg:hidden left-0 bottom-0 px-3 pt-1.5 h-[calc(3.5rem+env(safe-area-inset-bottom))] bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe">
         {routes.map((route) => (
           <Link href={route.href} key={route.href} className="w-full">
             <div
-              className={`w-full p-2 rounded-md flex items-center justify-center gap-2 font-medium ${
+              className={`w-full p-3 rounded-md flex items-center justify-center gap-2 font-medium ${
                 route.active
                   ? "text-primary bg-primary/10"
                   : "transition-all cursor-pointer"

@@ -7,6 +7,9 @@ module.exports = {
   theme: {
     extend: {
       // You can extend the theme here
+      padding: {
+        'safe': 'env(safe-area-inset-bottom)'
+      }
     },
   },
   plugins: [

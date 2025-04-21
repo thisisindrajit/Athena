@@ -41,8 +41,12 @@ const RootLayout = ({
         sizes="180x180"
         href="/favicons/apple-touch-icon.png"
       />
-      <meta name="apple-mobile-web-app-title" content={APP_NAME} />
       <link rel="manifest" href="/favicons/site.webmanifest" />
+      <meta name="apple-mobile-web-app-title" content={APP_NAME} />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
     </head>
     <body className={`${onest.className} antialiased`}>
       <CQueryClientProvider>

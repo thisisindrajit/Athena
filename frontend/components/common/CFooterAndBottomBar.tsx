@@ -57,7 +57,7 @@ const CFooterAndBottomBar = () => {
         </div>
       </div>
       {/* Bottom bar (For size upto lg) */}
-      <div className="sticky lg:hidden left-0 p-1.5 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.4rem+env(safe-area-inset-bottom))]">
+      <div className="sticky lg:hidden left-0 p-1.5 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.45rem+env(safe-area-inset-bottom))]">
         {routes.map((route) => (
           <Link href={route.href} key={route.href} className="w-full">
             <div

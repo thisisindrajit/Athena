@@ -67,7 +67,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           ))}
         </div>
         {/* Main content */}
-        <div className="w-full flex flex-col gap-4">{children}</div>
+        <div className="w-full flex flex-col gap-12">{children}</div>
       </div>
     </>
   );

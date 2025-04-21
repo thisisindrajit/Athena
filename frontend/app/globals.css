@@ -129,5 +129,5 @@
 }
 
 .top-bar-active {
-    @apply bg-background/75 backdrop-blur-xl border p-2 rounded-2xl;
-  }
+  @apply bg-background/75 backdrop-blur-xl border p-2 rounded-2xl;
+}

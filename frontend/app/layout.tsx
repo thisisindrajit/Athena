@@ -45,7 +45,7 @@ const RootLayout = ({
       <meta name="apple-mobile-web-app-title" content={APP_NAME} />
       <meta
         name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
+        content="width=device-width,initial-scale=1,viewport-fit=cover"
       />
     </head>
     <body className={`${onest.className} antialiased`}>

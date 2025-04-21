@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/components/common/Footer";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
-import TopBar from "@/components/topbar/TopBar";
+import TopBar from "@/components/topbar";
 
 const onest = Onest({
   subsets: ["latin"],

@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/CThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import TopBar from "@/components/TopBar";
+import TopBar from "@/components/topbar/TopBar";
 import Footer from "@/components/common/Footer";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";

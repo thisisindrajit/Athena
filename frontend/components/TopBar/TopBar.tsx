@@ -1,4 +1,4 @@
-import CThemeToggle from "@/components/TopBar/CThemeToggle";
+import CThemeToggle from "@/components/topbar/CThemeToggle";
 import Link from "next/link";
 import { APP_NAME } from "@/constants/common";
 import CLoginButton from "../auth/CLoginButton";

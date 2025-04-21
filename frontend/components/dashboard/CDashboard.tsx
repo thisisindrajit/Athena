@@ -3,7 +3,7 @@
 import SnippetCard from "@/components/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
-import Loader from "./common/Loader";
+import Loader from "@/components/common/Loader";
 
 const CDashboard = () => {
   const { data: session, isPending, error } = useSession();

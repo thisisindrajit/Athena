@@ -9,12 +9,7 @@ const CDashboard = () => {
   const { data: session, isPending, error } = useSession();
 
   if (isPending) {
-    return (
-      <Loader
-        loadingText="Loading user details"
-        className="h-[calc(100dvh-22rem)] lg:h-auto"
-      />
-    );
+    return <Loader loadingText="Loading user details" />;
   }
 
   if (error) {

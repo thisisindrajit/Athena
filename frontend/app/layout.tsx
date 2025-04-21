@@ -7,10 +7,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/CThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import CFooterAndBottomBar from "@/components/common/CFooterAndBottomBar";
+import Footer from "@/components/common/Footer";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
 import TopBar from "@/components/common/TopBar";
+import CBottomBar from "@/components/common/CBottomBar";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -48,7 +49,7 @@ const RootLayout = ({
         content="width=device-width,initial-scale=1,viewport-fit=cover"
       />
     </head>
-    <body className={`${onest.className} antialiased`}>
+    <body className={`${onest.className} antialiased max-h-[100dvh] overflow-auto`}>
       <CQueryClientProvider>
         <CAuthQueryProvider>
           <CThemeProvider
@@ -58,11 +59,12 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
+              <div className="px-4 flex flex-col gap-8 min-h-[100dvh]">
                 <TopBar />
                 {children}
+                <Footer />
               </div>
-              <CFooterAndBottomBar />
+              <CBottomBar />
               <Toaster richColors closeButton />
               <Analytics />
               <SpeedInsights />

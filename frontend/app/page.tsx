@@ -1,5 +1,5 @@
-import SnippetCard from "@/components/common/SnippetCard";
 import { APP_DESCRIPTION, APP_NAME } from "@/constants/common";
+import SnippetCard from "@/components/common/SnippetCard";
 import { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

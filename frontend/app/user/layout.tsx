@@ -48,9 +48,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           />
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 min-h-[calc(100dvh-22rem)]">
         {/* Sidebar (For size lg and greater) */}
-        <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100dvh-18rem)] min-w-80 max-h-96 p-3 rounded-xl sticky top-21 mt-1 border bg-primary/5 border-primary/25 text-primary">
+        <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100dvh-20rem)] min-w-72 max-h-80 p-3 rounded-xl sticky top-21 mt-1 border bg-primary/5 border-primary/25 text-primary overflow-auto">
           {routes.map((route) => (
             <Link href={route.href} key={route.href}>
               <div

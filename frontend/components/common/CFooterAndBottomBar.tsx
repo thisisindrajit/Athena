@@ -36,7 +36,7 @@ const CFooterAndBottomBar = () => {
 
   return (
     <>
-      <div className="bg-primary/5 text-primary m-auto w-full p-4 rounded-t-lg text-sm border-t border-primary/50 border-dashed flex items-center justify-center gap-2">
+      <div className="hidden lg:flex items-center justify-center gap-2 bg-primary/5 text-primary m-auto w-full p-4 rounded-t-lg text-sm border-t border-primary/50 border-dashed">
         <CDialogHolder
           trigger={
             <div className="underline underline-offset-4 font-bold cursor-pointer">
@@ -57,7 +57,7 @@ const CFooterAndBottomBar = () => {
         </div>
       </div>
       {/* Bottom bar (For size upto lg) */}
-      <div className="sticky lg:hidden left-0 p-1.5 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.25rem+env(safe-area-inset-bottom))]">
+      <div className="sticky lg:hidden left-0 p-1.5 px-4 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe bottom-0 h-[calc(4.35rem+env(safe-area-inset-bottom))]">
         {routes.map((route) => (
           <Link href={route.href} key={route.href} className="w-full">
             <div

@@ -58,7 +58,7 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="p-4 flex flex-col gap-4 min-h-screen">
+              <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
                 <TopBar />
                 {children}
               </div>

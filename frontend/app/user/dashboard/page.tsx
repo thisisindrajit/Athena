@@ -1,3 +1,5 @@
+export const revalidate = 600; // 10 minutes
+
 import { Metadata } from "next";
 import CDashboard from "@/components/dashboard/CDashboard";
 import { APP_NAME } from "@/constants/common";

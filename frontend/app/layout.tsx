@@ -7,10 +7,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import CThemeProvider from "@/providers/CThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
-import Footer from "@/components/common/Footer";
+import CFooter from "@/components/common/CFooter";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
-import TopBar from "@/components/TopBar";
+import TopBar from "@/components/common/TopBar";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -54,11 +54,11 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="p-4 flex flex-col gap-4 min-h-screen">
+              <div className="p-4 flex flex-col gap-4 min-h-[100dvh]">
                 <TopBar />
                 {children}
               </div>
-              <Footer />
+              <CFooter />
               <Toaster richColors closeButton />
               <Analytics />
               <SpeedInsights />

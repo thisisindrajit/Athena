@@ -1,9 +1,21 @@
+"use client";
+
 import { APP_NAME } from "@/constants/common";
 import CDialogHolder from "../holders/DialogHolder";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const Footer = () => {
+const CFooter = () => {
+  const pathname = usePathname();
+  const isUserRoute = pathname?.includes("user");
+
   return (
-    <div className="bg-primary/5 text-primary m-auto w-full p-4 rounded-t-lg text-sm border-t border-primary/50 border-dashed mb-14 lg:mb-0 flex items-center justify-center gap-2">
+    <div
+      className={cn(
+        "bg-primary/5 text-primary m-auto w-full p-4 rounded-t-lg text-sm border-t border-primary/50 border-dashed flex items-center justify-center gap-2",
+        isUserRoute && "mb-14 lg:mb-0"
+      )}
+    >
       <CDialogHolder
         trigger={
           <div className="underline underline-offset-4 font-bold cursor-pointer">
@@ -12,7 +24,7 @@ const Footer = () => {
         }
         title={`What is ${APP_NAME}?`}
       >
-        <div className="h-[100vh] text-sm flex items-center justify-center">
+        <div className="h-[100dvh] text-sm flex items-center justify-center">
           This is the dialog
         </div>
       </CDialogHolder>
@@ -26,4 +38,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default CFooter;

@@ -1,7 +1,7 @@
-import CThemeToggle from "@/components/TopBar/CThemeToggle";
+import CThemeToggle from "@/components/common/TopBar/CThemeToggle";
 import Link from "next/link";
 import { APP_NAME } from "@/constants/common";
-import CLoginButton from "../auth/CLoginButton";
+import CLoginButton from "../../auth/CLoginButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Script from "next/script";

@@ -12,14 +12,14 @@ const CDashboard = () => {
     return (
       <Loader
         loadingText="Loading user details"
-        className="h-[calc(100vh-22rem)] lg:h-auto"
+        className="h-[calc(100dvh-22rem)] lg:h-auto"
       />
     );
   }
 
   if (error) {
     return (
-      <div className="m-auto text-destructive h-[calc(100vh-22rem)] lg:h-auto flex items-center justify-center">
+      <div className="m-auto text-destructive h-[calc(100dvh-22rem)] lg:h-auto flex items-center justify-center">
         Error while loading user session!
       </div>
     );

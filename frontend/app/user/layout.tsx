@@ -70,7 +70,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="w-full flex flex-col gap-4">{children}</div>
       </div>
       {/* Bottom bar (For size upto lg) */}
-      <div className="footer fixed lg:hidden left-0 bottom-0 p-1 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe h-[calc(4.15rem+env(safe-area-inset-bottom))]">
+      <div className="footer fixed lg:hidden left-0 bottom-0 p-[0.35rem] px-3 bg-background flex items-start justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground pb-safe h-[calc(4.25rem+env(safe-area-inset-bottom))]">
         {routes.map((route) => (
           <Link href={route.href} key={route.href} className="w-full">
             <div

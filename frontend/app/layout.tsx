@@ -59,7 +59,7 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] mb-[calc(4.75rem+env(safe-area-inset-bottom))] lg:mb-0">
+              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] mb-[calc(5rem+env(safe-area-inset-bottom))] lg:mb-0">
                 <TopBar />
                 {children}
                 <Footer />

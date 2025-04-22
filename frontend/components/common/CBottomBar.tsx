@@ -153,3 +153,5 @@ const CBottomBar = () => {
     </div>
   ) : null;
 };
+
+export default CBottomBar;

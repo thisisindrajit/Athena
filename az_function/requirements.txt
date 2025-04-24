@@ -3,3 +3,7 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 azure-functions
+autogen-agentchat 
+autogen-ext[openai,azure]
+dotenv
+aiohttp

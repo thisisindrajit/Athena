@@ -9,7 +9,7 @@ const CDashboard = () => {
   const { data: session, isPending, error } = useSession();
 
   if (isPending) {
-    return <Loader loadingText="Loading user details" />;
+    return <Loader loadingText="Loading dashboard" />;
   }
 
   if (error) {

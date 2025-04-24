@@ -26,5 +26,5 @@ deactivate
 
 ## Install requirements
 ```bash
-pip install -U "autogen-agentchat" "autogen-ext[openai,azure]" "dotenv" "aiohttp"
+pip install -U "autogen-agentchat" "autogen-ext[openai,azure]" "autogen-ext[web-surfer]" "dotenv" "aiohttp" "pyautogen[tools]"
 ```

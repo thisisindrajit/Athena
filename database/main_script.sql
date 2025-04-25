@@ -30,9 +30,10 @@ DROP TABLE IF EXISTS courses;
 -- Courses Table
 CREATE TABLE courses (
     course_id SERIAL PRIMARY KEY,
-    topic VARCHAR(255) NOT NULL,
+    topic TEXT NOT NULL,
+    description TEXT,
     preferences JSONB NOT NULL, -- Store preferences as JSON
-    content JSONB NOT NULL, -- Main course content in JSON format
+    metadata JSONB NOT NULL, -- Main course metadata in JSON format
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -41,19 +42,10 @@ CREATE TABLE courses (
 CREATE TABLE modules (
     module_id SERIAL PRIMARY KEY,
     course_id INTEGER REFERENCES courses(course_id) ON DELETE CASCADE,
-    title VARCHAR(255) NOT NULL,
+    title TEXT NOT NULL,
     description TEXT,
-    content JSONB NOT NULL, -- Module content in JSON format
+    metadata JSONB NOT NULL, -- Module metadata in JSON format
     module_order INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Snippets Table
-CREATE TABLE snippets (
-    snippet_id SERIAL PRIMARY KEY,
-    module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
-    overview TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -62,7 +54,7 @@ CREATE TABLE snippets (
 CREATE TABLE lessons (
     lesson_id SERIAL PRIMARY KEY,
     module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
-    title VARCHAR(255) NOT NULL,
+    title TEXT NOT NULL,
     content JSONB NOT NULL, -- Lesson content in JSON format
     display_order INTEGER, -- Combined order of lessons and activities within a module
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -73,13 +65,40 @@ CREATE TABLE lessons (
 CREATE TABLE activities (
     activity_id SERIAL PRIMARY KEY,
     module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
-    title VARCHAR(255) NOT NULL,
-    type VARCHAR(50) NOT NULL, -- e.g., 'quiz', 'true_false', 'fill_in_blanks', 'reorder'
+    title TEXT NOT NULL,
+    type VARCHAR(50) NOT NULL, -- e.g., 'quiz'
     content JSONB NOT NULL, -- Activity content in JSON format
     display_order INTEGER, -- Combined order of lessons and activities within a module
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- User Courses Table (to track course enrollment)
+CREATE TABLE user_courses (
+    enrollment_id SERIAL PRIMARY KEY,
+    user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    course_id INTEGER NOT NULL REFERENCES courses(course_id) ON DELETE CASCADE,
+    enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, course_id)
+);
+
+-- Create index for user courses
+CREATE INDEX idx_user_courses ON user_courses(user_id, course_id);
+
+
+------------ FUTURE IMPROVEMENTS -------------
+
+-- Snippets Table
+CREATE TABLE snippets (
+    snippet_id SERIAL PRIMARY KEY,
+    module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    overview TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 -- User Progress Table (with Users table dependency)
 CREATE TABLE user_progress (
@@ -98,18 +117,6 @@ CREATE TABLE user_progress (
 -- Create index to help with lookup of user progress
 CREATE INDEX idx_user_progress ON user_progress(user_id, entity_type, entity_id);
 
--- User Courses Table (to track course enrollment)
-CREATE TABLE user_courses (
-    enrollment_id SERIAL PRIMARY KEY,
-    user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
-    course_id INTEGER NOT NULL REFERENCES courses(course_id) ON DELETE CASCADE,
-    enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    last_accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(user_id, course_id)
-);
-
--- Create index for user courses
-CREATE INDEX idx_user_courses ON user_courses(user_id, course_id);
 
 -- Add likes and saves functionality to snippets
 CREATE TABLE snippet_interactions (

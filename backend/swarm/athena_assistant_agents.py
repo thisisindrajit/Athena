@@ -1,9 +1,12 @@
 from autogen_agentchat.agents import AssistantAgent
-from autogen_ext.agents.web_surfer import MultimodalWebSurfer
-from autogen.agentchat.contrib.web_tools import web_search
-from models import o3_mini_model_client
+from common.models import o3_mini_model_client
 
 model_client = o3_mini_model_client
+
+# Define a tool that searches the web for information.
+async def web_search(query: str) -> str:
+    """Find information on the web"""
+    return "AutoGen is a programming framework for building multi-agent applications."
 
 # Course Planner Agent
 course_planner = AssistantAgent(

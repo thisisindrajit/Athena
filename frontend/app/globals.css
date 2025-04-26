@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @config "../tailwind.config.ts";
-/* @plugin "daisyui" {
-  themes: false;
-}; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -123,14 +120,30 @@
 }
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: -webkit-fill-available;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
   }
-}
 
-.top-bar-active {
-  @apply bg-background/75 backdrop-blur-xl border p-2 rounded-2xl;
+  .top-bar-active {
+    @apply bg-background/75 backdrop-blur-xl border p-2 rounded-2xl;
+  }
+
+  .bottom-bar {
+    height: calc(64px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }

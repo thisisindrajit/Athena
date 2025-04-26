@@ -22,6 +22,5 @@ module.exports = {
         { values: flattenColorPalette(theme("colors")), type: "color" }
       );
     },
-    require("tailwindcss-safe-area"),
   ],
 };

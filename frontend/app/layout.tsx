@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Onest } from "next/font/google";
 import { APP_NAME, APP_DESCRIPTION } from "@/constants/common";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -21,6 +21,12 @@ const onest = Onest({
 export const metadata: Metadata = {
   title: APP_NAME,
   description: APP_DESCRIPTION,
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 const RootLayout = ({
@@ -44,10 +50,6 @@ const RootLayout = ({
       />
       <link rel="manifest" href="/favicons/site.webmanifest" />
       <meta name="apple-mobile-web-app-title" content={APP_NAME} />
-      <meta
-        name="viewport"
-        content="width=device-width,initial-scale=1,viewport-fit=cover"
-      />
     </head>
     <body className={`${onest.className} antialiased`}>
       <CQueryClientProvider>
@@ -59,7 +61,7 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] mb-[calc(5rem+env(safe-area-inset-bottom))] lg:mb-0">
+              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] lg:mb-0">
                 <TopBar />
                 {children}
                 <Footer />

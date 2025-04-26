@@ -69,6 +69,23 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Main content */}
         <div className="w-full flex flex-col gap-12">{children}</div>
       </div>
+      {/* Bottom Bar (For sizes smaller than lg) */}
+      <div className="bottom-bar fixed lg:hidden bottom-0 left-0 right-0 px-4 bg-background flex items-center justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground">
+        {routes.map((route) => (
+          <Link href={route.href} key={route.href} className="w-full">
+            <div
+              className={`p-3 rounded-md flex items-center justify-center gap-2 font-medium ${
+                route.active
+                  ? "text-primary bg-primary/10"
+                  : "transition-all cursor-pointer"
+              }`}
+            >
+              <route.icon className="h-4 w-4" />
+              <span className="hidden xs:block">{route.label}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </>
   );
 };

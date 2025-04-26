@@ -11,7 +11,6 @@ import Footer from "@/components/common/Footer";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
 import TopBar from "@/components/common/TopBar";
-import CBottomBar from "@/components/common/CBottomBar";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -61,12 +60,13 @@ const RootLayout = ({
             disableTransitionOnChange
           >
             <div className="m-auto 2xl:max-w-[1920px]">
-              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] lg:mb-0">
+              {/* The pb-32 class is added so that the bottom bar does not hide
+              the last part of the page */}
+              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] pb-32 lg:pb-0">
                 <TopBar />
                 {children}
                 <Footer />
               </div>
-              <CBottomBar />
               <Toaster richColors closeButton />
               <Analytics />
               <SpeedInsights />

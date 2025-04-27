@@ -27,14 +27,14 @@ const CSelectHolder: React.FC<ICSelectHolderProps> = ({
     <div className="group relative">
       <label
         htmlFor={id}
-        className="bg-background text-foreground absolute start-1 top-0 z-10 block -translate-y-1/2 px-2 text-xs font-medium group-has-disabled:opacity-50 uppercase"
+        className="bg-background text-primary absolute start-1 top-0 z-10 block -translate-y-1/2 px-2 text-xs font-medium group-has-disabled:opacity-50 uppercase"
       >
         {label}
       </label>
       <Select defaultValue={values[0]}>
         <SelectTrigger
           id={id}
-          className="bg-background shadow-lg min-w-36"
+          className="bg-background dark:bg-background hover:dark:bg-background min-w-36"
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

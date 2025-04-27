@@ -49,7 +49,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Input
                 type="text"
                 placeholder="Type in any TOPIC..."
-                className="text-lg lg:text-xl shadow-lg text-primary"
+                className="text-lg lg:text-xl"
               />
               <div className="rounded-md min-h-12 min-w-12 bg-background border border-primary/25 text-primary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-all">
                 <Search />
@@ -87,7 +87,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="flex gap-4 min-h-[calc(100dvh-22rem)]">
+      <div className="flex gap-4 min-h-[calc(100dvh-20rem)]">
         {/* Sidebar (For size lg and greater) */}
         <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100dvh-20rem)] min-w-72 max-h-80 p-3 rounded-xl sticky top-21 mt-1 border bg-primary/5 border-primary/25 text-primary overflow-auto">
           {routes.map((route) => (

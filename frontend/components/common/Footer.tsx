@@ -3,7 +3,7 @@ import CDialogHolder from "../holders/CDialogHolder";
 
 const Footer = () => {
   return (
-    <div className="hidden lg:flex items-center justify-center gap-2 bg-primary/5 text-primary w-full p-4 rounded-t-lg text-sm border-t border-x border-primary/50 border-dashed">
+    <div className="hidden lg:flex items-center justify-center gap-2 bg-primary/5 text-primary w-full p-4 rounded-t-lg text-sm border-t border-x border-primary/50 border-dashed m-auto mb-0">
       <CDialogHolder
         trigger={
           <div className="underline underline-offset-4 font-bold cursor-pointer">

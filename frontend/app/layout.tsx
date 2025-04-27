@@ -62,7 +62,7 @@ const RootLayout = ({
             <div className="m-auto 2xl:max-w-[1920px]">
               {/* The pb-32 class is added so that the bottom bar does not hide
               the last part of the page */}
-              <div className="px-4 flex flex-col justify-between gap-8 min-h-[100dvh] pb-32 lg:pb-0">
+              <div className="px-4 flex flex-col gap-8 min-h-[100dvh] pb-32 lg:pb-0">
                 <TopBar />
                 {children}
                 <Footer />

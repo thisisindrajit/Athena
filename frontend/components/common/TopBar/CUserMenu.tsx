@@ -1,13 +1,11 @@
 "use client";
 
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
@@ -15,6 +13,7 @@ import { FC, useState } from "react";
 import { Session, signOut } from "@/lib/client";
 import { toast } from "sonner";
 import { APP_NAME } from "@/constants/common";
+import DropdownMenuHolder from "@/components/holders/DropdownMenuHolder";
 
 interface ICUserMenuProps {
   session: Session;
@@ -52,15 +51,16 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
           Logging out...
         </div>
       )}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+      <DropdownMenuHolder
+        trigger={
           <Avatar className="size-8 cursor-pointer">
             <AvatarImage src={session.user?.image ?? undefined} />
             <AvatarFallback>
               {session.user?.name.substring(0, 1) ?? ":)"}
             </AvatarFallback>
           </Avatar>
-        </DropdownMenuTrigger>
+        }
+      >
         <DropdownMenuContent
           className="min-w-56 rounded-lg"
           align="end"
@@ -85,7 +85,7 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenuHolder>
     </>
   );
 };

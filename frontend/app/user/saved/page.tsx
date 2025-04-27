@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const Saved = () => {
   return (
     <Tabs defaultValue="courses" className="gap-4">
-      <TabsList className="w-full mt-1">
+      <TabsList className="w-full mt-1 select-none">
         <TabsTrigger value="courses">Courses</TabsTrigger>
         <TabsTrigger value="snippets">Snippets</TabsTrigger>
       </TabsList>

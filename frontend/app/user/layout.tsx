@@ -2,9 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Bookmark, House, TrendingUp } from "lucide-react";
+import { Bookmark, House, Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
+import CSelectHolder from "@/components/holders/CSelectHolder";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -36,16 +37,54 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {/* Search bar */}
-      <div className="h-48 md:h-42 w-full bg-dot-black/[0.2] dark:bg-dot-white/[0.2] relative flex items-center justify-center text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center text-center">
+      <div className="h-56 md:h-48 w-full bg-dot-black/[0.2] dark:bg-dot-white/[0.2] relative flex items-center justify-center">
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"></div>
-        <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 md:gap-3 w-[85%] xsm:w-4/5 xl:w-3/5 mb-2 md:mb-0">
-          <span className="min-w-fit">Build a learning path for </span>
-          <Input
-            type="text"
-            placeholder="Type in any TOPIC..."
-            className="w-full xsm:w-4/5 md:w-full text-lg lg:text-xl shadow-lg text-primary"
-          />
+        {/* Content */}
+        <div className="flex flex-col gap-4 md:gap-4 w-full lg:w-[80%] mt-2">
+          {/* Search bar */}
+          <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center w-[90%] xs:w-[80%]">
+            <span className="min-w-fit">Build a learning path for </span>
+            <div className="flex gap-2 min-w-full md:min-w-[65%]">
+              <Input
+                type="text"
+                placeholder="Type in any TOPIC..."
+                className="text-lg lg:text-xl shadow-lg text-primary"
+              />
+              <div className="rounded-md min-h-12 min-w-12 bg-background border border-primary/25 text-primary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-all">
+                <Search />
+              </div>
+            </div>
+          </div>
+          {/* Preferences */}
+          <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 px-2 pb-4 max-w-full">
+            <CSelectHolder
+              label="Level"
+              placeholder="Select level"
+              values={[
+                "Beginner 🌱", // Seedling for starting
+                "Intermediate 🧑‍🎓", // Student for learning
+                "Advanced 🎓", // Graduation cap for mastery
+              ]}
+            />
+            <CSelectHolder
+              label="Duration"
+              placeholder="Select duration"
+              values={[
+                "Short ⚡", // Lightning for quick
+                "Medium ⏳", // Hourglass for moderate time
+                "Long 🐢", // Turtle for slow and steady
+              ]}
+            />
+            <CSelectHolder
+              label="Depth"
+              placeholder="Select depth"
+              values={[
+                "Shallow 🏊", // Swimmer for surface level
+                "Deep 🤿", // Diving mask for in-depth
+              ]}
+            />
+          </div>
         </div>
       </div>
       <div className="flex gap-4 min-h-[calc(100dvh-22rem)]">
@@ -54,7 +93,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           {routes.map((route) => (
             <Link href={route.href} key={route.href}>
               <div
-                className={`w-full p-3 rounded-md flex items-center gap-3 font-medium ${
+                className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${
                   route.active
                     ? "text-primary-foreground bg-primary"
                     : "text-primary hover:bg-primary/10 transition-all cursor-pointer"

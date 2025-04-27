@@ -1,5 +1,5 @@
 import { APP_NAME } from "@/constants/common";
-import CDialogHolder from "../holders/DialogHolder";
+import CDialogHolder from "../holders/CDialogHolder";
 
 const Footer = () => {
   return (

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import CSignInWithGoogleBox from "@/components/auth/CSignInWithGoogleBox";
-import CDialogHolder from "../holders/DialogHolder";
+import CDialogHolder from "../holders/CDialogHolder";
 
 const CLoginButton = () => {
   return (

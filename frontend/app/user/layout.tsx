@@ -77,11 +77,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               ]}
             />
             <CSelectHolder
-              label="Depth"
-              placeholder="Select depth"
+              label="Focus"
+              placeholder="Select focus"
               values={[
-                "Shallow 🏊", // Swimmer for surface level
-                "Deep 🤿", // Diving mask for in-depth
+                "Broad 🌍", // Globe for broad scope
+                "In-Depth 🔬", // Microscope for detailed focus
               ]}
             />
           </div>

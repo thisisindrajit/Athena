@@ -14,7 +14,7 @@ const CDashboard = () => {
 
   if (error) {
     return (
-      <div className="m-auto text-destructive h-[calc(100dvh-22rem)] lg:h-auto flex items-center justify-center">
+      <div className="m-auto text-destructive">
         Error while loading user session!
       </div>
     );

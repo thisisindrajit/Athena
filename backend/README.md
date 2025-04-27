@@ -29,13 +29,11 @@ deactivate
 pip install -U "autogen-agentchat" "autogen-ext[openai,azure]" "autogen-ext[web-surfer]" "dotenv" "aiohttp" "pyautogen[tools]"
 ```
 
----
-
 ## DATA MODEL
 ### Preferences
 - Level: BEGINNER, INTERMEDIATE, ADVANCED 
 - Duration: SHORT, MEDIUM, LONG
-- Depth: SHALLOW, DEEP
+- Focus: IN-DEPTH, BROAD
 
 ### COURSE
 - topic
@@ -61,5 +59,3 @@ pip install -U "autogen-agentchat" "autogen-ext[openai,azure]" "autogen-ext[web-
 ### Snippets
 - title
 - overview
-
----

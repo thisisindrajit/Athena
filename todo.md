@@ -13,10 +13,13 @@
 - [x] Add theme
 - [x] Add authentication using Better Auth
   - [x] Bug: Not redirecting to home during logout (FIXED)
-- [ ] Develop the landing page and dashboard
-- [ ] change to auto increment for id in DB (except for course_id)
+- [x] Develop the landing page and dashboard
+- [ ] Change to auto increment for id in DB (except for course_id)
+- [ ] Create course card
+- [ ] Develop course page
+- [ ] Mock fetch for all pages
 
 ## TODO LATER
 
-- [ ] Make sure the bottom bar in mobile screens is within the safe area and does not collide with the footer (For now footer is hidden in mobile screens due to this bug)
+- [x] Make sure the bottom bar in mobile screens is within the safe area and does not collide with the footer (For now footer is hidden in mobile screens due to this bug)
 - 

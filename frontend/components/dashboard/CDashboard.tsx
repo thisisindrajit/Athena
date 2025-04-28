@@ -4,6 +4,7 @@ import SnippetCard from "@/components/common/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
+import CourseCard from "../common/CourseCard";
 
 const CDashboard = () => {
   const { data: session, isPending, error } = useSession();
@@ -22,22 +23,26 @@ const CDashboard = () => {
 
   return (
     <>
+      <div className="text-xl sm:text-2xl font-bold text-primary">
+        Welcome {(session?.user.name.split(" ")[0] ?? "User") + " 😄"}
+      </div>
       <div className="flex flex-col gap-4">
         <TitleHolder
-          lightText="Welcome"
-          boldText={(session?.user.name.split(" ")[0] ?? "User") + " 😄"}
+          lightText="Your"
+          boldText="Courses 📚"
           lightTextFirst
           makeBoldTextUppercase
         />
-        <div className="h-56 flex items-center justify-center m-auto text-muted-foreground text-center leading-relaxed">
-          User courses and completed percentage will be shown here.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
         </div>
       </div>
       <div className="flex flex-col gap-4 mt-4">
         <TitleHolder
-          lightText="Snippets"
-          boldText="for you 🤩"
-          lightTextFirst
+          boldText="Snippets"
+          lightText="for you 🤩"
           makeBoldTextUppercase
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">

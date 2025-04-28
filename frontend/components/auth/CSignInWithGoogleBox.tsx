@@ -57,10 +57,9 @@ const CSignInWithGoogleBox = () => {
   return (
     <div className="bg-[#DB4437]/10 flex flex-col items-center justify-center h-24 border border-dashed w-full border-[#DB4437]/50 rounded-md">
       <Button
-        className={`bg-[#DB4437] text-white after:flex-1 hover:bg-[#DB4437]/90 ${
-          isSigningIn && "cursor-not-allowed"
-        }`}
-        onClick={isSigningIn ? () => {} : signInWithGoogle}
+        className={`bg-[#DB4437] text-white after:flex-1 hover:bg-[#DB4437]/90 ${isSigningIn && "cursor-not-allowed"
+          }`}
+        onClick={isSigningIn ? () => { } : signInWithGoogle}
       >
         {isSigningIn ? (
           <>

@@ -1,3 +1,4 @@
+import CourseCard from "@/components/common/CourseCard";
 import SnippetCard from "@/components/common/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,11 +18,11 @@ const Trending = () => {
             makeBoldTextUppercase
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            <SnippetCard />
-            <SnippetCard />
-            <SnippetCard />
-            <SnippetCard />
-            <SnippetCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
           </div>
         </div>
       </TabsContent>

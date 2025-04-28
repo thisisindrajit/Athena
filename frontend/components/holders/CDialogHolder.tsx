@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { FC } from "react";
 
 interface ICDialogHolderProps {
@@ -15,6 +16,7 @@ interface ICDialogHolderProps {
   title: string;
   description?: string;
   children: React.ReactNode;
+  contentClassName?: string;
 }
 
 const CDialogHolder: FC<ICDialogHolderProps> = ({
@@ -22,12 +24,13 @@ const CDialogHolder: FC<ICDialogHolderProps> = ({
   title,
   description,
   children,
+  contentClassName
 }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
-        className="dark:bg-neutral-900"
+        className={cn("dark:bg-neutral-900", contentClassName)}
         // This is to prevent the dialog from closing when clicking on the toast
         onInteractOutside={(e) => {
           const { originalEvent } = e.detail;
@@ -39,8 +42,8 @@ const CDialogHolder: FC<ICDialogHolderProps> = ({
           }
         }}
       >
-        <div className="flex flex-col items-center gap-4">
-          <DialogHeader className="sticky top-0 z-10 bg-background/10 backdrop-blur-xl pt-4 px-4">
+        <div className="flex flex-col items-center overflow-auto h-fit md:max-h-[90dvh]">
+          <DialogHeader className="sticky top-0 z-10 bg-background/10 backdrop-blur-xl p-4">
             <DialogTitle>{title}</DialogTitle>
             {description && (
               <DialogDescription className="font-medium">

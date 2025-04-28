@@ -14,7 +14,7 @@ const SnippetCard = () => {
         commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
       </div>
       {/* Did you know */}
-      <div className="text-sm/loose text-justify bg-accent text-accent-foreground p-4 rounded-lg flex flex-col gap-2">
+      <div className="text-sm/loose text-justify bg-secondary/10 dark:bg-foreground/10 p-4 rounded-lg flex flex-col gap-2">
         <div className="font-bold uppercase w-fit bg-secondary px-2 text-secondary-foreground">
           Did you know!
         </div>

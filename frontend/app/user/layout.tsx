@@ -6,6 +6,7 @@ import { Bookmark, House, Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import CSelectHolder from "@/components/holders/CSelectHolder";
+import { PREFERENCES } from "@/constants/common";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -41,9 +42,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"></div>
         {/* Content */}
-        <div className="flex flex-col gap-4 md:gap-4 w-full lg:w-[80%] mt-2">
+        <div className="flex flex-col gap-4 w-full lg:w-[80%] mt-2">
           {/* Search bar */}
-          <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-2 text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center w-[90%] xs:w-[80%]">
+          <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-3 text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center w-[90%] xs:w-[80%]">
             <span className="min-w-fit">Build a learning path for </span>
             <div className="flex gap-2 min-w-full md:min-w-[65%]">
               <Input
@@ -57,39 +58,28 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           {/* Preferences */}
-          <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 px-2 pb-4 max-w-full">
+          <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 px-2 pb-4 max-w-full no-scrollbar">
             <CSelectHolder
               label="Level"
               placeholder="Select level"
-              values={[
-                "Beginner 🌱", // Seedling for starting
-                "Intermediate 🧑‍🎓", // Student for learning
-                "Advanced 🎓", // Graduation cap for mastery
-              ]}
+              values={PREFERENCES["LEVEL"]}
             />
             <CSelectHolder
               label="Duration"
               placeholder="Select duration"
-              values={[
-                "Short ⚡", // Lightning for quick
-                "Medium ⏳", // Hourglass for moderate time
-                "Long 🐢", // Turtle for slow and steady
-              ]}
+              values={PREFERENCES["DURATION"]}
             />
             <CSelectHolder
               label="Focus"
               placeholder="Select focus"
-              values={[
-                "Broad 🌍", // Globe for broad scope
-                "In-Depth 🔬", // Microscope for detailed focus
-              ]}
+              values={PREFERENCES["FOCUS"]}
             />
           </div>
         </div>
       </div>
       <div className="flex gap-4 min-h-[calc(100dvh-20rem)]">
         {/* Sidebar (For size lg and greater) */}
-        <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100dvh-20rem)] min-w-72 max-h-80 p-3 rounded-xl sticky top-21 mt-1 border bg-primary/5 border-primary/25 text-primary overflow-auto">
+        <div className="hidden lg:flex lg:flex-col gap-2 h-[calc(100dvh-20rem)] min-w-72 max-h-80 p-3 rounded-xl sticky top-21 mt-1.25 border bg-primary/5 border-primary/25 text-primary overflow-auto">
           {routes.map((route) => (
             <Link href={route.href} key={route.href}>
               <div
@@ -106,7 +96,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           ))}
         </div>
         {/* Main content */}
-        <div className="w-full flex flex-col gap-12">{children}</div>
+        <div className="w-full flex flex-col gap-8">{children}</div>
       </div>
       {/* Bottom Bar (For sizes smaller than lg) */}
       <div className="bottom-bar fixed lg:hidden bottom-0 left-0 right-0 px-4 bg-background flex items-center justify-between gap-2 w-full border-t text-sm text-muted-foreground dark:text-foreground">

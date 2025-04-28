@@ -34,7 +34,7 @@ const CSelectHolder: React.FC<ICSelectHolderProps> = ({
       <Select defaultValue={values[0]}>
         <SelectTrigger
           id={id}
-          className="bg-background dark:bg-background hover:dark:bg-background min-w-36"
+          className="bg-background dark:bg-background dark:hover:bg-background min-w-32"
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

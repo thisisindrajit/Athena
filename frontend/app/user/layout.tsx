@@ -42,10 +42,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"></div>
         {/* Content */}
-        <div className="flex flex-col gap-4 w-full lg:w-[80%] mt-2">
+        <div className="flex flex-col gap-4 w-full md:w-[80%] mt-2">
           {/* Search bar */}
-          <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-3 text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center w-[90%] xs:w-[80%]">
-            <span className="min-w-fit">Build a learning path for </span>
+          <div className="flex flex-col md:inline-flex md:flex-row items-center justify-center gap-3 text-xl/snug xs:text-2xl/snug lg:text-3xl/snug font-bold self-center w-[95%] sm:w-[90%] xl:w-[80%]">
+            <span className="min-w-fit">Build a <span className="underline underline-offset-4 decoration-primary">learning path</span> for </span>
             <div className="flex gap-2 min-w-full md:min-w-[65%]">
               <Input
                 type="text"
@@ -58,7 +58,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           {/* Preferences */}
-          <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 px-2 pb-4 max-w-full no-scrollbar">
+          <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 pb-4 max-w-full no-scrollbar">
             <CSelectHolder
               label="Level"
               placeholder="Select level"
@@ -83,11 +83,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           {routes.map((route) => (
             <Link href={route.href} key={route.href}>
               <div
-                className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${
-                  route.active
+                className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${route.active
                     ? "text-primary-foreground bg-primary"
                     : "text-primary hover:bg-primary/10 transition-all cursor-pointer"
-                }`}
+                  }`}
               >
                 <route.icon className="h-5 w-5" />
                 {route.label}
@@ -103,11 +102,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {routes.map((route) => (
           <Link href={route.href} key={route.href} className="w-full">
             <div
-              className={`p-3 rounded-md flex items-center justify-center gap-2 font-medium ${
-                route.active
+              className={`p-3 rounded-md flex items-center justify-center gap-2 font-medium ${route.active
                   ? "text-primary bg-primary/10"
                   : "transition-all cursor-pointer"
-              }`}
+                }`}
             >
               <route.icon className="h-4 w-4" />
               <span className="hidden xs:block">{route.label}</span>

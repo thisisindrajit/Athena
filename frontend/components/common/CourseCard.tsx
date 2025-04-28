@@ -2,8 +2,13 @@ import { ArrowRight, Bookmark, Share } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { PREFERENCES } from "@/constants/common";
+import { FC } from "react";
 
-const CourseCard = () => {
+interface CourseCardProps {
+    showSaveAndShare?: boolean;
+}
+
+const CourseCard: FC<CourseCardProps> = ({ showSaveAndShare = false }) => {
     return <div className="p-4 rounded-lg border border-foreground/25 dark:bg-foreground/5 flex flex-col gap-2 shadow-lg">
         {/* Title */}
         <div className="text-lg font-bold">Course Title</div>
@@ -27,10 +32,10 @@ const CourseCard = () => {
             </div>
             <div className="flex flex-col lg:flex-row items-center gap-3">
                 {/* Save and share icon */}
-                <div className="grid grid-cols-2 w-full lg:w-fit">
+                {showSaveAndShare && <div className="grid grid-cols-2 w-full lg:w-fit">
                     <Button variant="outline"><Bookmark className="h-4 w-4" />Save</Button>
                     <Button variant="link"><Share className="h-4 w-4" />Share</Button>
-                </div>
+                </div>}
                 <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground w-full lg:w-fit m-auto mr-0">
                     View Course
                     <ArrowRight />

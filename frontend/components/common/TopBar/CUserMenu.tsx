@@ -80,6 +80,9 @@ const CUserMenu: FC<ICUserMenuProps> = ({ session }) => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
+            <DropdownMenuItem>
+              Feedback
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={signOutFromAthena}>
               Logout
             </DropdownMenuItem>

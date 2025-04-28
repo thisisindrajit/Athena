@@ -25,7 +25,7 @@ const Home = async () => {
   return (
     <>
       {/* Motto */}
-      <div className="h-56 md:h-48 w-full bg-dot-black/[0.2] dark:bg-dot-white/[0.2] relative flex items-center justify-center text-2xl/snug xxs:text-3xl/snug lg:text-4xl/snug font-bold self-center text-center">
+      <div className="h-48 md:h-42 w-full bg-dot-black/[0.2] dark:bg-dot-white/[0.2] relative flex items-center justify-center text-2xl/snug xxs:text-3xl/snug lg:text-4xl/snug font-bold self-center text-center">
         {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_60%,black)]"></div>
         <div className="hidden xxs:block md:hidden">

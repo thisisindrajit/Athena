@@ -2,8 +2,13 @@ import { Separator } from "@/components/ui/separator";
 import { PREFERENCES } from "@/constants/common";
 import { Button } from "../ui/button";
 import { ArrowRight, Bookmark, Share } from "lucide-react";
+import { FC } from "react";
 
-const SnippetCard = () => {
+interface SnippetCardProps {
+  showSaveAndShare?: boolean;
+}
+
+const SnippetCard: FC<SnippetCardProps> = ({ showSaveAndShare = false }) => {
   return (
     <div className="p-4 rounded-lg border border-foreground/25 dark:bg-foreground/5 flex flex-col gap-2 shadow-lg">
       {/* Title */}
@@ -39,10 +44,10 @@ const SnippetCard = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-3">
           {/* Save and share icon */}
-          <div className="grid grid-cols-2 w-full lg:w-fit">
+          {showSaveAndShare && <div className="grid grid-cols-2 w-full lg:w-fit">
             <Button variant="outline"><Bookmark className="h-4 w-4" />Save</Button>
             <Button variant="link"><Share className="h-4 w-4" />Share</Button>
-          </div>
+          </div>}
           <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground w-full lg:w-fit m-auto mr-0">
             View Snippet
             <ArrowRight />

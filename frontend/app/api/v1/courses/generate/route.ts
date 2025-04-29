@@ -1,6 +1,8 @@
+import { mockData } from "@/constants/common";
+import { courses, modules, activities, lessons } from "@/drizzle/schema";
 import { GenerateCourseRequest } from "@/types/GenerateCourseRequest";
 import { NextRequest } from "next/server";
-import test from "node:test";
+import { db } from "@/db";
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,9 +10,48 @@ export async function POST(req: NextRequest) {
     console.log(requestBody);
 
     // TODO: Use azure function 
-    const azureFunctionResponse = testData; // await fetch("https://<your-azure-function-url>", {
+    const azureFunctionResponse = mockData;
+    
+    // Insert course first
+    const [insertedCourse] = await db.insert(courses).values({
+        topic: azureFunctionResponse.topic,
+        description: azureFunctionResponse.description,
+        preferences: azureFunctionResponse.preferences,
+        metadata: azureFunctionResponse.metadata
+    }).returning();
 
-    // Store in DB 
+    // Insert modules with course reference
+    azureFunctionResponse.modules.forEach(async (moduleData, moduleIndex) => {
+        const [insertedModule] = await db.insert(modules).values({
+            courseId: insertedCourse.courseId,
+            title: moduleData.title,
+            description: moduleData.description,
+            metadata: {},
+            moduleOrder: moduleIndex + 1,
+        }).returning();
+
+        moduleData.content.forEach(async (data, contentIndex) => {
+            // Check if it's a lesson
+            if (data.lesson_id) {   
+                await db.insert(lessons).values({
+                    title: data.title,
+                    content: data.content,
+                    moduleId: insertedModule.moduleId,
+                    displayOrder: contentIndex + 1
+                });
+            } 
+            // Check if it's an activity
+            else if (data.activity_id) {
+                await db.insert(activities).values({
+                    title: data.title,
+                    type: data.type,
+                    content: data.content,
+                    moduleId: insertedModule.moduleId,
+                    displayOrder: contentIndex + 1
+                });
+            } 
+        });
+    });
 
     return Response.json(`Couse generated successfully for topic ${requestBody.topic}`, { status: 200 });
   } catch (err: Error | unknown) {
@@ -23,58 +64,4 @@ export async function POST(req: NextRequest) {
       }
     );
   }
-}
-
-
-const testData = {
-    "title": "string",
-    "description": "string",
-    "preferences": {
-        "level": "BEGINNER",
-        "duration": "SHORT",
-        "focus": "IN-DEPTH"
-    },
-    "metadata": {
-        "count": {
-            "modules": 3,
-            "lessons": 10,
-            "activities": 5
-        }
-    },
-    "modules": [
-        {
-            "module_id": "BIGINT",
-            "title": "string",
-            "description": "string",
-            "content": [
-                {
-                    "lesson_id": "BIGINT",
-                    "title": "string",
-                    "description": "string",
-                    "content": {
-                        "type": "MARKDOWN",
-                        "content": "<markdown>"
-                    }
-                },
-                {
-                    "activity_id": "BIGINT",
-                    "title": "string",
-                    "type": "<quiz>",
-                    "content": {
-                        "type": "MARKDOWN",
-                        "content": "<markdown>"
-                    }
-                },
-                {
-                    "lesson_id": "BIGINT",
-                    "title": "string",
-                    "description": "string",
-                    "content": {
-                        "type": "MARKDOWN",
-                        "content": "<markdown>"
-                    }
-                }
-            ]
-        }
-    ]
 }

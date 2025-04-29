@@ -21,7 +21,7 @@ export const PREFERENCES = {
 
 export const mockData = {
   "course_id": "1",
-  "title": "Introduction to Quantum Computing",
+  "topic": "Introduction to Quantum Computing",
   "description": "A beginner-friendly introduction to the fascinating world of quantum computing.",
   "preferences": {
       "level": "BEGINNER",
@@ -39,24 +39,33 @@ export const mockData = {
       {
           "module_id": "1001",
           "title": "Quantum Mechanics Fundamentals",
+          "moduleOrder": 1,
           "description": "Essential quantum mechanics concepts for quantum computing.",
           "content": [
               {
                   "lesson_id": "100101",
                   "title": "Superposition and Qubits",
+                  "displayOrder": 1,
                   "description": "Understanding superposition and the qubit.",
-                  "content": "## Superposition\nQubits can exist in a superposition of states..."
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Superposition\nQubits can exist in a superposition of states..."
+                  }
               },
               {
                   "lesson_id": "100102",
                   "title": "Entanglement",
+                  "displayOrder": 2,
                   "description": "Exploring the phenomenon of quantum entanglement.",
-                  "content": "## Entanglement\nEntanglement is a correlation between qubits..."
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Entanglement\nEntanglement is a correlation between qubits..."
+                  }
               },
               {
                   "activity_id": "100103",
                   "title": "Quiz: Quantum Mechanics Basics",
-                  "description": "Test your knowledge of quantum mechanics fundamentals.",
+                  "displayOrder": 3,
                   "type": "quiz",
                   "content": {
                       "question": "What is superposition?",
@@ -68,24 +77,31 @@ export const mockData = {
       {
           "module_id": "1002",
           "title": "Quantum Gates and Circuits",
+          "moduleOrder": 2,
           "description": "Learn about quantum gates and how to build quantum circuits.",
           "content": [
               {
                   "lesson_id": "100201",
                   "title": "Single-Qubit Gates",
-                  "description": "Exploring the Pauli-X, Pauli-Y, Pauli-Z, and Hadamard gates.",
-                  "content": "## Single-Qubit Gates\nThese gates operate on a single qubit..."
+                  "displayOrder": 1,
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Single-Qubit Gates\nThese gates operate on a single qubit..."
+                  }
               },
               {
                   "lesson_id": "100202",
                   "title": "Multi-Qubit Gates",
-                  "description": "Understanding CNOT and other multi-qubit gates.",
-                  "content": "## Multi-Qubit Gates\nThese gates operate on multiple qubits..."
+                  "displayOrder": 2,
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Multi-Qubit Gates\nThese gates operate on multiple qubits..."
+                  }
               },
               {
                   "activity_id": "100203",
                   "title": "Quiz: Quantum Gates",
-                  "description": "Test your knowledge of quantum gates.",
+                  "displayOrder": 3,
                   "type": "quiz",
                   "content": {
                       "question": "What does the Hadamard gate do?",
@@ -98,24 +114,31 @@ export const mockData = {
       {
           "module_id": "1003",
           "title": "Quantum Algorithms",
+          "moduleOrder": 3,
           "description": "Introduction to famous quantum algorithms.",
           "content": [
               {
                   "lesson_id": "100301",
                   "title": "Deutsch's Algorithm",
-                  "description": "A simple algorithm demonstrating quantum speedup.",
-                  "content": "## Deutsch's Algorithm\nThis algorithm solves a simple problem faster than classical algorithms..."
+                  "displayOrder": 1,
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Deutsch's Algorithm\nThis algorithm solves a simple problem faster than classical algorithms..."
+                  }
               },
               {
                   "lesson_id": "100302",
                   "title": "Grover's Algorithm",
-                  "description": "Quantum search algorithm.",
-                  "content": "## Grover's Algorithm\nThis algorithm searches an unsorted database faster than classical algorithms..."
+                  "displayOrder": 2,
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Grover's Algorithm\nThis algorithm searches an unsorted database faster than classical algorithms..."
+                  }
               },
               {
                   "activity_id": "100303",
                   "title": "Quiz: Quantum Algorithms",
-                  "description": "Test your knowledge of quantum algorithms.",
+                  "displayOrder": 3,
                   "type": "quiz",
                   "content": {
                       "question": "What is the purpose of Grover's algorithm?",
@@ -128,19 +151,28 @@ export const mockData = {
       {
           "module_id": "1004",
           "title": "Quantum Computing Platforms",
+          "moduleOrder": 4,
           "description": "Overview of different quantum computing platforms.",
           "content": [
               {
                   "lesson_id": "100401",
                   "title": "Superconducting Qubits",
+                  "displayOrder": 1,
                   "description": "Introduction to superconducting qubits.",
-                  "content": "## Superconducting Qubits\nThese qubits are based on superconducting circuits..."
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Superconducting Qubits\nThese qubits are based on superconducting circuits..."
+                  }
               },
               {
                   "lesson_id": "100402",
                   "title": "Trapped Ions",
+                  "displayOrder": 2,
                   "description": "Introduction to trapped ion qubits.",
-                  "content": "## Trapped Ions\nThese qubits are based on trapped ions..."
+                  "content": {
+                    "type": "MARKDOWN",
+                    "value": "## Trapped Ions\nThese qubits are based on trapped ions..."
+                  }
               }
           ]
       }

@@ -94,7 +94,7 @@ Official frontend repository for Athena.
                     "description": "string",
                     "content": {
                         "type": "MARKDOWN",
-                        "content": "<markdown>"
+                        "value": "<markdown>"
                     }
                 },
                 {
@@ -103,7 +103,7 @@ Official frontend repository for Athena.
                     "type": "<quiz>",
                     "content": {
                         "type": "MARKDOWN",
-                        "content": "<markdown>"
+                        "value": "<markdown>"
                     }
                 },
                 {
@@ -112,7 +112,7 @@ Official frontend repository for Athena.
                     "description": "string",
                     "content": {
                         "type": "MARKDOWN",
-                        "content": "<markdown>"
+                        "value": "<markdown>"
                     }
                 },
                 ...

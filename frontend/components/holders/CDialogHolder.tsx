@@ -42,7 +42,7 @@ const CDialogHolder: FC<ICDialogHolderProps> = ({
           }
         }}
       >
-        <div className="flex flex-col items-center overflow-auto h-fit md:max-h-[90dvh]">
+        <div className="flex flex-col items-center overflow-auto max-h-[90dvh]">
           <DialogHeader className="sticky top-0 z-10 bg-background/10 backdrop-blur-xl p-4">
             <DialogTitle>{title}</DialogTitle>
             {description && (

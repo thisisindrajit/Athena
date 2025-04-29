@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { db } from "@/lib/database";
+import { dbPool } from "@/lib/database";
 
 export const auth = betterAuth({
   socialProviders: {
@@ -8,7 +8,7 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-  database: db,
+  database: dbPool,
   trustedOrigins: (process.env.TRUSTED_ORIGINS as string).split(","),
   // Cache session in the browser for 5 minutes
   session: {

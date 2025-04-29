@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-export const db = new Pool({
+export const dbPool = new Pool({
   // Specify any property from the node-postgres connection options
   host: process.env.POSTGRES_HOST,
   port: parseInt(process.env.POSTGRES_PORT || "5432"),

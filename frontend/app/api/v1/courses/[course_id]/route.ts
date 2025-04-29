@@ -109,7 +109,7 @@ export async function GET(
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
-  } catch (err: Error | any) {
+  } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(

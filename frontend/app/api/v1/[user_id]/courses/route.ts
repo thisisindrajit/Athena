@@ -14,7 +14,7 @@ export async function GET(
       .where(eq(userCourses.userId, user_id))
       .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
     return Response.json(result);
-  } catch (err: Error | any) {
+  } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(

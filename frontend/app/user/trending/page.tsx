@@ -2,6 +2,13 @@ import CourseCard from "@/components/common/CourseCard";
 import SnippetCard from "@/components/common/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { APP_NAME } from "@/constants/common";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `Trending - ${APP_NAME}`,
+  description: `Trending courses and snippets on ${APP_NAME}`,
+};
 
 const Trending = () => {
   return (
@@ -18,11 +25,11 @@ const Trending = () => {
             makeBoldTextUppercase
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
           </div>
         </div>
       </TabsContent>
@@ -30,13 +37,13 @@ const Trending = () => {
         <div className="flex flex-col gap-4">
           <TitleHolder
             boldText="Trending"
-            lightText="Snippets 🚀"
+            lightText="Snippets 📈"
             makeBoldTextUppercase
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            <SnippetCard />
-            <SnippetCard />
-            <SnippetCard />
+            <SnippetCard showSaveAndShare />
+            <SnippetCard showSaveAndShare />
+            <SnippetCard showSaveAndShare />
           </div>
         </div>
       </TabsContent>

@@ -1,7 +1,22 @@
+import { Metadata } from "next";
+import { APP_NAME } from "@/constants/common";
+import { auth } from "@/lib/auth";
 import CourseCard from "@/components/common/CourseCard";
 import SnippetCard from "@/components/common/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { headers } from "next/headers";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  return {
+    title: `${session?.user.name}'s saved items - ${APP_NAME}`,
+    description: `${session?.user.name}'s saved items on ${APP_NAME}`,
+  };
+}
 
 const Saved = () => {
   return (
@@ -18,9 +33,9 @@ const Saved = () => {
             makeBoldTextUppercase
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
+            <CourseCard showSaveAndShare />
           </div>
         </div>
       </TabsContent>
@@ -32,9 +47,9 @@ const Saved = () => {
             makeBoldTextUppercase
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            <SnippetCard />
-            <SnippetCard />
-            <SnippetCard />
+            <SnippetCard showSaveAndShare />
+            <SnippetCard showSaveAndShare />
+            <SnippetCard showSaveAndShare />
           </div>
         </div>
       </TabsContent>

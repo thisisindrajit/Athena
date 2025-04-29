@@ -42,7 +42,7 @@ Official frontend repository for Athena.
 ```json
 [
   {
-    "course_id": "UUID",
+    "course_id": "BIGINT",
     "title": "string",
     "description": "string",
     "preferences": {
@@ -61,13 +61,38 @@ Official frontend repository for Athena.
 ]
 ```
 
-#### GET /api/v1/courses/{course_id}
+#### GET /api/v1/courses?user_id={user_id}
+
+```json
+[
+  {
+    "course_id": "BIGINT",
+    "title": "string",
+    "description": "string",
+    "preferences": {
+    "level": "BEGINNER",
+    "duration": "SHORT",
+    "focus": "IN-DEPTH"
+    },
+    "metadata": {
+    "count": {
+        "modules": 3,
+        "lessons": 10,
+        "activities": 5
+    }
+    },
+    "isSaved": false
+  }
+]
+```
+
+#### GET /api/v1/courses?course_id={course_id}
 
 - Returns course details with modules, lessons and activities
 
 ```json
 {
-    "course_id": "UUID",
+    "course_id": "BIGINT",
     "title": "string",
     "description": "string",
     "preferences": {
@@ -84,12 +109,12 @@ Official frontend repository for Athena.
     },
     "modules": [
         {
-            "module_id": "UUID",
+            "module_id": "BIGINT",
             "title": "string",
             "description": "string",
             "content": [
                 {
-                    "lesson_id": "UUID",
+                    "lesson_id": "BIGINT",
                     "title": "string",
                     "description": "string",
                     "content": {
@@ -98,7 +123,7 @@ Official frontend repository for Athena.
                     }
                 },
                 {
-                    "activity_id": "UUID",
+                    "activity_id": "BIGINT",
                     "title": "string",
                     "type": "<quiz>",
                     "content": {
@@ -107,7 +132,7 @@ Official frontend repository for Athena.
                     }
                 },
                 {
-                    "lesson_id": "UUID",
+                    "lesson_id": "BIGINT",
                     "title": "string",
                     "description": "string",
                     "content": {
@@ -145,7 +170,7 @@ Official frontend repository for Athena.
 ```json
 [
     {
-        "course_id": "UUID",
+        "course_id": "BIGINT",
         "title": "string",
         "description": "string",
         "preferences": {
@@ -167,7 +192,7 @@ Official frontend repository for Athena.
 
 ```json
 {
-    "course_id": "UUID",
+    "course_id": "BIGINT",
     "topic": "string",
     "level": "BEGINNER",
     "duration": "SHORT",

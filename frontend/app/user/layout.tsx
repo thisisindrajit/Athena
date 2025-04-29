@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Bookmark, House, Search, TrendingUp } from "lucide-react";
+import { ArrowRight, Bookmark, House, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import CSelectHolder from "@/components/holders/CSelectHolder";
@@ -59,7 +59,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 className="text-lg lg:text-xl"
               />
               <div className="rounded-md min-h-12 min-w-12 bg-background border border-primary/25 text-primary flex items-center justify-center cursor-pointer hover:bg-primary hover:text-primary-foreground transition-all">
-                <Search />
+                <ArrowRight />
               </div>
             </div>
           </div>

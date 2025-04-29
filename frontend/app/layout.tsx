@@ -64,7 +64,7 @@ const RootLayout = ({
               the last part of the page */}
               <div className="px-4 flex flex-col justify-between gap-12 min-h-[100dvh]">
                 <TopBar />
-                <div className="flex flex-col gap-12 m-auto mt-0 min-h-[calc(100dvh-12rem)] w-full">{children}</div>
+                <div className="flex flex-col gap-12 m-auto mt-0 min-h-[calc(100dvh-12rem)] w-full pb-32 lg:pb-0">{children}</div>
                 <Footer />
               </div>
               <Toaster richColors closeButton />

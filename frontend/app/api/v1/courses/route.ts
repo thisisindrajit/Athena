@@ -4,7 +4,6 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    console.log(req);
     const result = await db.select().from(courses);
     
     return Response.json(result);
@@ -12,7 +11,7 @@ export async function GET(req: NextRequest) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(
-      `Some error occurred while fetching courses: ${errorMessage}`,
+      `Error occurred while fetching courses: ${errorMessage}`,
       {
         status: 400,
       }

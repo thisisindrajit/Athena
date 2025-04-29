@@ -61,32 +61,7 @@ Official frontend repository for Athena.
 ]
 ```
 
-#### GET /api/v1/courses?user_id={user_id}
-
-```json
-[
-  {
-    "course_id": "UUID",
-    "title": "string",
-    "description": "string",
-    "preferences": {
-    "level": "BEGINNER",
-    "duration": "SHORT",
-    "focus": "IN-DEPTH"
-    },
-    "metadata": {
-    "count": {
-        "modules": 3,
-        "lessons": 10,
-        "activities": 5
-    }
-    },
-    "isSaved": false
-  }
-]
-```
-
-#### GET /api/v1/courses?course_id={course_id}
+#### GET /api/v1/courses/{course_id}
 
 - Returns course details with modules, lessons and activities
 
@@ -117,22 +92,28 @@ Official frontend repository for Athena.
                     "lesson_id": "UUID",
                     "title": "string",
                     "description": "string",
-                    "content": "<markdown>"
+                    "content": {
+                        "type": "MARKDOWN",
+                        "content": "<markdown>"
+                    }
                 },
                 {
                     "activity_id": "UUID",
                     "title": "string",
-                    "description": "<markdown>",
                     "type": "<quiz>",
-                    "json_data": {
-                        // JSON data for the activity
+                    "content": {
+                        "type": "MARKDOWN",
+                        "content": "<markdown>"
                     }
                 },
                 {
                     "lesson_id": "UUID",
                     "title": "string",
                     "description": "string",
-                    "content": "<markdown>"
+                    "content": {
+                        "type": "MARKDOWN",
+                        "content": "<markdown>"
+                    }
                 },
                 ...
             ]
@@ -140,10 +121,6 @@ Official frontend repository for Athena.
     ]
 }
 ```
-
-#### GET /api/v1/courses/is_available?course_id={course_id}
-
-- For long polling - return true if present else false
 
 ### GENERATE COURSE API
 
@@ -163,7 +140,7 @@ Official frontend repository for Athena.
 
 ### USER API
 
-#### GET /api/v1/user/courses?user_id={user_id}
+#### GET /api/v1/{user_id}/courses
 
 ```json
 [

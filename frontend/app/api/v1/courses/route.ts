@@ -4,10 +4,13 @@ import { courses } from '@/db/schema';
 
 export async function GET (req: NextApiRequest) {
   try {
+    console.log(req);
+
     const result = await db.select().from(courses);
     return Response.json(result);
-  } catch (err: Error | any) {
-    return new Response(`Error: ${err.message}`, {
+  } catch (err: Error | unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    return new Response(`Error: ${errorMessage}`, {
       status: 400,
     });
   }

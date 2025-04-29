@@ -1,68 +1,69 @@
 from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.ui import Console
-from selector.athena_multi_agents import course_planner, research_agent, content_writer, content_validator, quiz_master, critique_agent, course_assembler
+from selector.athena_multi_agents import course_planner, module_researcher, lesson_writer, content_validator, quiz_maker, critique_agent, course_assembler
 from common.models import o3_mini_model_client
 from common.config import termination_condition
+from common.config import store_final_course
 
 model_client = o3_mini_model_client
-
-# Maintain shared state (like a blackboard)
-state = {
-    "user_request": None,
-    "course_plan": None,
-    "research_data": None,
-    "lesson_content": None,
-    "validated": False,
-    "quiz": None,
-    "feedback": None,
-}
-
+"""
 # Selector function to route messages to the correct agent
-def selector(message, agents):
-    content = message["content"].lower()
+def selector(messages):
+    source_agent = messages[-1].source
 
-    if "create a course" in content:
-        state["user_request"] = content
+    if source_agent == "user":
         return "course_planner"
 
-    elif "course plan" in content and "modules" in content:
-        state["course_plan"] = content
+    elif source_agent == "course_planner":
         return "research_agent"
 
-    elif "research summary" in content:
-        state["research_data"] = content
+    elif source_agent == "research_agent":
         return "content_writer"
 
-    elif "lesson content" in content and "explanation" in content:
-        state["lesson_content"] = content
+    elif source_agent == "content_writer":
         return "content_validator"
 
-    elif "approved" in content or "issues" in content:
-        state["validated"] = True
+    elif source_agent == "content_validator":
         return "quiz_master"
 
-    elif "quiz questions" in content:
-        state["quiz"] = content
+    elif source_agent == "quiz_master":
         return "critique_agent"
 
-    elif "feedback" in content or "suggestions" in content:
-        state["feedback"] = content
+    elif source_agent == "critique_agent":
+        return None
+    
+    return None
+"""
+
+# 3. Selector Function for deciding handoffs
+def selector(messages):
+    last_message = messages[-1]
+    content = last_message.content.lower()
+
+    if "terminate" in content:
+        return None
+    if "course structure" in content or "modules" in content:
+        return "module_researcher"
+    if "module research" in content or "concepts found" in content:
+        return "lesson_writer"
+    if "lesson written" in content or "lesson ready" in content:
+        return "quiz_maker"
+    if "quiz created" in content or "quiz ready" in content:
+        return "content_validator"
+    if "validated" in content or "issues found" in content:
+        return "critique_agent"
+    if "feedback" in content or "critique complete" in content:
         return "course_assembler"
-
-    else:
-        return "user_proxy"
-
-
-
+    return None  # Let it fall back naturally if unclear
 
 # Build the selector-based group
 team = SelectorGroupChat(
     [
         course_planner,
-        research_agent,
-        content_writer,
+        module_researcher,
+        lesson_writer,
         content_validator,
-        quiz_master,
+        quiz_maker,
         critique_agent,
         course_assembler,
     ],
@@ -78,16 +79,7 @@ async def run_team_selector() -> None:
         
         task = "Create a course on AI agents using Autogen."
         task_result = await Console(team.run_stream(task=task))
-        """
-        last_message = task_result.messages[-1]
-        while isinstance(last_message, HandoffMessage) and last_message.target == "user":
-            user_message = input("User: ")
-
-            task_result = await Console(
-                team.run_stream(task=HandoffMessage(source="user", target=last_message.source, content=user_message))
-            )
-            last_message = task_result.messages[-1]
-        """
+        store_final_course(task_result.messages)
     finally:
         # Ensure the client session is closed properly
         await model_client.close()

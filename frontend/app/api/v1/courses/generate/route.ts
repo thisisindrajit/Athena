@@ -43,12 +43,12 @@ const testData = {
     },
     "modules": [
         {
-            "module_id": "UUID",
+            "module_id": "BIGINT",
             "title": "string",
             "description": "string",
             "content": [
                 {
-                    "lesson_id": "UUID",
+                    "lesson_id": "BIGINT",
                     "title": "string",
                     "description": "string",
                     "content": {
@@ -57,7 +57,7 @@ const testData = {
                     }
                 },
                 {
-                    "activity_id": "UUID",
+                    "activity_id": "BIGINT",
                     "title": "string",
                     "type": "<quiz>",
                     "content": {
@@ -66,7 +66,7 @@ const testData = {
                     }
                 },
                 {
-                    "lesson_id": "UUID",
+                    "lesson_id": "BIGINT",
                     "title": "string",
                     "description": "string",
                     "content": {

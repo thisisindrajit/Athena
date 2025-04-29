@@ -61,32 +61,7 @@ Official frontend repository for Athena.
 ]
 ```
 
-#### GET /api/v1/courses?user_id={user_id}
-
-```json
-[
-  {
-    "course_id": "BIGINT",
-    "title": "string",
-    "description": "string",
-    "preferences": {
-    "level": "BEGINNER",
-    "duration": "SHORT",
-    "focus": "IN-DEPTH"
-    },
-    "metadata": {
-    "count": {
-        "modules": 3,
-        "lessons": 10,
-        "activities": 5
-    }
-    },
-    "isSaved": false
-  }
-]
-```
-
-#### GET /api/v1/courses?course_id={course_id}
+#### GET /api/v1/courses/{course_id}
 
 - Returns course details with modules, lessons and activities
 

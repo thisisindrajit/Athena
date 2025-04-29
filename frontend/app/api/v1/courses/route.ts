@@ -1,8 +1,8 @@
-import type { NextApiRequest } from 'next'
 import { db } from '@/db';
 import { courses } from '@/db/schema';
+import { NextRequest } from 'next/server';
 
-export async function GET (req: NextApiRequest) {
+export async function GET (req: NextRequest) {
   try {
     console.log(req);
 

@@ -1,12 +1,12 @@
-const Course = () => {
+const Module = () => {
     return <>
         <div className="text-xl sm:text-2xl font-bold text-primary">
-            Course title
+            Module title
         </div>
         <div>
-            Course description goes here...
+            Module description goes here...
         </div>
     </>;
 }
-
-export default Course;
+ 
+export default Module;

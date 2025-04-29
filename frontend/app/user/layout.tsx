@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import CSelectHolder from "@/components/holders/CSelectHolder";
 import { PREFERENCES } from "@/constants/common";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const UserLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   const routes = [
     {
@@ -129,4 +129,4 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default DashboardLayout;
+export default UserLayout;

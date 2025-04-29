@@ -11,7 +11,7 @@ export async function GET (
     const { course_id } = await params;
     const result = await db.select().from(courses).where(eq(courses.courseId, course_id));
     return Response.json(result);
-  } catch (err: Error | any) {
+  } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(

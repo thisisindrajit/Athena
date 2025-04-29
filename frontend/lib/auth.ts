@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { dbPool } from "@/lib/database";
+import { dbPool } from "@/db/dbpool";
 
 export const auth = betterAuth({
   socialProviders: {

@@ -24,7 +24,7 @@ const CDashboard = () => {
   return (
     <>
       <div className="text-xl sm:text-2xl font-bold text-primary">
-        Welcome {(session?.user.name.split(" ")[0] ?? "User") + " 😄"}
+        Welcome {(session?.user.name.split(" ")[0] ?? "User") + "! 😄"}
       </div>
       <div className="flex flex-col gap-4">
         <TitleHolder

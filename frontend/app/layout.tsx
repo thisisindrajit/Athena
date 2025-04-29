@@ -62,9 +62,9 @@ const RootLayout = ({
             <div className="m-auto 2xl:max-w-[1920px]">
               {/* The pb-32 class is added so that the bottom bar does not hide
               the last part of the page */}
-              <div className="px-4 flex flex-col gap-12 min-h-[100dvh] pb-32 lg:pb-0">
+              <div className="px-4 flex flex-col justify-between gap-12 min-h-[100dvh]">
                 <TopBar />
-                {children}
+                <div className="flex flex-col gap-12 m-auto mt-0 min-h-[calc(100dvh-12rem)] w-full pb-32 lg:pb-0">{children}</div>
                 <Footer />
               </div>
               <Toaster richColors closeButton />

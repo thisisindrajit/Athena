@@ -7,10 +7,6 @@ create table "account" ("id" text not null primary key, "accountId" text not nul
 
 create table "verification" ("id" text not null primary key, "identifier" text not null, "value" text not null, "expiresAt" timestamp not null, "createdAt" timestamp, "updatedAt" timestamp);
 
--- Drop views first to avoid dependency issues
-DROP VIEW IF EXISTS trending_snippets;
-DROP VIEW IF EXISTS user_course_progress;
-
 -- Drop indexes
 DROP INDEX IF EXISTS idx_user_progress;
 DROP INDEX IF EXISTS idx_user_courses;
@@ -29,7 +25,7 @@ DROP TABLE IF EXISTS courses;
 -- OTHER TABLES
 -- Courses Table
 CREATE TABLE courses (
-    course_id SERIAL PRIMARY KEY,
+    course_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     topic TEXT NOT NULL,
     description TEXT,
     preferences JSONB NOT NULL, -- Store preferences as JSON
@@ -40,7 +36,7 @@ CREATE TABLE courses (
 
 -- Modules Table
 CREATE TABLE modules (
-    module_id SERIAL PRIMARY KEY,
+    module_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     course_id INTEGER REFERENCES courses(course_id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     description TEXT,
@@ -52,7 +48,7 @@ CREATE TABLE modules (
 
 -- Lessons Table
 CREATE TABLE lessons (
-    lesson_id SERIAL PRIMARY KEY,
+    lesson_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     content JSONB NOT NULL, -- Lesson content in JSON format
@@ -63,7 +59,7 @@ CREATE TABLE lessons (
 
 -- Activities Table
 CREATE TABLE activities (
-    activity_id SERIAL PRIMARY KEY,
+    activity_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     type VARCHAR(50) NOT NULL, -- e.g., 'quiz'
@@ -75,7 +71,7 @@ CREATE TABLE activities (
 
 -- User Courses Table (to track course enrollment)
 CREATE TABLE user_courses (
-    enrollment_id SERIAL PRIMARY KEY,
+    enrollment_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     course_id INTEGER NOT NULL REFERENCES courses(course_id) ON DELETE CASCADE,
     enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -91,7 +87,7 @@ CREATE INDEX idx_user_courses ON user_courses(user_id, course_id);
 
 -- Snippets Table
 CREATE TABLE snippets (
-    snippet_id SERIAL PRIMARY KEY,
+    snippet_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     module_id INTEGER REFERENCES modules(module_id) ON DELETE CASCADE,
     title TEXT NOT NULL,
     overview TEXT NOT NULL,
@@ -99,11 +95,10 @@ CREATE TABLE snippets (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 -- User Progress Table (with Users table dependency)
 CREATE TABLE user_progress (
-    progress_id SERIAL PRIMARY KEY,
-    user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE, -- Changed to reference user table
+    progress_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     entity_type VARCHAR(20) NOT NULL, -- 'course', 'module', 'lesson', 'activity'
     entity_id INTEGER NOT NULL, -- References the corresponding entity ID
     is_completed BOOLEAN DEFAULT FALSE,
@@ -114,13 +109,9 @@ CREATE TABLE user_progress (
     UNIQUE(user_id, entity_type, entity_id)
 );
 
--- Create index to help with lookup of user progress
-CREATE INDEX idx_user_progress ON user_progress(user_id, entity_type, entity_id);
-
-
 -- Add likes and saves functionality to snippets
 CREATE TABLE snippet_interactions (
-    interaction_id SERIAL PRIMARY KEY,
+    interaction_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id TEXT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     snippet_id INTEGER NOT NULL REFERENCES snippets(snippet_id) ON DELETE CASCADE,
     is_liked BOOLEAN DEFAULT FALSE,
@@ -132,69 +123,3 @@ CREATE TABLE snippet_interactions (
 
 -- Create index for snippet interactions
 CREATE INDEX idx_snippet_interactions ON snippet_interactions(user_id, snippet_id);
-
--- View 1: Trending snippets based on like count
-CREATE VIEW trending_snippets AS
-SELECT 
-    s.snippet_id,
-    s.module_id,
-    s.overview,
-    m.title AS module_title,
-    c.course_id,
-    c.topic AS course_topic,
-    COUNT(si.user_id) AS like_count
-FROM snippets s
-JOIN modules m ON s.module_id = m.module_id
-JOIN courses c ON m.course_id = c.course_id
-LEFT JOIN snippet_interactions si ON s.snippet_id = si.snippet_id AND si.is_liked = TRUE
-GROUP BY s.snippet_id, s.module_id, s.overview, m.title, c.course_id, c.topic
-ORDER BY like_count DESC
-LIMIT 5;
-
--- View 2: User course completion percentage
-CREATE VIEW user_course_progress AS
-WITH 
-    course_entities AS (
-        -- Count all lessons and activities in each course
-        SELECT 
-            c.course_id,
-            COUNT(DISTINCT l.lesson_id) + COUNT(DISTINCT a.activity_id) AS total_entities
-        FROM courses c
-        LEFT JOIN modules m ON c.course_id = m.course_id
-        LEFT JOIN lessons l ON m.module_id = l.module_id
-        LEFT JOIN activities a ON m.module_id = a.module_id
-        GROUP BY c.course_id
-    ),
-    user_completed AS (
-        -- Count completed lessons and activities by user
-        SELECT 
-            up.user_id,
-            c.course_id,
-            COUNT(DISTINCT up.entity_id) AS completed_entities
-        FROM user_progress up
-        JOIN modules m ON (up.entity_type = 'module' AND up.entity_id = m.module_id)
-        JOIN courses c ON m.course_id = c.course_id
-        LEFT JOIN lessons l ON (up.entity_type = 'lesson' AND up.entity_id = l.lesson_id AND l.module_id = m.module_id)
-        LEFT JOIN activities a ON (up.entity_type = 'activity' AND up.entity_id = a.activity_id AND a.module_id = m.module_id)
-        WHERE up.is_completed = TRUE AND (up.entity_type = 'lesson' OR up.entity_type = 'activity')
-        GROUP BY up.user_id, c.course_id
-    )
-SELECT 
-    uc.user_id,
-    u.name AS user_name,
-    uc.course_id,
-    c.topic AS course_topic,
-    ce.total_entities,
-    COALESCE(uco.completed_entities, 0) AS completed_entities,
-    CASE 
-        WHEN ce.total_entities = 0 THEN 0
-        ELSE ROUND((COALESCE(uco.completed_entities, 0)::NUMERIC / ce.total_entities) * 100, 2)
-    END AS completion_percentage,
-    uc.enrolled_at,
-    uc.last_accessed_at
-FROM user_courses uc
-JOIN "user" u ON uc.user_id = u.id
-JOIN courses c ON uc.course_id = c.course_id
-JOIN course_entities ce ON c.course_id = ce.course_id
-LEFT JOIN user_completed uco ON uc.user_id = uco.user_id AND uc.course_id = uco.course_id
-ORDER BY uc.user_id, completion_percentage DESC;

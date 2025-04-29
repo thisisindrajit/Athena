@@ -26,7 +26,7 @@ const TopBar = async () => {
         `}
       </Script>
       <div className="top-bar flex items-center justify-between sticky top-4 z-25 transition-all">
-        <Link href={session ? "dashboard" : "/"}>
+        <Link href={session ? "/user/dashboard" : "/"}>
           <div className="font-semibold uppercase underline-offset-4 bg-background/80 backdrop-blur-xl py-1.5 px-3 rounded-md text-sm border border-primary">
             {APP_NAME}
           </div>

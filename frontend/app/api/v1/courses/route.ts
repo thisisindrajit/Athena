@@ -4,6 +4,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    console.log(req);
+    
     const result = await db.select().from(courses);
 
     return Response.json(result);

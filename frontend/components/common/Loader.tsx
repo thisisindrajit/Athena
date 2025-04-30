@@ -5,6 +5,7 @@ interface ILoaderProps {
   loadingText?: string;
   className?: string;
 }
+
 const Loader: FC<ILoaderProps> = ({ loadingText, className }) => {
   return (
     <div

@@ -17,9 +17,8 @@ export const PREFERENCES = {
     "In-Depth 🔬", // Microscope for detailed focus
   ],
 };
-
 export const mockData = {
-  course_id: "1",
+  course_id: 1,
   topic: "Introduction to Quantum Computing",
   description: `## Course Overview
 
@@ -98,14 +97,14 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
   },
   modules: [
     {
-      module_id: "1001",
+      module_id: 1001,
       title: "Quantum Mechanics Fundamentals",
       moduleOrder: 1,
       description:
         "Essential quantum mechanics concepts for quantum computing.",
       content: [
         {
-          lesson_id: "100101",
+          lesson_id: 100101,
           title: "Superposition and Qubits",
           displayOrder: 1,
           description: "Understanding superposition and the qubit.",
@@ -116,7 +115,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          lesson_id: "100102",
+          lesson_id: 100102,
           title: "Entanglement",
           displayOrder: 2,
           description: "Exploring the phenomenon of quantum entanglement.",
@@ -127,7 +126,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          activity_id: "100103",
+          activity_id: 100103,
           title: "Quiz: Quantum Mechanics Basics",
           displayOrder: 3,
           type: "quiz",
@@ -145,14 +144,14 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
       ],
     },
     {
-      module_id: "1002",
+      module_id: 1002,
       title: "Quantum Gates and Circuits",
       moduleOrder: 2,
       description:
         "Learn about quantum gates and how to build quantum circuits.",
       content: [
         {
-          lesson_id: "100201",
+          lesson_id: 100201,
           title: "Single-Qubit Gates",
           displayOrder: 1,
           content: {
@@ -162,7 +161,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          lesson_id: "100202",
+          lesson_id: 100202,
           title: "Multi-Qubit Gates",
           displayOrder: 2,
           content: {
@@ -172,7 +171,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          activity_id: "100203",
+          activity_id: 100203,
           title: "Quiz: Quantum Gates",
           displayOrder: 3,
           type: "quiz",
@@ -190,13 +189,13 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
       ],
     },
     {
-      module_id: "1003",
+      module_id: 1003,
       title: "Quantum Algorithms",
       moduleOrder: 3,
       description: "Introduction to famous quantum algorithms.",
       content: [
         {
-          lesson_id: "100301",
+          lesson_id: 100301,
           title: "Deutsch's Algorithm",
           displayOrder: 1,
           content: {
@@ -206,7 +205,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          lesson_id: "100302",
+          lesson_id: 100302,
           title: "Grover's Algorithm",
           displayOrder: 2,
           content: {
@@ -216,7 +215,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          activity_id: "100303",
+          activity_id: 100303,
           title: "Quiz: Quantum Algorithms",
           displayOrder: 3,
           type: "quiz",
@@ -234,13 +233,13 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
       ],
     },
     {
-      module_id: "1004",
+      module_id: 1004,
       title: "Quantum Computing Platforms",
       moduleOrder: 4,
       description: "Overview of different quantum computing platforms.",
       content: [
         {
-          lesson_id: "100401",
+          lesson_id: 100401,
           title: "Superconducting Qubits",
           displayOrder: 1,
           description: "Introduction to superconducting qubits.",
@@ -251,7 +250,7 @@ Quantum computing is a rapidly evolving field with the potential to revolutioniz
           },
         },
         {
-          lesson_id: "100402",
+          lesson_id: 100402,
           title: "Trapped Ions",
           displayOrder: 2,
           description: "Introduction to trapped ion qubits.",

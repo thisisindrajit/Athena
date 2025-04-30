@@ -9,11 +9,13 @@ export async function GET(
 ) {
   try {
     const { user_id } = await params;
+
     const result = await db
       .select({ courses: courses })
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
       .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
+      
     return Response.json(result);
   } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);

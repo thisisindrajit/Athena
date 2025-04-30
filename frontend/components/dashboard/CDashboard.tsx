@@ -5,20 +5,18 @@ import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
 import CourseCard from "../common/CourseCard";
+import Error from "../common/Error";
 
 const CDashboard = () => {
-  const { data: session, isPending, error } = useSession();
+  const { data: session, isPending, isError, error } = useSession();
 
   if (isPending) {
     return <Loader loadingText="Loading dashboard" />;
   }
 
-  if (error) {
-    return (
-      <div className="m-auto text-destructive">
-        Error while loading user session!
-      </div>
-    );
+  if (isError) {
+    console.log(error);
+    return <Error errorText="Error while loading user session!" />;
   }
 
   return (

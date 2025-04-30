@@ -22,5 +22,6 @@ module.exports = {
         { values: flattenColorPalette(theme("colors")), type: "color" }
       );
     },
+    require('@tailwindcss/typography')
   ],
 };

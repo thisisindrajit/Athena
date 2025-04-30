@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { courses, lessons, modules, activities } from "@/drizzle/schema";
-import { Course } from "@/types/interfaces";
+import { ICourse } from "@/interfaces/ICourse";
 import { eq, asc } from "drizzle-orm";
 import { NextApiRequest } from "next";
 
@@ -44,7 +44,13 @@ export async function GET(
         asc(activities.displayOrder)
       );
 
-    const aggregatedResult = result.reduce((acc: Course[], row) => {
+    if (result.length === 0) {
+      return new Response(`No course found with ID: ${course_id}`, {
+        status: 404,
+      });
+    }
+
+    const aggregatedResult = result.reduce((acc: ICourse[], row) => {
       let course = acc.find((c) => c.courseId === row.courseId);
       if (!course) {
         course = {
@@ -56,51 +62,53 @@ export async function GET(
             duration: string;
             focus: string;
           },
-          metadata: row.courseMetadata,
+          metadata: row.courseMetadata as { count: { lessons: number; modules: number; activities: number; }; },
           modules: [],
         };
         acc.push(course);
       }
 
-      let courseModule = course.modules.find((m) => m.moduleId === row.moduleId);
+      let courseModule = course.modules.find(
+        (m) => m.moduleId === row.moduleId
+      );
       if (!courseModule && row.moduleId) {
         courseModule = {
           moduleId: row.moduleId,
-          title: row.moduleTitle,
-          description: row.moduleDescription,
-          moduleOrder: row.moduleOrder,
+          title: row.moduleTitle!,
+          description: row.moduleDescription!,
+          moduleOrder: row.moduleOrder!,
           content: [],
         };
-        course.modules.push(module);
+        course.modules.push(courseModule);
       }
 
       if (courseModule) {
         if (row.lessonId) {
           const lesson = courseModule.content.find(
-            (c: { lesson_id: number | null }) => c.lesson_id === row.lessonId
+            (c: { lessonId?: number }) => c.lessonId === row.lessonId
           );
           if (!lesson) {
             courseModule.content.push({
-              lesson_id: row.lessonId,
-              title: row.lessonTitle,
+              lessonId: row.lessonId,
+              title: row.lessonTitle!,
               content: row.lessonContent,
-              displayOrder: row.lessonDisplayOrder,
+              displayOrder: row.lessonDisplayOrder!,
             });
           }
         }
 
         if (row.activityId) {
           const activity = courseModule.content.find(
-            (c: { activity_id: number | null }) =>
-              c.activity_id === row.activityId
+            (c: { activityId?: number }) =>
+              c.activityId === row.activityId
           );
           if (!activity) {
             courseModule.content.push({
-              activity_id: row.activityId,
-              title: row.activityTitle,
-              activityType: row.activityType,
+              activityId: row.activityId,
+              title: row.activityTitle!,
+              activityType: row.activityType!,
               content: row.activityContent,
-              displayOrder: row.activityDisplayOrder,
+              displayOrder: row.activityDisplayOrder!,
             });
           }
         }
@@ -120,7 +128,7 @@ export async function GET(
       course.modules.sort((a, b) => a.moduleOrder - b.moduleOrder);
     });
 
-    return new Response(JSON.stringify(aggregatedResult), {
+    return new Response(JSON.stringify(aggregatedResult[0]), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

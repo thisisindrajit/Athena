@@ -32,7 +32,7 @@ const Course = () => {
             {course.topic}
         </div>
         <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <ReactMarkdown className="prose dark:prose-invert min-w-full" remarkPlugins={[remarkGfm]}>{course.description}</ReactMarkdown>
+        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{course.description}</ReactMarkdown></div>
     </>;
 }
 

@@ -38,7 +38,7 @@ const Lesson = () => {
             {lesson.title}
         </div>
         <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <ReactMarkdown className="prose dark:prose-invert min-w-full" remarkPlugins={[remarkGfm]}>{lesson.content.value}</ReactMarkdown>
+        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.content.value}</ReactMarkdown></div>
     </>;;
 }
 

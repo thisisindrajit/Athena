@@ -19,7 +19,7 @@ const Module = () => {
     })
 
     if (isPending) {
-        return <Loader loadingText="Loading module details" />;
+        return <Loader loadingText="Loading module details"/>;
     }
 
     if (isError) {

@@ -1,7 +1,7 @@
 "use client";
 
-import CourseCard from "@/components/common/CourseCard";
-import SnippetCard from "@/components/common/SnippetCard";
+import CourseCard from "@/components/cards/CourseCard";
+import SnippetCard from "@/components/cards/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 

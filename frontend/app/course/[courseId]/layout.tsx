@@ -27,7 +27,7 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
 
     const { isPending, isError, data, error } = useQuery<ICourse>({
         queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
+        queryFn: async () => await fetchCourse(courseId),
     })
 
     if (isPending) {
@@ -62,7 +62,7 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
                             <div key={`${data.courseId}-${module.moduleId}`}>
                                 <SelectItem value={`/course/${data.courseId}/module/${module.moduleId}`} className="bg-secondary/25 dark:bg-secondary/10 dark:hover:bg-accent data-[state=checked]:bg-secondary data-[state=checked]:text-secondary-foreground dark:data-[state=checked]:bg-secondary dark:data-[state=checked]:text-secondary-foreground">
                                     <div className="flex gap-2.5 p-1.5">
-                                        <Map className="h-4 min-w-4 mt-0.75 text-inherit" /> 
+                                        <Map className="h-4 min-w-4 mt-0.75 text-inherit" />
                                         <span className="leading-relaxed">{module.title}</span>
                                     </div>
                                 </SelectItem>

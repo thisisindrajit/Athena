@@ -11,7 +11,15 @@ export async function GET(
     const { user_id } = await params;
 
     const result = await db
-      .select({ courses: courses })
+      .select({
+        courseId: courses.courseId,
+        topic: courses.topic,
+        description: courses.description,
+        preferences: courses.preferences,
+        metadata: courses.metadata,
+        createdAt: courses.createdAt,
+        updatedAt: courses.updatedAt
+      })
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
       .innerJoin(courses, eq(userCourses.courseId, courses.courseId));

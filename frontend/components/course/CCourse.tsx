@@ -2,7 +2,7 @@
 
 import Error from "@/components/common/Error";
 import Loader from "@/components/common/Loader";
-import ModuleCard from "@/components/course/ModuleCard";
+import ModuleCard from "@/components/cards/ModuleCard";
 import { Separator } from "@/components/ui/separator";
 import { PREFERENCES } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
@@ -17,7 +17,7 @@ const CCourse = () => {
 
     const { isPending, isError, data: course, error } = useQuery<ICourse>({
         queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
+        queryFn: async () => await fetchCourse(courseId),
     })
 
     if (isPending) {

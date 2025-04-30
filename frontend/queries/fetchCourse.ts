@@ -4,7 +4,7 @@ export const fetchCourse = async (courseId: string) => {
     const course = await fetch(`/api/v1/courses/${courseId}`);
 
     if (!course.ok) {
-        throw { errorText: `${course.statusText} - ${course.status}` };
+        throw { errorText: `Some error occurred while fetching course. ${course.statusText} - ${course.status}` };
     }
 
     const courseData: ICourse = await course.json();

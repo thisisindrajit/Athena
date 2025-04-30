@@ -1,11 +1,11 @@
 import { APP_DESCRIPTION, APP_NAME } from "@/constants/common";
-import SnippetCard from "@/components/common/SnippetCard";
+import SnippetCard from "@/components/cards/SnippetCard";
 import { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import TitleHolder from "@/components/holders/TitleHolder";
-import CourseCard from "@/components/common/CourseCard";
+import CourseCard from "@/components/cards/CourseCard";
 
 export const metadata: Metadata = {
   title: APP_NAME,

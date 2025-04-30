@@ -15,7 +15,7 @@ const CLesson = () => {
 
     const { isPending, isError, data, error } = useQuery<ICourse>({
         queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
+        queryFn: async () => await fetchCourse(courseId),
     })
 
     if (isPending) {

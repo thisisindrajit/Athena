@@ -1,11 +1,11 @@
 "use client";
 
-import SnippetCard from "@/components/common/SnippetCard";
+import SnippetCard from "@/components/cards/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
-import CourseCard from "../common/CourseCard";
 import Error from "../common/Error";
+import CUserCourses from "./CUserCourses";
 
 const CDashboard = () => {
   const { data: session, isPending, isError, error } = useSession();
@@ -31,11 +31,7 @@ const CDashboard = () => {
           lightTextFirst
           makeBoldTextUppercase
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-          <CourseCard showSaveAndShare />
-          <CourseCard showSaveAndShare />
-          <CourseCard showSaveAndShare />
-        </div>
+        <CUserCourses userId={session.user.id} />
       </div>
       <div className="flex flex-col gap-4 mt-4">
         <TitleHolder

@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { courses, userCourses } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 export async function GET(
@@ -22,7 +22,8 @@ export async function GET(
       })
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
-      .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
+      .innerJoin(courses, eq(userCourses.courseId, courses.courseId))
+      .orderBy(desc(courses.createdAt));
 
     return Response.json(result);
   } catch (err: Error | unknown) {

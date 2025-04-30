@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../common/Loader";
-import Error from "../common/Error";
+import Loader from "./Loader";
+import Error from "./Error";
 import { fetchTrendingSnippets } from "@/queries/fetchTrendingSnippets";
 import { FC } from "react";
 import { cn } from "@/lib/utils";

@@ -2,8 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { ICourse } from "@/interfaces/ICourse";
-import Loader from "../common/Loader";
-import Error from "../common/Error";
+import Loader from "./Loader";
+import Error from "./Error";
 import CourseCard from "../cards/CourseCard";
 import { fetchTrendingCourses } from "@/queries/fetchTrendingCourses";
 import { FC } from "react";

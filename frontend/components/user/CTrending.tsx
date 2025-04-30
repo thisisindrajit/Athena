@@ -2,8 +2,8 @@
 
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CTrendingCourses from "../home/CTrendingCourses";
-import CTrendingSnippets from "../home/CTrendingSnippets";
+import CTrendingCourses from "../common/CTrendingCourses";
+import CTrendingSnippets from "../common/CTrendingSnippets";
 
 const CTrending = () => {
     return <Tabs defaultValue="courses" className="gap-4">

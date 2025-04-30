@@ -5,6 +5,7 @@ import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
 import Error from "../common/Error";
 import CUserCourses from "./CUserCourses";
+import CUserSnippets from "./CUserSnippets";
 
 const CDashboard = () => {
   const { data: session, isPending, isError, error } = useSession();
@@ -38,13 +39,7 @@ const CDashboard = () => {
           lightText="for you 🤩"
           makeBoldTextUppercase
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-          {/* <SnippetCard showSave />
-          <SnippetCard showSave />
-          <SnippetCard showSave />
-          <SnippetCard showSave />
-          <SnippetCard showSave /> */}
-        </div>
+        <CUserSnippets userId={session.user.id} />
       </div>
     </>
   );

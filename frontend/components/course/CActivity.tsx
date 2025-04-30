@@ -7,6 +7,7 @@ import { ICourse } from "@/interfaces/ICourse";
 import { fetchCourse } from "@/queries/fetchCourse";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import CQuiz from "./CQuiz";
 
 const CActivity = () => {
     const { courseId, moduleId, activityId } = useParams<{ courseId: string, moduleId: string, activityId: string }>();
@@ -31,13 +32,7 @@ const CActivity = () => {
         return <Error errorText="Activity not found!" />;
     }
 
-    return <>
-        <div className="text-xl sm:text-2xl font-bold text-primary">
-            {activity.title}
-        </div>
-        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        {JSON.stringify(activity.content)}
-    </>;
+    return <CQuiz question={activity.content.question} options={activity.content.options} answer={activity.content.answer} />;
 }
 
 export default CActivity;

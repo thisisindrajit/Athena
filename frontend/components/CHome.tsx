@@ -1,8 +1,8 @@
 "use client";
 
 import TitleHolder from "@/components/holders/TitleHolder";
-import CTrendingCourses from "./CTrendingCourses";
-import CTrendingSnippets from "./CTrendingSnippets";
+import CTrendingCourses from "./common/CTrendingCourses";
+import CTrendingSnippets from "./common/CTrendingSnippets";
 
 const CHome = () => {
   return <>

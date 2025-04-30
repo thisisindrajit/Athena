@@ -1,12 +1,13 @@
 import { Separator } from "@/components/ui/separator";
-import { PREFERENCES } from "@/constants/common";
+import { APP_NAME, PREFERENCES } from "@/constants/common";
 import { Button } from "../ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Share } from "lucide-react";
 import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { ISnippet } from "@/interfaces/ISnippet";
+import CShare from "../common/CShare";
 
 interface SnippetCardProps {
   snippet: ISnippet;
@@ -32,28 +33,37 @@ const SnippetCard: FC<SnippetCardProps> = ({ snippet }) => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </div>
       </div> */}
-      <Separator />
-      {/* Part of course */}
-      <div className="flex flex-col gap-3 mt-2">
-        <div className="text-sm font-medium w-fit">
-          Part of course <span className="underline text-primary">{snippet.courseTopic}</span>
-        </div>
-        <div className="flex gap-2 flex-wrap">
-          <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["LEVEL"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.level.toLowerCase()))}</div>
-          <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["DURATION"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.duration.toLowerCase()))}</div>
-          <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["FOCUS"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.focus.toLowerCase()))}</div>
-        </div>
-        <div className="flex flex-col lg:flex-row items-center gap-3">
-          {/* TODO: Add save and share snippets */}
-          <Link href={`/course/${snippet.courseId}`} className="w-full lg:w-fit m-auto mr-0">
-            <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground">
-              View Course
-              <ArrowRight />
-            </Button>
-          </Link>
+      <div className="flex flex-col gap-2 h-fit m-auto mb-0 w-full">
+        <Separator />
+        {/* Part of course */}
+        <div className="flex flex-col gap-3 mt-2">
+          <div className="text-sm font-medium w-fit">
+            Part of course <span className="underline text-primary">{snippet.courseTopic}</span>
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["LEVEL"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.level.toLowerCase()))}</div>
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["DURATION"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.duration.toLowerCase()))}</div>
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["FOCUS"].filter((pref) => pref.toLowerCase().includes(snippet.preferences.focus.toLowerCase()))}</div>
+          </div>
+          <div className="flex flex-col lg:flex-row items-center gap-3">
+            {/* Share icon */}
+            <div className="grid grid-cols-1 w-full lg:w-fit">
+              <CShare
+                trigger={<Button variant="outline"><Share className="h-4 w-4" />Share course</Button>}
+                link={`${process.env.NEXT_PUBLIC_BASE_URL}/course/${snippet.courseId}`}
+                label={`Share this course!`}
+                description={`Explore the course on ${snippet.courseTopic} only on ${APP_NAME}!`}
+              />
+            </div>
+            <Link href={`/course/${snippet.courseId}`} className="w-full lg:w-fit m-auto mr-0">
+              <Button variant="outline" className="w-full hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground">
+                View Course
+                <ArrowRight />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-
     </div>
   );
 };

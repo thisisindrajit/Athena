@@ -1,6 +1,6 @@
 import { db } from "@/db";
-import { courses, userCourses } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { courses, userCourses, modules } from "@/drizzle/schema";
+import { desc, eq, lt } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
 export async function GET(
@@ -13,16 +13,18 @@ export async function GET(
     const result = await db
       .select({
         courseId: courses.courseId,
-        topic: courses.topic,
-        description: courses.description,
-        preferences: courses.preferences,
-        metadata: courses.metadata,
-        createdAt: courses.createdAt,
-        updatedAt: courses.updatedAt
+        courseTopic: courses.topic,
+        moduleTitle: modules.title,
+        moduleDescription: modules.description,
+        preferences: courses.preferences
       })
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
-      .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
+      .innerJoin(modules, eq(modules.courseId, userCourses.courseId))
+      .innerJoin(courses, eq(courses.courseId, userCourses.courseId))
+      .groupBy(courses.courseId, courses.topic, modules.title, modules.description, courses.preferences, modules.moduleOrder, modules.createdAt)
+      .having(lt(modules.moduleOrder, 4)) // Assuming you want to limit to the first 3 modules
+      .orderBy(desc(modules.createdAt)).limit(10);
 
     return Response.json(result);
   } catch (err: Error | unknown) {

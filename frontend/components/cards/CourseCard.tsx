@@ -41,11 +41,11 @@ const CourseCard: FC<CourseCardProps> = ({ course, showSave = false }) => {
                         trigger={<Button variant={showSave ? "link" : "outline"}><Share className="h-4 w-4" />Share</Button>}
                         link={`${process.env.NEXT_PUBLIC_BASE_URL}/course/${course.courseId}`}
                         label={`Share this course!`}
-                        description={`Explore the course on ${course.topic} with ${course.metadata.count.modules} modules, ${course.metadata.count.lessons} lessons, and ${course.metadata.count.activities} activities. Check it out only on ${APP_NAME}!`}
+                        description={`Explore the course on ${course.topic} only on ${APP_NAME}!`}
                     />
                 </div>
                 <Link href={`/course/${course.courseId}`} className="w-full lg:w-fit m-auto mr-0">
-                    <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground">
+                    <Button variant="outline" className="w-full hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground">
                         View Course
                         <ArrowRight />
                     </Button>

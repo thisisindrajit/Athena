@@ -1,5 +1,4 @@
 from autogen_agentchat.agents import AssistantAgent
-from autogen_ext.agents.web_surfer import MultimodalWebSurfer
 from common.models import o3_mini_model_client
 
 model_client = o3_mini_model_client
@@ -119,7 +118,6 @@ Example JSON:
 
 course_assembler_json = """{
 The final course JSON should be a combination of all the modules and lessons and quizzes under each module.
-Make sure the quizzes are placed in between the lessons according to the relevance.
 The JSON should be well-structured and validated.
 The final course JSON should be in the same format as the course_planner_json but with all the modules and lessons and quizzes under each module under the content array.
 Example JSON:

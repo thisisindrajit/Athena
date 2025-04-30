@@ -41,15 +41,15 @@ export async function POST(req: NextRequest) {
     const [insertedCourse] = await db
       .insert(courses)
       .values({
-        topic: azureFunctionResponse.topic,
-        description: azureFunctionResponse.description,
+        topic: responseJson.result.topic,
+        description: responseJson.result.description,
         preferences: requestBody.preferences,
         metadata: {},
       })
       .returning();
 
     // Insert modules with course reference
-    await Promise.all(azureFunctionResponse.modules.map(async (moduleData: { title: string; description: string; content: any[]; }, moduleIndex: number) => {
+    await Promise.all(responseJson.result.modules.map(async (moduleData: { title: string; description: string; content: any[]; }, moduleIndex: number) => {
       courseMetadata["count"]["modules"] += 1;
       const [insertedModule] = await db
         .insert(modules)

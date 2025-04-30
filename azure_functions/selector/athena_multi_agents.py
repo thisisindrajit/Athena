@@ -78,6 +78,7 @@ quiz_maker_json = """
 The difficulty level of the quiz can be decided based on the preferences.
 The quizes should be testing the understanding of the lesson content. If needed, make the quiz more analytical and critical.
 Based on the quiz title and the lesson content in the module, create a quiz with multiple-choice, true/false questions.
+The below json should be used to enhance the module_researcher_json for every quiz.
 The type value in the JSON should be always "quiz".
 Example JSON:
 [
@@ -190,10 +191,10 @@ Example JSON:
 
 
 # Course Planner Agent
-course_planner = MultimodalWebSurfer(
+course_planner = AssistantAgent(
     name="course_planner",
     model_client=model_client,
-    description=f"""You are a Course Planner.
+    system_message=f"""You are a Course Planner.
     Take the user's topic and preferences based on this format:
     {preferences}
     Create a full course structure with multiple modules following this format:
@@ -204,10 +205,10 @@ course_planner = MultimodalWebSurfer(
 
 
 # Module Research Agent (Uses Web)
-module_researcher = MultimodalWebSurfer(
+module_researcher = AssistantAgent(
     name="module_researcher",
     model_client=model_client,
-    description=f"""You are a Module Researcher.
+    system_message=f"""You are a Module Researcher.
     Research the given module topic using the web and internet. 
     Find accurate and up-to-date key concepts and information on the module topic.
     Create a module content with lessons and quizzes following this format:
@@ -216,10 +217,10 @@ module_researcher = MultimodalWebSurfer(
 )
 
 # Lesson Content Writer Agent
-lesson_writer = MultimodalWebSurfer(
+lesson_writer = AssistantAgent(
     name="lesson_writer",
     model_client=model_client,
-    description=f"""You are a Lesson Writer.
+    system_message=f"""You are a Lesson Writer.
     Write detailed lesson for every lesson under the module using the web and internet.
     {lesson_writer_json}
     After the lesson is written, handoff to Quiz Maker.""",

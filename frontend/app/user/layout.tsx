@@ -90,11 +90,10 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
             {routes.map((route) => (
               <Link href={route.href} key={route.href}>
                 <div
-                  className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${
-                    route.active
+                  className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${route.active
                       ? "text-primary-foreground bg-primary"
                       : "text-primary hover:bg-primary/10 transition-all cursor-pointer"
-                  }`}
+                    }`}
                 >
                   <route.icon className="h-5 w-5" />
                   {route.label}
@@ -109,7 +108,7 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
     </>
-  );
+  );  
 };
 
 export default UserLayout;

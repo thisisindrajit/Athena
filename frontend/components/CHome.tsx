@@ -2,7 +2,7 @@
 
 import TitleHolder from "@/components/holders/TitleHolder";
 import CTrendingCourses from "./common/CTrendingCourses";
-import CTrendingSnippets from "./common/CTrendingSnippets";
+import CTrendingModules from "./common/CTrendingModules";
 
 const CHome = () => {
   return <>
@@ -28,14 +28,14 @@ const CHome = () => {
       />
       <CTrendingCourses showSave={false} className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" />
     </div>
-    {/* Trending snippets */}
+    {/* Trending modules */}
     <div className="flex flex-col gap-4">
       <TitleHolder
         boldText="Trending"
-        lightText="Snippets 📈"
+        lightText="Modules 📈"
         makeBoldTextUppercase
       />
-      <CTrendingSnippets className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" />
+      <CTrendingModules className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" />
     </div>
   </>;
 }

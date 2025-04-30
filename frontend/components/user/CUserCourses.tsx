@@ -10,9 +10,10 @@ import CourseCard from "../cards/CourseCard";
 
 interface ICUserCoursesProps {
     userId: string;
+    showSave?: boolean;
 }
 
-const CUserCourses: FC<ICUserCoursesProps> = ({ userId }) => {
+const CUserCourses: FC<ICUserCoursesProps> = ({ userId, showSave }) => {
     const { isPending, isError, data: userCourses, error } = useQuery<ICourse[]>({
         queryKey: ['user-courses', userId],
         queryFn: async () => await fetchUserCourses(userId),
@@ -37,7 +38,7 @@ const CUserCourses: FC<ICUserCoursesProps> = ({ userId }) => {
                 <CourseCard
                     key={index}
                     course={course}
-                    showSave
+                    showSave={showSave}
                 />
             ))}
         </div>;

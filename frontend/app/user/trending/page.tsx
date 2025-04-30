@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: `Trending - ${APP_NAME}`,
-  description: `Trending courses and snippets on ${APP_NAME}`,
+  description: `Trending courses and modules on ${APP_NAME}`,
 };
 
 const Trending = () => {

@@ -5,7 +5,7 @@ import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
 import Error from "../common/Error";
 import CUserCourses from "./CUserCourses";
-import CUserSnippets from "./CUserSnippets";
+import CUserModules from "./CUserModules";
 
 const CDashboard = () => {
   const { data: session, isPending, isError, error } = useSession();
@@ -31,15 +31,16 @@ const CDashboard = () => {
           lightTextFirst
           makeBoldTextUppercase
         />
-        <CUserCourses userId={session.user.id} />
+        {/* TODO: Remove showSave=false after developing save logic */}
+        <CUserCourses userId={session.user.id} showSave={false} /> 
       </div>
       <div className="flex flex-col gap-4 mt-4">
         <TitleHolder
-          boldText="Snippets"
+          boldText="Modules"
           lightText="for you 🤩"
           makeBoldTextUppercase
         />
-        <CUserSnippets userId={session.user.id} />
+        <CUserModules userId={session.user.id} />
       </div>
     </>
   );

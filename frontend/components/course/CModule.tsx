@@ -38,7 +38,7 @@ const CModule = () => {
             {courseModule.title}
         </div>
         <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{courseModule.description}</ReactMarkdown></div>
+        <div className="prose dark:prose-invert min-w-full leading-loose"><ReactMarkdown remarkPlugins={[remarkGfm]}>{courseModule.description}</ReactMarkdown></div>
     </>;
 }
 

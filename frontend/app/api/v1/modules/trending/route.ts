@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
     const result = await db.select({
       courseId: courses.courseId,
       courseTopic: courses.topic,
+      moduleId: modules.moduleId,
       moduleTitle: modules.title,
       moduleDescription: modules.description,
       preferences: courses.preferences
@@ -18,7 +19,7 @@ export async function GET(req: NextRequest) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(
-      `Error occurred while fetching trending snippets: ${errorMessage}`,
+      `Error occurred while fetching trending modules: ${errorMessage}`,
       {
         status: 400,
       }

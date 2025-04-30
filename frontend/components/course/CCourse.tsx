@@ -2,7 +2,7 @@
 
 import Error from "@/components/common/Error";
 import Loader from "@/components/common/Loader";
-import ModuleCard from "@/components/cards/ModuleCard";
+import ModuleContentCard from "../cards/ModuleContentCard";
 import { Separator } from "@/components/ui/separator";
 import { PREFERENCES } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
@@ -48,7 +48,7 @@ const CCourse = () => {
             <span className="text-lg sm:text-xl font-bold">Modules</span>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 {course.modules.map((module) => (
-                    <ModuleCard key={module.moduleId} module={module} courseId={course.courseId} />
+                    <ModuleContentCard key={module.moduleId} module={module} courseId={course.courseId} />
                 ))}
             </div>
         </div>

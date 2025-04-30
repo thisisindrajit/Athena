@@ -43,7 +43,8 @@ Example JSON:
 
 module_researcher_json = """{
 Every module should be having a content array with lessons and quizzes. Based on the preferences, the number of lessons and quizzes can be decided.
-There should be at least 3 lessons and 2 quiz in every module.
+There should be at least 3 lessons and 2 quiz in every module, at most 5 lessons and 5 quizzes.
+Try to keep the lessons and quizzes in a balanced manner.
 The quizzes should be placed in between the lessons according to the relevance.
 The course_planner_json should be enhanced with the module_researcher_json for every module.
 Example JSON:
@@ -90,7 +91,7 @@ Example JSON:
 quiz_maker_json = """
 The difficulty level of the quiz can be decided based on the preferences.
 The quizes should be testing the understanding of the lesson content. If needed, make the quiz more analytical and critical.
-Based on the quiz title and the lesson content in the module, create a quiz with multiple-choice, true/false questions.
+Based on the quiz title and the lesson content in the module, create a quiz with multiple-choice or true/false format.
 The below json should be used to enhance the module_researcher_json for every quiz.
 The type value in the JSON should be always "quiz".
 Example JSON:

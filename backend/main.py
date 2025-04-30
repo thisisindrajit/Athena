@@ -15,4 +15,9 @@ if sys.platform == "win32":
 @app.get("/")
 async def root():
     data = await run_team_selector()
+    return {"message": "Hello World"}
+
+@app.get("/run")
+async def root():
+    data = await run_team_selector()
     return {"message": data}

@@ -1,10 +1,10 @@
 import { db } from "@/db";
 import { courses, userCourses } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import { NextApiRequest } from "next";
+import { NextRequest } from "next";
 
 export async function GET(
-  req: NextApiRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ user_id: string }> }
 ) {
   try {
@@ -15,7 +15,7 @@ export async function GET(
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
       .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
-      
+
     return Response.json(result);
   } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);

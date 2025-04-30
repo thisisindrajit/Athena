@@ -2,10 +2,10 @@ import { db } from "@/db";
 import { courses, lessons, modules, activities } from "@/drizzle/schema";
 import { ICourse } from "@/interfaces/ICourse";
 import { eq, asc } from "drizzle-orm";
-import { NextApiRequest } from "next";
+import { NextRequest } from "next";
 
 export async function GET(
-  req: NextApiRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ course_id: number }> }
 ) {
   try {

@@ -27,7 +27,7 @@ async def generate_course(req: func.HttpRequest) -> func.HttpResponse:
                 if isinstance(message, TextMessage) and message.source == "course_assembler":
                     result += str(message.content)
             
-            result = result.replace("TERMINATE", "").strip()
+            result = result.replace("TERMINATE_COURSE_ASSEMBLER", "").strip()
             
             # Store the final course content
             # store_final_course(result)

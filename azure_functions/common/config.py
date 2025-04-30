@@ -3,7 +3,7 @@ from typing import List
 from autogen_agentchat.messages import TextMessage
 from datetime import datetime
 
-termination_condition = HandoffTermination(target="user") | TextMentionTermination("TERMINATE")
+termination_condition = HandoffTermination(target="user") | TextMentionTermination("TERMINATE_COURSE_ASSEMBLER")
 
 def get_final_course(messages: List[TextMessage]) -> str:
     for message in reversed(messages):

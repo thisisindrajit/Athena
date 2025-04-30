@@ -266,5 +266,5 @@ course_assembler = AssistantAgent(
     Collect all the modules, the respective lessons and quizzes under each module.
     Assemble them into a final, structured course json.
     {course_assembler_json}
-    After assembling the course into a single JSON, print TERMINATE as last message."""
+    After assembling the course into a single JSON, print TERMINATE_COURSE_ASSEMBLER as last message."""
 )

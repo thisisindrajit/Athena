@@ -4,6 +4,8 @@ import { NextRequest } from "next/server";
 import { db } from "@/db";
 import { IMetadata } from "@/interfaces/IMetadata";
 import { eq } from "drizzle-orm";
+const fs = require('fs');
+const path = require('path');
 
 export async function POST(req: NextRequest) {
   try {

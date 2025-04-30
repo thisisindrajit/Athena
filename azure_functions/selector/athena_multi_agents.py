@@ -71,7 +71,7 @@ Example JSON:
 lesson_writer_json = """{
 Every lesson should be having detailed content. Based on the preferences, the content value length can be decided. 
 But it should be in MARKDOWN format and must have headings, subheadings, bullet points, examples, code snippets, analogies, tables.
-Don't include title in the content. The title should be in the JSON key.
+Don't include lesson_title in the MARKDOWN content value. The lesson_title should be in the JSON key only.
 Make sure to include Practical applications, Real-world examples, and Case studies in the lesson content.
 Include Key Takeaways as block quote.
 Include the summary of the lesson as a subheading. 

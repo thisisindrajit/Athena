@@ -5,20 +5,38 @@ import { NextRequest } from "next/server";
 import { db } from "@/db";
 import { IMetadata } from "@/interfaces/IMetadata";
 import { eq } from "drizzle-orm";
+import { ICourse } from "@/interfaces/ICourse";
 
 export async function POST(req: NextRequest) {
   try {
     const requestBody: GenerateCourseRequest = await req.json();
-    console.log(requestBody);
-
-    // TODO: Use azure function
-    const azureFunctionResponse = mockData.result;
+    console.log("GenerateCourseRequest: ", requestBody);
+    
     const metadata:IMetadata = {
       count: {  
         modules: 0,
         lessons: 0,
-        activities: 0,
+        activities: 0
       }};
+
+      if (!process.env.AZURE_FUNCTION_URL) {
+        throw new Error('AZURE_FUNCTION_URL is not defined');
+      }
+      
+      let azureFunctionResponse = await fetch(process.env.AZURE_FUNCTION_URL, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      }).then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to generate course from Azure Function');
+        }
+        return res.json();
+      });
+
+    azureFunctionResponse = azureFunctionResponse.result;
 
     // Insert course first
     const [insertedCourse] = await db
@@ -32,7 +50,7 @@ export async function POST(req: NextRequest) {
       .returning();
 
     // Insert modules with course reference
-    azureFunctionResponse.modules.forEach(async (moduleData, moduleIndex) => {
+    azureFunctionResponse.modules.forEach(async (moduleData: ICourse["modules"][0], moduleIndex: number) => {
       metadata.count.modules += 1;
       const [insertedModule] = await db
         .insert(modules)
@@ -75,18 +93,17 @@ export async function POST(req: NextRequest) {
       metadata: metadata,
     }).where(eq(courses.courseId, insertedCourse.courseId));
 
-    return Response.json(
-      `Couse generated successfully for topic ${requestBody.topic}`,
-      { status: 200 }
-    );
+    return Response.json({
+      message: `Course generated successfully for topic ${requestBody.topic} with metadata ${JSON.stringify(metadata)}`,
+      courseId: insertedCourse.courseId
+    }, { status: 200 });
   } catch (err: Error | unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
-    return new Response(
-      `Some error occurred while generating course: ${errorMessage}`,
-      {
-        status: 400,
-      }
-    );
+    return Response.json({
+      error: `Some error occurred while generating course: ${errorMessage}`
+    }, {
+      status: 400
+    });
   }
 }

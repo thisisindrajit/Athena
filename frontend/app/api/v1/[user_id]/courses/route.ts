@@ -1,7 +1,7 @@
-import { db } from '@/db';
-import { courses, userCourses } from '@/drizzle/schema';
-import { eq } from 'drizzle-orm';
-import { NextApiRequest } from 'next';
+import { db } from "@/db";
+import { courses, userCourses } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
+import { NextApiRequest } from "next";
 
 export async function GET(
   req: NextApiRequest,
@@ -9,7 +9,8 @@ export async function GET(
 ) {
   try {
     const { user_id } = await params;
-    const result = await db.select({ courses: courses })
+    const result = await db
+      .select({ courses: courses })
       .from(userCourses)
       .where(eq(userCourses.userId, user_id))
       .innerJoin(courses, eq(userCourses.courseId, courses.courseId));
@@ -18,10 +19,10 @@ export async function GET(
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     return new Response(
-      `Error occurred while fetching courses: ${errorMessage}`,
+      `Error occurred while fetching user courses: ${errorMessage}`,
       {
         status: 400,
-      });
+      }
+    );
   }
 }
-

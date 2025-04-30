@@ -19,15 +19,14 @@ team = SelectorGroupChat(
         course_assembler,
     ],
     model_client=model_client,
-    # selector_func=selector,
     termination_condition=termination_condition,
 )
 
 async def run_team_selector(query) -> None:
     try:
-        task_result = await team.run_stream(task=query)
+        task_result = await Console(team.run_stream(task=query))
         final_course_content = get_final_course(task_result.messages)
-        # store_final_course(final_course_content)
+        store_final_course(final_course_content)
         return final_course_content
     except Exception as e:
         print(f"An error occurred: {e}")

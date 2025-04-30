@@ -1,3 +1,5 @@
+import { IMetadata } from "./IMetadata";
+
 export interface ICourse {
     courseId: number;
     topic: string;
@@ -7,13 +9,7 @@ export interface ICourse {
         duration: string;
         focus: string;
     };
-    metadata: {
-        count: {
-            lessons: number;
-            modules: number;
-            activities: number;
-        }
-    };
+    metadata: IMetadata;
     modules: {
         moduleId: number;
         title: string;

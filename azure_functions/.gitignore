@@ -46,3 +46,7 @@ __pycache__/
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
+
+# For local development without using Azure Functions Core Tools
+final_course*.md
+main.py

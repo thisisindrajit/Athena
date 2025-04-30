@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { courses, lessons, modules, activities } from "@/drizzle/schema";
 import { ICourse } from "@/interfaces/ICourse";
+import { IMetadata } from "@/interfaces/IMetadata";
 import { eq, asc } from "drizzle-orm";
 import { NextRequest } from "next/server";
 
@@ -62,7 +63,7 @@ export async function GET(
             duration: string;
             focus: string;
           },
-          metadata: row.courseMetadata as { count: { lessons: number; modules: number; activities: number; }; },
+          metadata: row.courseMetadata as IMetadata,
           modules: [],
         };
         acc.push(course);

@@ -13,6 +13,9 @@ def get_final_course(messages: List[TextMessage]) -> str:
 
 
 def store_final_course(final_course_content: str) -> None:
+    # Remove the termination condition text from the final course content
+    final_course_content = final_course_content.replace("TERMINATE_COURSE_ASSEMBLER", "").strip()
+
     # Create a timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 

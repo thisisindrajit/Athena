@@ -61,13 +61,69 @@ This project is an Azure Function App that integrates with Bing Search and Azure
 
 ## Usage
 
-- The function app exposes an HTTP endpoint that can be triggered with a `name` parameter.
+- The function app exposes an HTTP endpoint that can be triggered with a `query` parameter.
 - The app uses Bing Search API to fetch search results and Azure OpenAI to generate reports based on those results.
 
-## Contributing
+## Athena - backend
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Official backend repository for Athena.
 
-## License
+## Local installation
+```bash
+python -m venv .venv
+```
 
-This project is licensed under the MIT License.
+## Activate venv
+
+```bash
+# Run the activate scripts 
+# Windows
+cd .venv/Scripts
+activate
+
+# Mac
+source .venv/bin/activate
+```
+
+## Deactive venv
+```bash
+deactivate
+```
+
+## Install requirements
+```bash
+pip install -r requirements.txt
+```
+
+----
+
+## DATA MODEL
+### Preferences
+- Level: BEGINNER, INTERMEDIATE, ADVANCED 
+- Duration: SHORT, MEDIUM, LONG
+- Focus: IN-DEPTH, BROAD
+
+### COURSE
+- topic
+- Description
+- Metadata
+
+### MODULE (1 course n module)
+- Title
+- Description
+- Metadata
+
+### Lesson (1 module n Lesson)
+- Title
+- Description
+- Content (Markdown)
+
+### Activity (1 module n activity)
+- Title
+- Description
+- Type (Quiz)
+- JSON (Question, Answer, Options, Correct Answer)
+
+### Snippets
+- title
+- overview

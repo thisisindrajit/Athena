@@ -16,6 +16,13 @@ Duration: Short implies 1-2 hours, Medium implies 3-5 hours, Long implies 6+ hou
 Focus: Broad implies covering many topics, In-depth implies covering fewer topics in extreme detail.
 """
 
+
+common = f"""
+Bullet points should be followed by new line in MARKDOWN format.
+The links in MARKDOWN should open in new tab by using target="_blank" as default.
+{preferences}
+"""
+
 course_planner_json = """{
 The number of modules can be decided based on the preferences.
 Example JSON:
@@ -25,17 +32,19 @@ Example JSON:
     modules: [
         {
             title: "<Module Title>",
-            description: "<Module Description in 3-5 sentences in MARKDOWN format with bullet points or paragraph>"
+            description: "<Module Description, Overview and insights in MARKDOWN format with bullet points or paragraph>"
         },
         {
             title: "<Module Title>",
-            description: "<Module Description in 3-5 sentences in MARKDOWN format with bullet points or paragraph>"
+            description: "<Module Description, Overview and insights in MARKDOWN format with bullet points or paragraph>"
         }
     ]
 }"""
 
 module_researcher_json = """{
 Every module should be having a content array with lessons and quizzes. Based on the preferences, the number of lessons and quizzes can be decided.
+There should be at least 3 lessons and 2 quiz in every module.
+The quizzes should be placed in between the lessons according to the relevance.
 The course_planner_json should be enhanced with the module_researcher_json for every module.
 Example JSON:
 {
@@ -46,10 +55,10 @@ Example JSON:
             lesson_title: "<Lesson Title>",
         },
         {
-            lesson_title: "<Lesson Title>",
+            quiz_title: "<Quiz Title>",
         },
         {
-            quiz_title: "<Quiz Title>",
+            lesson_title: "<Lesson Title>",
         },
         {
             quiz_title: "<Quiz Title>",
@@ -62,8 +71,11 @@ Example JSON:
 lesson_writer_json = """{
 Every lesson should be having detailed content. Based on the preferences, the content value length can be decided. 
 But it should be in MARKDOWN format and must have headings, subheadings, bullet points, examples, code snippets, analogies, tables.
-Make sure to include Practical appications, Real-world examples, and Case studies in the lesson content.
-In the end also include Key Takeaways, summary of the lesson and provide the references as hyperlinks. This is mandatory.
+Don't include title in the content. The title should be in the JSON key.
+Make sure to include Practical applications, Real-world examples, and Case studies in the lesson content.
+Include Key Takeaways as block quote.
+Include the summary of the lesson as a subheading. 
+Provide the references as hyperlinks.
 The below json should be used to enhance the module_researcher_json for every lesson.
 Example JSON:
 {
@@ -106,6 +118,7 @@ Example JSON:
 
 course_assembler_json = """{
 The final course JSON should be a combination of all the modules and lessons and quizzes under each module.
+Make sure the quizzes are placed in between the lessons according to the relevance.
 The JSON should be well-structured and validated.
 The final course JSON should be in the same format as the course_planner_json but with all the modules and lessons and quizzes under each module under the content array.
 Example JSON:
@@ -125,19 +138,19 @@ Example JSON:
                     }
                 },
                 {
-                    lesson_title: "<Lesson Title>",
-                    content: {
-                        type: "MARKDOWN",
-                        value: "<Lesson Content from lesson_writer>"
-                    }
-                },
-                {
                     quiz_title: "<Quiz Title>",
                     type: "quiz",
                     content: {
                         question: "<Quiz question from quiz_maker>",
                         options: [<Option 1>, <Option 2>, <Option 3>, <Option 4>],
                         answer: "<Option number 1-4>"
+                    }
+                },
+                {
+                    lesson_title: "<Lesson Title>",
+                    content: {
+                        type: "MARKDOWN",
+                        value: "<Lesson Content from lesson_writer>"
                     }
                 },
                 {
@@ -162,19 +175,19 @@ Example JSON:
                     }
                 },
                 {
-                    lesson_title: "<Lesson Title>",
-                    content: {
-                        type: "MARKDOWN",
-                        value: "<Lesson Content from lesson_writer>"
-                    }
-                },
-                {
                     quiz_title: "<Quiz Title>",
                     type: "quiz",
                     content: {
                         question: "<Quiz question from quiz_maker>",
                         options: [<Option 1>, <Option 2>, <Option 3>, <Option 4>],
                         answer: "<Option number 1-4>"
+                    }
+                },
+                {
+                    lesson_title: "<Lesson Title>",
+                    content: {
+                        type: "MARKDOWN",
+                        value: "<Lesson Content from lesson_writer>"
                     }
                 },
                 {
@@ -196,8 +209,8 @@ course_planner = AssistantAgent(
     name="course_planner",
     model_client=model_client,
     system_message=f"""You are a Course Planner.
-    Take the user's topic and preferences based on this format:
-    {preferences}
+    Take the user's topic and preferences from the input.
+    {common}
     Create a full course structure with multiple modules following this format:
     {course_planner_json}
     After completing the course plan with modules, hand off each module to the Module Researcher.""",
@@ -212,6 +225,7 @@ module_researcher = AssistantAgent(
     system_message=f"""You are a Module Researcher.
     Research the given module topic using the web and internet. 
     Find accurate and up-to-date key concepts and information on the module topic.
+    {common}
     Create a module content with lessons and quizzes following this format:
     {module_researcher_json}
     After completing module research, handoff to the Lesson Writer.""",
@@ -223,6 +237,7 @@ lesson_writer = AssistantAgent(
     model_client=model_client,
     system_message=f"""You are a Lesson Writer.
     Write detailed lesson for every lesson under the module using the web and internet.
+    {common}
     {lesson_writer_json}
     After the lesson is written, handoff to Quiz Maker.""",
 )

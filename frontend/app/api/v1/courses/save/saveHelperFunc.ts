@@ -22,8 +22,8 @@ export const saveCourseToDatabase = async (responseJson: any, requestBody: Gener
     const [insertedCourse] = await db
       .insert(courses)
       .values({
-        topic: responseJson.result.topic,
-        description: responseJson.result.description,
+        topic: responseJson.topic,
+        description: responseJson.description,
         preferences: requestBody.preferences,
         metadata: {},
       })
@@ -31,7 +31,7 @@ export const saveCourseToDatabase = async (responseJson: any, requestBody: Gener
   
     // Insert modules with course reference
     await Promise.all(
-      responseJson.result.modules.map(
+      responseJson.modules.map(
         async (
           moduleData: { title: string; description: string; content: any[] },
           moduleIndex: number

@@ -25,3 +25,12 @@ def store_final_course(final_course_content: str) -> None:
         f.write(final_course_content)
 
     print(f"✅ Final course saved as {filename}")
+
+def save_course_to_db(result, query) -> None:
+    # CALLBACK: Store the final course content
+    HttpClient = func.HttpClient()
+    HttpClient.post(
+        "http://localhost:8000/api/v1/courses/save",
+        json={"responseJson": result, "requestBody": query},
+    )
+    print("✅ Final course content stored in database")

@@ -2,8 +2,8 @@ from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.ui import Console
 from selector.athena_multi_agents import course_planner, module_researcher, lesson_writer, quiz_maker, course_assembler
 from common.models import o3_mini_model_client
-from common.config import termination_condition
-from common.config import store_final_course, get_final_course
+from common.helper import termination_condition
+from common.helper import store_final_course, get_final_course
 
 model_client = o3_mini_model_client
 

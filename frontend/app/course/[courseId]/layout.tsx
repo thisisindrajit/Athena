@@ -8,6 +8,17 @@ import { useQuery } from "@tanstack/react-query";
 import { LayoutGrid, Map, FileText, Target } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from 'next/navigation';
+import { useId } from "react";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectSeparator,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const CourseLayout = ({ children }: { children: React.ReactNode }) => {
     const { courseId } = useParams<{ courseId: string }>();
@@ -27,7 +38,30 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
         return <Error errorText="Error while loading course!" />;
     }
 
-    return <div className="flex gap-4">
+    return <div className="flex flex-col xl:flex-row gap-8 xl:gap-4">
+        {/* Select (For sizes less than xl) */}
+        <div className="block xl:hidden *:not-first:mt-2">
+            <Select defaultValue="1">
+                <SelectTrigger>
+                    <SelectValue placeholder="Select framework" />
+                </SelectTrigger>
+                <SelectContent className="w-screen">
+                    <SelectGroup>
+                        <SelectLabel>Frontend</SelectLabel>
+                        <SelectItem value="1">React</SelectItem>
+                        <SelectItem value="2">Vue</SelectItem>
+                        <SelectItem value="3">Angular</SelectItem>
+                    </SelectGroup>
+                    <SelectSeparator />
+                    <SelectGroup>
+                        <SelectLabel>Backend</SelectLabel>
+                        <SelectItem value="4">Node.js</SelectItem>
+                        <SelectItem value="5">Python</SelectItem>
+                        <SelectItem value="6">Java</SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+        </div>
         {/* Sidebar (For size xl and greater) */}
         <div className="hidden xl:block h-fit min-w-112 rounded-xl sticky top-21 mt-1.25 border shadow-lg dark:bg-foreground/5 overflow-hidden">
             <div className="flex flex-col gap-3 overflow-auto h-fit max-h-[calc(100dvh-12rem)] p-3">
@@ -55,7 +89,7 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         {/* Course content */}
         {/* Main content */}
-        <div className="w-full flex flex-col gap-4 min-h-[calc(100dvh-12rem)]">
+        <div className="w-full flex flex-col gap-4 xl:min-h-[calc(100dvh-12rem)]">
             {children}
         </div>
     </div>;

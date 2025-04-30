@@ -11,6 +11,7 @@ import Footer from "@/components/common/Footer";
 import CQueryClientProvider from "@/providers/CQueryClientProvider";
 import CAuthQueryProvider from "@/providers/CAuthQueryProvider";
 import TopBar from "@/components/common/TopBar";
+import CBottomBar from "@/components/common/CBottomBar";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ const RootLayout = ({
                 <TopBar />
                 <div className="flex flex-col gap-12 m-auto mt-0 min-h-[calc(100dvh-12rem)] w-full pb-32 lg:pb-0">{children}</div>
                 <Footer />
+                <CBottomBar />
               </div>
               <Toaster richColors closeButton />
               <Analytics />

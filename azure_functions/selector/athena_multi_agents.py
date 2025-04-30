@@ -19,6 +19,9 @@ Focus: Broad implies covering many topics, In-depth implies covering fewer topic
 common = f"""
 Bullet points should be followed by new line in MARKDOWN format.
 Any links in MARKDOWN should open in new tab as default.
+Module, Quiz, Lesson should not have prefix in the title. 
+Wrong Example: "Module 1: <Module Title>"
+Correct Example: "<Module Title>"
 {preferences}
 """
 
@@ -38,7 +41,8 @@ Example JSON:
             description: "<Module Description, Overview and insights in MARKDOWN format with bullet points or paragraph>"
         }
     ]
-}"""
+}
+"""
 
 module_researcher_json = """{
 Every module should be having a content array with lessons and quizzes. Based on the preferences, the number of lessons and quizzes can be decided.
@@ -74,7 +78,7 @@ But it should be in MARKDOWN format and must have headings, subheadings, bullet 
 Don't include lesson_title in the MARKDOWN content value. The lesson_title should be in the JSON key only.
 Make sure to include Practical applications, Real-world examples, and Case studies in the lesson content.
 Include Key Takeaways as block quote.
-Include the summary of the lesson as a subheading. 
+Include the summary of the lesson. 
 Provide the references as hyperlinks.
 The below json should be used to enhance the module_researcher_json for every lesson.
 Example JSON:

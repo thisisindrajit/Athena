@@ -28,7 +28,7 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Sidebar (For size xl and greater) */}
         <div className="hidden xl:block h-fit min-w-112 rounded-xl sticky top-21 mt-1.25 border shadow-lg dark:bg-foreground/5 overflow-hidden">
             <div className="flex flex-col gap-3 overflow-auto h-fit max-h-[calc(100dvh-12rem)] p-3">
-                <Link className={`${pathname === `/course/${mockData.course_id}` && 'bg-secondary text-secondary-foreground'} p-2.5 font-medium rounded-md flex items-center gap-2 hover:underline transition-all`} href={`/course/${mockData.course_id}`}><LayoutGrid className="h-4 w-4" />{mockData.title}</Link>
+                <Link className={`${pathname === `/course/${mockData.course_id}` && 'bg-secondary text-secondary-foreground'} p-2.5 font-medium rounded-md flex items-center gap-2 hover:underline transition-all`} href={`/course/${mockData.course_id}`}><LayoutGrid className="h-4 w-4" />{mockData.topic}</Link>
                 {mockData.modules.map((module) => (
                     <div key={`${mockData.course_id}-${module.module_id}`}>
                         <Link className={`${pathname === `/course/${mockData.course_id}/module/${module.module_id}` ? 'bg-secondary text-secondary-foreground' : 'bg-secondary/25 dark:bg-secondary/10'} border border-secondary/50 p-2.5 font-medium rounded-md flex items-center gap-2 hover:underline transition-all`} href={`/course/${mockData.course_id}/module/${module.module_id}`} >
@@ -52,7 +52,7 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         {/* Course content */}
         {/* Main content */}
-        <div className="w-full flex flex-col gap-8 min-h-[calc(100dvh-12rem)]">
+        <div className="w-full flex flex-col gap-4 min-h-[calc(100dvh-12rem)]">
             {children}
         </div>
     </div>;

@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const requestBody: GenerateCourseRequest = await req.json();
     console.log("GenerateCourseRequest: ", requestBody);
     
-    let courseMetadata:IMetadata = {
+    const courseMetadata:IMetadata = {
       count: {  
         modules: 0,
         lessons: 0,
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
       .returning();
 
     // Insert modules with course reference
-    await Promise.all(azureFunctionResponse.modules.map(async (moduleData: { title: any; description: any; content: any[]; }, moduleIndex: number) => {
+    await Promise.all(azureFunctionResponse.modules.map(async (moduleData: { title: string; description: string; content: any[]; }, moduleIndex: number) => {
       courseMetadata["count"]["modules"] += 1;
       const [insertedModule] = await db
         .insert(modules)

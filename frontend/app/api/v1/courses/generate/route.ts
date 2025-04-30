@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({query: requestBody}),
     }).then(res => {
         if (!res.ok) {
+          console.error('Error from Azure Function:', res);
           throw new Error('Failed to generate course from Azure Function');
         }
         return res.json();

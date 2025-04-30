@@ -104,7 +104,7 @@ const UserLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         {/* Main content */}
-        <div className="w-full flex flex-col gap-8 min-h-[calc(100dvh-32rem)] xl:min-h-[calc(100dvh-28rem)]">
+        <div className="w-full flex flex-col gap-8 min-h-[calc(100dvh-32rem)] xl:min-h-[calc(100dvh-22rem)]">
           {children}
         </div>
       </div>

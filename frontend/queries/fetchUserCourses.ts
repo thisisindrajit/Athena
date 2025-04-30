@@ -9,7 +9,7 @@ export const fetchUserCourses = async (userId: string) => {
     };
   }
 
-  const userCoursesData: ICourse = await userCourses.json();
+  const userCoursesData: ICourse[] = await userCourses.json();
 
   return userCoursesData;
 };

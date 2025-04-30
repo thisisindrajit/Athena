@@ -1,7 +1,7 @@
 import { ArrowRight, Bookmark, Share } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { PREFERENCES } from "@/constants/common";
+import { APP_NAME, PREFERENCES } from "@/constants/common";
 import { FC } from "react";
 import { ICourse } from "@/interfaces/ICourse";
 import ReactMarkdown from "react-markdown";
@@ -11,10 +11,10 @@ import CShare from "../common/CShare";
 
 interface CourseCardProps {
     course: ICourse;
-    showSaveAndShare?: boolean;
+    showSave?: boolean;
 }
 
-const CourseCard: FC<CourseCardProps> = ({ course, showSaveAndShare = false }) => {
+const CourseCard: FC<CourseCardProps> = ({ course, showSave = false }) => {
     return <div className="p-4 rounded-lg border border-foreground/25 dark:bg-foreground/5 flex flex-col gap-2 shadow-lg">
         {/* Topic */}
         <div className="text-lg font-bold">{course.topic}</div>
@@ -35,14 +35,15 @@ const CourseCard: FC<CourseCardProps> = ({ course, showSaveAndShare = false }) =
             </div>
             <div className="flex flex-col lg:flex-row items-center gap-3">
                 {/* Save and share icon */}
-                {showSaveAndShare && <div className="grid grid-cols-2 w-full lg:w-fit">
-                    <Button variant="outline"><Bookmark className="h-4 w-4" />Save</Button>
+                <div className="grid grid-cols-2 w-full lg:w-fit">
+                    {showSave && <Button variant="outline"><Bookmark className="h-4 w-4" />Save</Button>}
                     <CShare
-                        trigger={<Button variant="link"><Share className="h-4 w-4" />Share</Button>}
+                        trigger={<Button variant={showSave ? "link" : "outline"}><Share className="h-4 w-4" />Share</Button>}
                         link={`${process.env.NEXT_PUBLIC_BASE_URL}/course/${course.courseId}`}
-                        description="Share this course!"
+                        label={`Share this course!`}
+                        description={`Explore the course on ${course.topic} with ${course.metadata.count.modules} modules, ${course.metadata.count.lessons} lessons, and ${course.metadata.count.activities} activities. Check it out only on ${APP_NAME}!`}
                     />
-                </div>}
+                </div>
                 <Link href={`/course/${course.courseId}`} className="w-full lg:w-fit m-auto mr-0">
                     <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground">
                         View Course

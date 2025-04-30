@@ -2,14 +2,17 @@
 
 import { FC, useId, useRef, useState } from "react"
 import {
-    RiCodeFill,
-    RiFacebookFill,
-    RiMailLine,
-    RiTwitterXFill,
-} from "@remixicon/react"
+    FacebookShareButton,
+    FacebookIcon,
+    TwitterShareButton,
+    TwitterIcon,
+    LinkedinShareButton,
+    LinkedinIcon,
+    WhatsappIcon,
+    WhatsappShareButton,
+} from 'next-share'
 import { CheckIcon, CopyIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
     Popover,
@@ -26,10 +29,11 @@ import {
 interface ICShareProps {
     trigger: React.ReactNode,
     link: string,
+    label: string,
     description: string,
 }
 
-const CShare: FC<ICShareProps> = ({ trigger, link, description }) => {
+const CShare: FC<ICShareProps> = ({ trigger, link, label, description }) => {
     const id = useId()
     const [copied, setCopied] = useState<boolean>(false)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -49,32 +53,31 @@ const CShare: FC<ICShareProps> = ({ trigger, link, description }) => {
             </PopoverTrigger>
             <PopoverContent className="w-80 shadow-lg border-primary" side="top">
                 <div className="flex flex-col gap-3 text-center">
-                    <div className="text-sm font-medium">{description}</div>
+                    <div className="text-sm font-medium">{label}</div>
                     <div className="flex flex-wrap justify-center gap-2">
-                        <Button size="icon" variant="outline" aria-label="Embed">
-                            <RiCodeFill size={16} aria-hidden="true" />
-                        </Button>
-                        <Button
-                            size="icon"
-                            variant="outline"
-                            aria-label="Share on Twitter"
+                        <FacebookShareButton
+                            url={link}
+                            quote={description}
+                            hashtag={'#athena-course'}
                         >
-                            <RiTwitterXFill size={16} aria-hidden="true" />
-                        </Button>
-                        <Button
-                            size="icon"
-                            variant="outline"
-                            aria-label="Share on Facebook"
+                            <FacebookIcon size={32} round />
+                        </FacebookShareButton>
+                        <TwitterShareButton
+                            url={link}
+                            title={description}
                         >
-                            <RiFacebookFill size={16} aria-hidden="true" />
-                        </Button>
-                        <Button
-                            size="icon"
-                            variant="outline"
-                            aria-label="Share via email"
+                            <TwitterIcon size={32} round />
+                        </TwitterShareButton>
+                        <WhatsappShareButton
+                            url={link}
+                            title={description}
+                            separator=":: "
                         >
-                            <RiMailLine size={16} aria-hidden="true" />
-                        </Button>
+                            <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
+                        <LinkedinShareButton url={link}>
+                            <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
                     </div>
                     <div className="space-y-2">
                         <div className="relative">

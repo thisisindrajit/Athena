@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import CDashboard from "@/components/user/CDashboard";
 import { APP_NAME } from "@/constants/common";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import CDashboard from "@/components/user/CDashboard";
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await auth.api.getSession({

@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ courseId: string, moduleId: string, lessonId: string }> }): Promise<Metadata> {
     const { courseId, moduleId, lessonId } = await params;
-    const course = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses/${courseId}`);
+    const course = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses/id/${courseId}`);
 
     if (!course.ok) {
         return {

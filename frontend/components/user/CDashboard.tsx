@@ -1,6 +1,5 @@
 "use client";
 
-import SnippetCard from "@/components/cards/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { useSession } from "@/hooks/auth-hooks";
 import Loader from "@/components/common/Loader";
@@ -40,11 +39,11 @@ const CDashboard = () => {
           makeBoldTextUppercase
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-          <SnippetCard showSaveAndShare />
-          <SnippetCard showSaveAndShare />
-          <SnippetCard showSaveAndShare />
-          <SnippetCard showSaveAndShare />
-          <SnippetCard showSaveAndShare />
+          {/* <SnippetCard showSave />
+          <SnippetCard showSave />
+          <SnippetCard showSave />
+          <SnippetCard showSave />
+          <SnippetCard showSave /> */}
         </div>
       </div>
     </>

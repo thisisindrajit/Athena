@@ -15,19 +15,16 @@ interface ICUserCoursesProps {
 const CUserCourses: FC<ICUserCoursesProps> = ({ userId }) => {
     const { isPending, isError, data: userCourses, error } = useQuery<ICourse[]>({
         queryKey: ['user-courses', userId],
-        queryFn: async () => {
-            const courses = await fetchUserCourses(userId);
-            return Array.isArray(courses) ? courses : [courses];
-        },
+        queryFn: async () => await fetchUserCourses(userId),
     });
 
     if (isPending) {
-        return <Loader loadingText="Loading user courses" className="my-16" />;
+        return <Loader loadingText="Loading user courses" className="my-32" />;
     }
 
     if (isError) {
         console.log(error);
-        return <Error errorText="Error while loading user courses!" className="my-16" />;
+        return <Error errorText="Error while loading user courses!" className="my-32" />;
     }
 
     return userCourses.length === 0 ? (
@@ -36,11 +33,11 @@ const CUserCourses: FC<ICUserCoursesProps> = ({ userId }) => {
         </div>
     ) :
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-            {userCourses.map((course) => (
+            {userCourses.map((course, index) => (
                 <CourseCard
-                    key={course.courseId}
+                    key={index}
                     course={course}
-                    showSaveAndShare
+                    showSave
                 />
             ))}
         </div>;

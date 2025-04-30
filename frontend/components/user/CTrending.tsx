@@ -1,9 +1,9 @@
 "use client";
 
-import CourseCard from "@/components/cards/CourseCard";
-import SnippetCard from "@/components/cards/SnippetCard";
 import TitleHolder from "@/components/holders/TitleHolder";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CTrendingCourses from "../home/CTrendingCourses";
+import CTrendingSnippets from "../home/CTrendingSnippets";
 
 const CTrending = () => {
     return <Tabs defaultValue="courses" className="gap-4">
@@ -18,13 +18,7 @@ const CTrending = () => {
                     lightText="Courses 📚"
                     makeBoldTextUppercase
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-                    <CourseCard showSaveAndShare />
-                    <CourseCard showSaveAndShare />
-                    <CourseCard showSaveAndShare />
-                    <CourseCard showSaveAndShare />
-                    <CourseCard showSaveAndShare />
-                </div>
+                <CTrendingCourses />
             </div>
         </TabsContent>
         <TabsContent value="snippets">
@@ -34,11 +28,7 @@ const CTrending = () => {
                     lightText="Snippets 📈"
                     makeBoldTextUppercase
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-                    <SnippetCard showSaveAndShare />
-                    <SnippetCard showSaveAndShare />
-                    <SnippetCard showSaveAndShare />
-                </div>
+                <CTrendingSnippets />
             </div>
         </TabsContent>
     </Tabs>;

@@ -61,7 +61,7 @@ Official frontend repository for Athena.
 ]
 ```
 
-#### GET /api/v1/courses/{course_id}
+#### GET /api/v1/courses/id/{course_id}
 
 - Returns course details with modules, lessons and activities
 

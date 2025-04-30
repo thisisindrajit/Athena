@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import { LayoutGrid, Map, FileText, Target } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from 'next/navigation';
-import { useId } from "react";
 import {
     Select,
     SelectContent,
@@ -19,8 +18,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { useRouter } from "next/navigation";
 
 const CourseLayout = ({ children }: { children: React.ReactNode }) => {
+    const router = useRouter();
     const { courseId } = useParams<{ courseId: string }>();
     const pathname = usePathname();
 
@@ -38,26 +39,48 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
         return <Error errorText="Error while loading course!" />;
     }
 
-    return <div className="flex flex-col xl:flex-row gap-8 xl:gap-4">
+    return <div className="flex flex-col xl:flex-row gap-8">
         {/* Select (For sizes less than xl) */}
-        <div className="block xl:hidden *:not-first:mt-2">
-            <Select defaultValue="1">
-                <SelectTrigger>
-                    <SelectValue placeholder="Select framework" />
+        <div className="block xl:hidden sticky top-21">
+            <Select value={pathname} onValueChange={(value) => {
+                router.push(value);
+            }}>
+                <SelectTrigger className="w-full bg-background dark:bg-neutral-800 shadow-lg data-[size=default]:h-12">
+                    <SelectValue placeholder="Select Section" />
                 </SelectTrigger>
-                <SelectContent className="w-screen">
+                <SelectContent>
                     <SelectGroup>
-                        <SelectLabel>Frontend</SelectLabel>
-                        <SelectItem value="1">React</SelectItem>
-                        <SelectItem value="2">Vue</SelectItem>
-                        <SelectItem value="3">Angular</SelectItem>
+                        <SelectLabel>Course</SelectLabel>
+                        <SelectItem value={`/course/${data.courseId}`} className="data-[state=checked]:bg-secondary data-[state=checked]:text-secondary-foreground">
+                            <div className="flex items-center gap-2 p-1.5"><LayoutGrid className="h-4 w-4 text-inherit" />{data.topic}</div>
+                        </SelectItem>
                     </SelectGroup>
                     <SelectSeparator />
                     <SelectGroup>
-                        <SelectLabel>Backend</SelectLabel>
-                        <SelectItem value="4">Node.js</SelectItem>
-                        <SelectItem value="5">Python</SelectItem>
-                        <SelectItem value="6">Java</SelectItem>
+                        <SelectLabel>Modules</SelectLabel>
+                        {data.modules.map((module) => (
+                            <div key={`${data.courseId}-${module.moduleId}`}>
+                                <SelectItem value={`/course/${data.courseId}/module/${module.moduleId}`} className="bg-secondary/25 dark:bg-secondary/10 dark:hover:bg-accent data-[state=checked]:bg-secondary data-[state=checked]:text-secondary-foreground">
+                                    <div className="flex items-center gap-2 p-1.5">
+                                        <Map className="h-4 w-4 text-inherit" /> {module.title}
+                                    </div>
+                                </SelectItem>
+                                <SelectGroup className="pl-4 py-2 flex flex-col gap-2">
+                                    {module.content.map((item) => (
+                                        <SelectItem
+                                            key={`${module.moduleId}-${item.lessonId || item.activityId}`}
+                                            value={item.lessonId ? `/course/${data.courseId}/module/${module.moduleId}/lesson/${item.lessonId}` : `/course/${data.courseId}/module/${module.moduleId}/activity/${item.activityId}`}
+                                            className="data-[state=checked]:bg-secondary data-[state=checked]:text-secondary-foreground"
+                                        >
+                                            <div className="flex items-center gap-2 p-1.5">
+                                                {item.lessonId ? <FileText className="h-4 w-4 text-inherit" /> : <Target className="h-4 w-4 text-inherit" />}
+                                                {item.title}
+                                            </div>
+                                        </SelectItem>
+                                    ))}
+                                </SelectGroup>
+                            </div>
+                        ))}
                     </SelectGroup>
                 </SelectContent>
             </Select>
@@ -87,7 +110,6 @@ const CourseLayout = ({ children }: { children: React.ReactNode }) => {
                 ))}
             </div>
         </div>
-        {/* Course content */}
         {/* Main content */}
         <div className="w-full flex flex-col gap-4 xl:min-h-[calc(100dvh-12rem)]">
             {children}

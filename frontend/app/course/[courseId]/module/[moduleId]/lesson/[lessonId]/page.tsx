@@ -1,45 +1,36 @@
-"use client";
-
-import Error from "@/components/common/Error";
-import Loader from "@/components/common/Loader";
-import { Separator } from "@/components/ui/separator";
+import CLesson from "@/components/course/CLesson";
+import { APP_NAME } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
-import { fetchCourse } from "@/queries/fetchCourse";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { Metadata } from "next";
 
-const Lesson = () => {
-    const { courseId, moduleId, lessonId } = useParams<{ courseId: string, moduleId: string, lessonId: string }>();
+export async function generateMetadata({ params }: { params: Promise<{ courseId: string, moduleId: string, lessonId: string }> }): Promise<Metadata> {
+    const { courseId, moduleId, lessonId } = await params;
+    const course = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses/${courseId}`);
 
-    const { isPending, isError, data, error } = useQuery<ICourse>({
-        queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
-    })
-
-    if (isPending) {
-        return <Loader loadingText="Loading lesson" />;
+    if (!course.ok) {
+        return {
+            title: `Course not found! - ${APP_NAME}`
+        };
     }
 
-    if (isError) {
-        console.log(error);
-        return <Error errorText="Error while loading lesson!" />;
-    }
+    const courseData: ICourse = await course.json();
 
-    const lesson = data.modules.find((module) => module.moduleId === parseInt(moduleId))?.content.find((lesson) => lesson.lessonId === parseInt(lessonId));
+    const lesson = courseData.modules.find((module) => module.moduleId === parseInt(moduleId))?.content.find((lesson) => lesson.lessonId === parseInt(lessonId));
 
     if (!lesson) {
-        return <Error errorText="Lesson not found!" />;
+        return {
+            title: `Lesson not found! - ${APP_NAME}`
+        };
     }
 
-    return <>
-        <div className="text-xl sm:text-2xl font-bold text-primary">
-            {lesson.title}
-        </div>
-        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.content.value}</ReactMarkdown></div>
-    </>;;
+    return {
+        title: `${lesson.title} - ${APP_NAME}`,
+        description: `This is the lesson page for ${lesson.title}`,
+    };
+}
+
+const Lesson = () => {
+    return <CLesson />;
 }
 
 export default Lesson;

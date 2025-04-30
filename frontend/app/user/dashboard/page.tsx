@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import CDashboard from "@/components/dashboard/CDashboard";
+import CDashboard from "@/components/user/CDashboard";
 import { APP_NAME } from "@/constants/common";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

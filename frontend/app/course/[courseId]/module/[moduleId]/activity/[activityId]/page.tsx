@@ -1,43 +1,36 @@
-"use client";
-
-import Error from "@/components/common/Error";
-import Loader from "@/components/common/Loader";
-import { Separator } from "@/components/ui/separator";
+import CActivity from "@/components/course/CActivity";
+import { APP_NAME } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
-import { fetchCourse } from "@/queries/fetchCourse";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { Metadata } from "next";
 
-const Activity = () => {
-    const { courseId, moduleId, activityId } = useParams<{ courseId: string, moduleId: string, activityId: string }>();
+export async function generateMetadata({ params }: { params: Promise<{ courseId: string, moduleId: string, activityId: string }> }): Promise<Metadata> {
+    const { courseId, moduleId, activityId } = await params;
+    const course = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses/${courseId}`);
 
-    const { isPending, isError, data, error } = useQuery<ICourse>({
-        queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
-    })
-
-    if (isPending) {
-        return <Loader loadingText="Loading activity" />;
+    if (!course.ok) {
+        return {
+            title: `Course not found! - ${APP_NAME}`
+        };
     }
 
-    if (isError) {
-        console.log(error);
-        return <Error errorText="Error while loading activity!" />;
-    }
+    const courseData: ICourse = await course.json();
 
-    const activity = data.modules.find((module) => module.moduleId === parseInt(moduleId))?.content.find((activity) => activity.activityId === parseInt(activityId));
+    const activity = courseData.modules.find((module) => module.moduleId === parseInt(moduleId))?.content.find((activity) => activity.activityId === parseInt(activityId));
 
     if (!activity) {
-        return <Error errorText="Activity not found!" />;
+        return {
+            title: `Activity not found! - ${APP_NAME}`
+        };
     }
 
-    return <>
-        <div className="text-xl sm:text-2xl font-bold text-primary">
-            {activity.title}
-        </div>
-        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        {JSON.stringify(activity.content)}
-    </>;;
+    return {
+        title: `${activity.title} - ${APP_NAME}`,
+        description: `This is the activity page for ${activity.title}`,
+    };
+}
+
+const Activity = () => {
+    return <CActivity />;
 }
 
 export default Activity;

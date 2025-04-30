@@ -1,45 +1,36 @@
-"use client";
-
-import Error from "@/components/common/Error";
-import Loader from "@/components/common/Loader";
-import { Separator } from "@/components/ui/separator";
+import CModule from "@/components/course/CModule";
+import { APP_NAME } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
-import { fetchCourse } from "@/queries/fetchCourse";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { Metadata } from "next";
 
-const Module = () => {
-    const { courseId, moduleId } = useParams<{ courseId: string, moduleId: string }>();
+export async function generateMetadata({ params }: { params: Promise<{ courseId: string, moduleId: string }> }): Promise<Metadata> {
+    const { courseId, moduleId } = await params;
+    const course = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses/${courseId}`);
 
-    const { isPending, isError, data, error } = useQuery<ICourse>({
-        queryKey: ['course', courseId],
-        queryFn: () => fetchCourse(courseId),
-    })
-
-    if (isPending) {
-        return <Loader loadingText="Loading module details"/>;
+    if (!course.ok) {
+        return {
+            title: `Course not found! - ${APP_NAME}`
+        };
     }
 
-    if (isError) {
-        console.log(error);
-        return <Error errorText="Error while loading module details!" />;
-    }
+    const courseData: ICourse = await course.json();
 
-    const courseModule = data.modules.find((cm) => cm.moduleId === parseInt(moduleId));
+    const courseModule = courseData.modules.find((cm) => cm.moduleId === parseInt(moduleId));
 
     if (!courseModule) {
-        return <Error errorText="Module not found!" />;
+        return {
+            title: `Module not found! - ${APP_NAME}`
+        };
     }
 
-    return <>
-        <div className="text-xl sm:text-2xl font-bold text-primary">
-            {courseModule.title}
-        </div>
-        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{courseModule.description}</ReactMarkdown></div>
-    </>;
+    return {
+        title: `${courseModule.title} - ${APP_NAME}`,
+        description: `This is the module page for ${courseModule.title}`,
+    };
+}
+
+const Module = () => {
+    return <CModule />;
 }
 
 export default Module;

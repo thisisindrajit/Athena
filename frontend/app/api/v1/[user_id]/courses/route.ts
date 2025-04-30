@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { courses, userCourses } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import { NextRequest } from "next";
+import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,

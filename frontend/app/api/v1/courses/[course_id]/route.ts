@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { courses, lessons, modules, activities } from "@/drizzle/schema";
 import { ICourse } from "@/interfaces/ICourse";
 import { eq, asc } from "drizzle-orm";
-import { NextRequest } from "next";
+import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,

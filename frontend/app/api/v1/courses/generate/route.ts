@@ -1,4 +1,3 @@
-import { mockData } from "@/constants/common";
 import { courses, modules, activities, lessons } from "@/drizzle/schema";
 import { GenerateCourseRequest } from "@/types/GenerateCourseRequest";
 import { NextRequest } from "next/server";
@@ -11,7 +10,7 @@ export async function POST(req: NextRequest) {
     const requestBody: GenerateCourseRequest = await req.json();
     console.log("GenerateCourseRequest: ", requestBody);
     
-    let metadata:IMetadata = {
+    let courseMetadata:IMetadata = {
       count: {  
         modules: 0,
         lessons: 0,
@@ -49,8 +48,8 @@ export async function POST(req: NextRequest) {
       .returning();
 
     // Insert modules with course reference
-    azureFunctionResponse.modules.forEach(async (moduleData: { title: any; description: any; content: any[]; }, moduleIndex: number) => {
-      metadata.count.modules += 1;
+    await Promise.all(azureFunctionResponse.modules.map(async (moduleData: { title: any; description: any; content: any[]; }, moduleIndex: number) => {
+      courseMetadata["count"]["modules"] += 1;
       const [insertedModule] = await db
         .insert(modules)
         .values({
@@ -62,10 +61,10 @@ export async function POST(req: NextRequest) {
         })
         .returning();
 
-      moduleData.content.forEach(async (data, contentIndex) => {
+      await Promise.all(moduleData.content.map(async (data, contentIndex) => {
         // Check if it's a lesson
         if (data.lesson_title) {
-          metadata.count.lessons += 1;
+          courseMetadata["count"]["lessons"] += 1;
           await db.insert(lessons).values({
             title: data.lesson_title,
             content: data.content,
@@ -75,7 +74,7 @@ export async function POST(req: NextRequest) {
         }
         // Check if it's an activity (QUIZ)
         else if (data.quiz_title) {
-          metadata.count.activities += 1;
+          courseMetadata["count"]["activities"] += 1;
           await db.insert(activities).values({
             title: data.quiz_title,
             type: data.type,
@@ -84,16 +83,18 @@ export async function POST(req: NextRequest) {
             displayOrder: contentIndex + 1,
           });
         }
-      });
-    });
+      }));
+    }));
+
+    console.log("metadata: ", courseMetadata);
 
     // Update course metadata with the counts
     await db.update(courses).set({
-      metadata: metadata,
+      metadata: courseMetadata,
     }).where(eq(courses.courseId, insertedCourse.courseId));
 
     return Response.json({
-      message: `Course generated successfully for topic ${requestBody.topic} with metadata ${JSON.stringify(metadata)}`,
+      message: `Course generated successfully for topic ${requestBody.topic} with metadata ${JSON.stringify(courseMetadata)}`,
       courseId: insertedCourse.courseId
     }, { status: 200 });
   } catch (err: Error | unknown) {

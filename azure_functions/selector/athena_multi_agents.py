@@ -19,7 +19,7 @@ Focus: Broad implies covering many topics, In-depth implies covering fewer topic
 
 common = f"""
 Bullet points should be followed by new line in MARKDOWN format.
-The links in MARKDOWN should open in new tab by using target="_blank" as default.
+Any links in MARKDOWN should open in new tab as default.
 {preferences}
 """
 

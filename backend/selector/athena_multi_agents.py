@@ -62,7 +62,8 @@ Example JSON:
 lesson_writer_json = """{
 Every lesson should be having detailed content. Based on the preferences, the content value length can be decided. 
 But it should be in MARKDOWN format and must have headings, subheadings, bullet points, examples, code snippets, analogies, tables.
-In the end also include a subheading with Key Takeaways, summary of the lesson and provide the references as hyperlinks.
+Make sure to include Practical appications, Real-world examples, and Case studies in the lesson content.
+In the end also include Key Takeaways, summary of the lesson and provide the references as hyperlinks. This is mandatory.
 The below json should be used to enhance the module_researcher_json for every lesson.
 Example JSON:
 {

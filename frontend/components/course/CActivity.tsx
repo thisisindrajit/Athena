@@ -32,7 +32,12 @@ const CActivity = () => {
         return <Error errorText="Activity not found!" />;
     }
 
-    return <CQuiz question={activity.content.question} options={activity.content.options} answer={activity.content.answer} />;
+    return <>
+    <div className="text-xl sm:text-2xl font-bold text-primary">
+            {activity.title}
+        </div>
+        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
+        <CQuiz question={activity.content.question} options={activity.content.options} answer={activity.content.answer} /></>;
 }
 
 export default CActivity;

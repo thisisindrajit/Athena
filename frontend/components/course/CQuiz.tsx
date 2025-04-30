@@ -20,7 +20,7 @@ const CQuiz: FC<ICQuizProps> = ({ question, options, answer }) => {
     const isCorrect = selectedAnswer === answer;
 
     return (
-        <div className="p-4 max-w-2xl mx-auto">
+        <>
             <h2 className="text-xl font-bold mb-4">{question}</h2>
             <form onSubmit={handleSubmit}>
                 {options.map((option, index) => (
@@ -53,7 +53,7 @@ const CQuiz: FC<ICQuizProps> = ({ question, options, answer }) => {
                     </div>
                 )}
             </form>
-        </div>
+        </>
     );
 };
 

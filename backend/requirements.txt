@@ -1,3 +1,4 @@
+fastapi[all]
 autogen-agentchat 
 autogen-ext[openai,azure]
 aiohttp

@@ -13,6 +13,10 @@ export async function POST(req: NextRequest) {
     const requestBody: GenerateCourseRequest = await req.json();
     console.log("GenerateCourseRequest: ", requestBody);
 
+    if (!requestBody.userId || !requestBody.topic) {
+      return Response.json({ error: "userId and topic are required fields" }, { status: 400 });
+    }
+    
     const reponseJson = await callAzureFunction(requestBody);
     saveCourseToFile(reponseJson);
     const { courseMetadata, courseId } = await saveCourseToDatabase(reponseJson, requestBody);

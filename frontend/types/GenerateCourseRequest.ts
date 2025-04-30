@@ -1,4 +1,5 @@
 export type GenerateCourseRequest = {
+    userId: string;
     topic: String;
     preferences:  {
         level: "beginner" | "intermediate" | "advanced";

@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
     return Response.json(
       {
-        error: `Some error occurred while generating course: ${errorMessage}`,
+        error: `Error occurred while generating course: ${errorMessage}`,
       },
       {
         status: 400,

@@ -3,7 +3,7 @@ from autogen_agentchat.ui import Console
 from selector.athena_multi_agents import course_planner, module_researcher, lesson_writer, content_validator, quiz_maker, critique_agent, course_assembler
 from common.models import o3_mini_model_client
 from common.config import termination_condition
-from common.config import store_final_course
+from common.config import store_final_course, get_final_course
 
 model_client = o3_mini_model_client
 """
@@ -76,10 +76,14 @@ team = SelectorGroupChat(
 
 async def run_team_selector() -> None:
     try:
-        
         task = "Create a course on AI agents using Autogen."
         task_result = await Console(team.run_stream(task=task))
-        store_final_course(task_result.messages)
+        final_course_content = get_final_course(task_result.messages)
+        # store_final_course(final_course_content)
+        return final_course_content
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return ""
     finally:
         # Ensure the client session is closed properly
         await model_client.close()

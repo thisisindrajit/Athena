@@ -4,7 +4,6 @@ import { saveCourseToDatabase, saveCourseToFile, saveToUserCourses } from "./sav
 export async function POST(req: NextRequest) {
     try {
         const payload = await req.json();
-        await saveCourseToFile(payload);
 
         // payload is a JSON object
         // Parse the responseJson and requestBody from the payload

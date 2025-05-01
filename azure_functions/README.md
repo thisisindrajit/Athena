@@ -4,14 +4,16 @@ This is an Azure Function App that integrates Azure OpenAI services, AI Agents a
 
 ---
 
-## AGENT WORKFLOW
+## AI AGENT WORKFLOW
 
+Athena has the following AI agents under the hood for generating the courses according to the user preferences:
 - Course Planner
 - Module Researcher
 - Lesson Writer
 - Quiz Master
 - Course Assembler
 
+![Athena - AI Agent Workflow](./AgentWorkflow.png)
 
 ---
 

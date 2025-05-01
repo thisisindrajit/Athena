@@ -32,6 +32,29 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 - [Database Schema](database/README.md)
 - [Frontend & Backend Specs](frontend/README.md)
 
+## Technology Stack
+### Frontend
+- [NextJS](https://nextjs.org/) with TypeScript and React 19
+- [shadcn/ui](https://ui.shadcn.com/) with [TailwindCSS](https://tailwindcss.com/)
+
+### Authentication
+- [Better-Auth](https://www.better-auth.com/)
+
+### Backend
+- Azure functions for agentic workflow
+
+### Database
+- Azure Postgres
+
+### AI
+- [Azure AI foundry](https://ai.azure.com)
+- Framework: [Microsoft AutoGen](https://microsoft.github.io/autogen/stable//index.html)
+- Models: OpenAI o3 mini, gpt 4o mini
+
+### Hosting
+- [Vercel](https://vercel.com) for hosting the website
+- Azure Function Apps
+
 ## Key Features
 
 * **Personalized Course Generation:** Creates courses based on any user-specified topic and learning preferences (level, duration, focus).
@@ -43,4 +66,4 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 
 ---
 
-**Project created for the [Github AI Agents hackathon](https://microsoft.github.io/AI_Agents_Hackathon/)**
+**Project created by Dhilip and Indrajit for the [Github AI Agents hackathon](https://microsoft.github.io/AI_Agents_Hackathon/)**

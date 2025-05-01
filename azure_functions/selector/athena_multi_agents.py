@@ -18,7 +18,6 @@ Focus: Broad implies covering many topics, In-depth implies covering fewer topic
 
 common = f"""
 Bullet points should be followed by new line in MARKDOWN format.
-Any links in MARKDOWN should open in new tab as default.
 Module, Quiz, Lesson should not have prefix in the title. 
 Wrong Example: "Module 1: <Module Title>"
 Correct Example: "<Module Title>"

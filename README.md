@@ -64,6 +64,13 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 * **Built-in Quality Control:** Includes agents dedicated to validating factual accuracy and critiquing pedagogical quality.
 * **Adaptable Knowledge Base:** Leverages LLMs and web search tools to cover a vast range of topics.
 
+## Future Scope
+- MultiModal course content (Images, Videos, Charts, etc.)
+- Save/Enroll for courses
+- User Progress for courses modules, lessons & quizzes
+- Add Snippets for modules
+- Custom Rendering Engine (for supporting different types of content like images, video, etc.)
+
 ---
 
-**Project created by Dhilip and Indrajit for the [Github AI Agents hackathon](https://microsoft.github.io/AI_Agents_Hackathon/)**
+**Project created by Dhilip for the [Github AI Agents hackathon](https://microsoft.github.io/AI_Agents_Hackathon/)**

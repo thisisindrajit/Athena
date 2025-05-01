@@ -76,6 +76,7 @@ CREATE TABLE user_courses (
     course_id INTEGER NOT NULL REFERENCES courses(course_id) ON DELETE CASCADE,
     enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_notification_received INTEGER DEFAULT 1,
     UNIQUE(user_id, course_id)
 );
 

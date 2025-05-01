@@ -25,6 +25,13 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 
 > By automating and personalizing course creation, Athena provides a dynamic, efficient, and effective learning experience tailored to the individual.
 
+## To know more about the project
+
+- [System Architecture](frontend/README.md)
+- [AI Agent Workflow](azure_functions/README.md)
+- [Database Schema](database/README.md)
+- [Frontend & Backend Specs](frontend/README.md)
+
 ## Key Features
 
 * **Personalized Course Generation:** Creates courses based on any user-specified topic and learning preferences (level, duration, focus).
@@ -33,26 +40,6 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 * **Multi-Agent Architecture:** Utilizes AutoGen to orchestrate specialized AI agents (Planner, Researcher, Writer, QuizMaster, Assembler).
 * **Built-in Quality Control:** Includes agents dedicated to validating factual accuracy and critiquing pedagogical quality.
 * **Adaptable Knowledge Base:** Leverages LLMs and web search tools to cover a vast range of topics.
-
-## Architecture Overview
-
-Athena employs a collaborative AutoGen workflow:
-
-1.  **User Input:** Collect the course topic and preferences.
-2.  **Planning:** `Course Planner Agent` outlines the course structure.
-3.  **Research:** `Module Research Agent` gathers information using web search tools.
-4.  **Writing:** `Lesson Writer Agent` drafts lesson content tailored to preferences.
-5.  **Quiz Gen:** `Quiz Master Agenet` creates quizzes quizzes of multi-choice or true/false format and other kinds of active learning activities based on lesson content.
-9.  **Assembly:** `Course Assembler Agent` manages revisions (if needed) and assembles the final course.
-7. **Output:** User is presented with the final course.
-
----
-
-## More about the project
-
-- [System Architecture](frontend/README.md)
-- [Agent Workflow](azure_functions/README.md)
-- [Database Schema](database/README.md)
 
 ---
 

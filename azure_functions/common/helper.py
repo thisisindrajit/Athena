@@ -2,6 +2,9 @@ from autogen_agentchat.conditions import HandoffTermination, TextMentionTerminat
 from typing import List
 from autogen_agentchat.messages import TextMessage
 from datetime import datetime
+import requests
+import os
+import json
 
 termination_condition = HandoffTermination(target="user") | TextMentionTermination("TERMINATE_COURSE_ASSEMBLER")
 
@@ -26,11 +29,13 @@ def store_final_course(final_course_content: str) -> None:
 
     print(f"✅ Final course saved as {filename}")
 
-def save_course_to_db(result, query) -> None:
+async def save_course_to_db(result, query) -> None:
     # CALLBACK: Store the final course content
-    HttpClient = func.HttpClient()
-    HttpClient.post(
-        "http://localhost:8000/api/v1/courses/save",
-        json={"responseJson": result, "requestBody": query},
-    )
-    print("✅ Final course content stored in database")
+    url = os.environ.get("ATHENA_URL") + "/api/v1/courses/save"
+    headers = {'Content-type': 'application/json'}
+    
+    # Result is already a string, so no need to json.dumps
+    json_data = {"responseJson": result, "requestBody": json.dumps(query)}
+    
+    response = requests.post(url, json=json_data, headers=headers)
+    print("✅ Final course content stored in database: ", response)

@@ -6,6 +6,7 @@ Official frontend & backend repository for Athena.
 
 ## SYSTEM ARCHITECTURE
 
+![Athena Architecture](./Architecture.png)
 
 ---
 

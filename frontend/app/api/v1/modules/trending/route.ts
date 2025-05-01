@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
       moduleTitle: modules.title,
       moduleDescription: modules.description,
       preferences: courses.preferences
-    }).from(modules).innerJoin(courses, eq(modules.courseId, courses.courseId)).orderBy(desc(courses.createdAt)).limit(5);
+    }).from(modules).innerJoin(courses, eq(modules.courseId, courses.courseId)).orderBy(desc(courses.createdAt));
 
     return Response.json(result);
   } catch (err: Error | unknown) {

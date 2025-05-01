@@ -1,7 +1,7 @@
 import { ArrowRight, Bookmark, Share } from "lucide-react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import { APP_NAME, PREFERENCES } from "@/constants/common";
+import { APP_NAME, PREFERENCES_WITH_EMOJIS } from "@/constants/common";
 import { FC } from "react";
 import { ICourse } from "@/interfaces/ICourse";
 import ReactMarkdown from "react-markdown";
@@ -14,7 +14,7 @@ interface CourseCardProps {
     showSave?: boolean;
 }
 
-const CourseCard: FC<CourseCardProps> = ({ course, showSave = false }) => {
+const CourseCard: FC<CourseCardProps> = ({ course, showSave = true }) => {
     return <div className="p-4 rounded-lg border border-foreground/25 dark:bg-foreground/5 flex flex-col gap-2 shadow-lg">
         {/* Topic */}
         <div className="text-lg font-bold">{course.topic}</div>
@@ -29,9 +29,9 @@ const CourseCard: FC<CourseCardProps> = ({ course, showSave = false }) => {
                 {course.metadata.count.modules} modules, {course.metadata.count.lessons} lessons, {course.metadata.count.activities} activities
             </div>
             <div className="flex gap-2 flex-wrap">
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["LEVEL"].filter((pref) => pref.toLowerCase().includes(course.preferences.level.toLowerCase()))}</div>
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["DURATION"].filter((pref) => pref.toLowerCase().includes(course.preferences.duration.toLowerCase()))}</div>
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["FOCUS"].filter((pref) => pref.toLowerCase().includes(course.preferences.focus.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["LEVEL"].filter((pref) => pref.toLowerCase().includes(course.preferences.level.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["DURATION"].filter((pref) => pref.toLowerCase().includes(course.preferences.duration.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["FOCUS"].filter((pref) => pref.toLowerCase().includes(course.preferences.focus.toLowerCase()))}</div>
             </div>
             <div className="flex flex-col lg:flex-row items-center gap-3">
                 {/* Save and share icon */}

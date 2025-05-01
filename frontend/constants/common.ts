@@ -3,6 +3,22 @@ export const APP_DESCRIPTION =
   "Athena is an AI-powered application designed to revolutionize learning by automatically generating personalized educational courses.";
 export const PREFERENCES = {
   LEVEL: [
+    "BEGINNER",
+    "INTERMEDIATE",
+    "ADVANCED",
+  ],
+  DURATION: [
+    "SHORT", 
+    "MEDIUM", 
+    "LONG", 
+  ],
+  FOCUS: [
+    "BROAD", 
+    "IN-DEPTH",
+  ],
+};
+export const PREFERENCES_WITH_EMOJIS = {
+  LEVEL: [
     "Beginner 🌱", // Seedling for beginner
     "Intermediate 🚀", // Rocket for progressing
     "Advanced 🎓", // Graduation Cap for advanced
@@ -17,6 +33,4 @@ export const PREFERENCES = {
     "In-Depth 🔬", // Microscope for detailed focus
   ],
 };
-export const mockData = {
-  "result" : {}
-}
+export const ITEMS_LIMIT = 5

@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { APP_NAME, PREFERENCES } from "@/constants/common";
+import { APP_NAME, PREFERENCES_WITH_EMOJIS } from "@/constants/common";
 import { Button } from "../ui/button";
 import { ArrowRight, Share } from "lucide-react";
 import { FC } from "react";
@@ -41,15 +41,15 @@ const ModuleCard: FC<ModuleCardProps> = ({ module }) => {
             Part of course <span className="underline text-primary">{module.courseTopic}</span>
           </div>
           <div className="flex gap-2 flex-wrap">
-            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["LEVEL"].filter((pref) => pref.toLowerCase().includes(module.preferences.level.toLowerCase()))}</div>
-            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["DURATION"].filter((pref) => pref.toLowerCase().includes(module.preferences.duration.toLowerCase()))}</div>
-            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["FOCUS"].filter((pref) => pref.toLowerCase().includes(module.preferences.focus.toLowerCase()))}</div>
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["LEVEL"].filter((pref) => pref.toLowerCase().includes(module.preferences.level.toLowerCase()))}</div>
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["DURATION"].filter((pref) => pref.toLowerCase().includes(module.preferences.duration.toLowerCase()))}</div>
+            <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["FOCUS"].filter((pref) => pref.toLowerCase().includes(module.preferences.focus.toLowerCase()))}</div>
           </div>
           <div className="flex flex-col lg:flex-row items-center gap-3">
             {/* Share icon */}
             <div className="grid grid-cols-1 w-full lg:w-fit">
               <CShare
-                trigger={<Button variant="outline"><Share className="h-4 w-4" />Share module</Button>}
+                trigger={<Button variant="outline"><Share className="h-4 w-4" />Share</Button>}
                 link={`${process.env.NEXT_PUBLIC_BASE_URL}/course/${module.courseId}/module/${module.moduleId}`}
                 label={`Share this module!`}
                 description={`Explore the module ${module.moduleTitle} which is a part of the course ${module.courseTopic} only on ${APP_NAME}!`}

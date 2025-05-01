@@ -1,12 +1,11 @@
-import { GenerateCourseRequest } from "@/types/GenerateCourseRequest";
+import { TGenerateCourseRequest } from "@/types/TGenerateCourseRequest";
 import { NextRequest } from "next/server";
 import { callAzureFunction } from "@/queries/callAzureFunction";
 
-
 export async function POST(req: NextRequest) {
   try {
-    const requestBody: GenerateCourseRequest = await req.json();
-    console.log("GenerateCourseRequest: ", requestBody);
+    const requestBody: TGenerateCourseRequest = await req.json();
+    console.log("TGenerateCourseRequest: ", requestBody);
 
     if (!requestBody.userId || !requestBody.topic) {
       return Response.json({ error: "userId and topic are required fields" }, { status: 400 });

@@ -1,4 +1,4 @@
-export type GenerateCourseRequest = {
+export type TGenerateCourseRequest = {
     userId: string;
     topic: String;
     preferences:  {

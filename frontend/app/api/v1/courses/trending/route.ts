@@ -5,7 +5,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const result = await db.select().from(courses).orderBy(desc(courses.createdAt)).limit(5);
+    
+    const result = await db.select().from(courses).orderBy(desc(courses.createdAt));
 
     return Response.json(result);
   } catch (err: Error | unknown) {

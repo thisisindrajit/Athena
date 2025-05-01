@@ -20,12 +20,13 @@ const CBottomBar = () => {
             href: "/user/trending",
             active: pathname === "/user/trending",
         },
-        {
-            label: "Saved",
-            icon: Bookmark,
-            href: "/user/saved",
-            active: pathname === "/user/saved",
-        },
+        // TODO: Uncomment after save logic is developed
+        // {
+        //     label: "Saved",
+        //     icon: Bookmark,
+        //     href: "/user/saved",
+        //     active: pathname === "/user/saved",
+        // },
     ];
 
     useEffect(() => {

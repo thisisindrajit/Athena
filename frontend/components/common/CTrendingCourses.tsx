@@ -8,6 +8,7 @@ import CourseCard from "../cards/CourseCard";
 import { fetchTrendingCourses } from "@/queries/fetchTrendingCourses";
 import { FC } from "react";
 import { cn } from "@/lib/utils";
+import { ITEMS_LIMIT } from "@/constants/common";
 
 interface ITrendingCoursesProps {
     showSave?: boolean;
@@ -16,8 +17,8 @@ interface ITrendingCoursesProps {
 
 const CTrendingCourses: FC<ITrendingCoursesProps> = ({ showSave = true, className }) => {
     const { isPending, isError, data: trendingCourses, error } = useQuery<ICourse[]>({
-        queryKey: ['trending-courses'],
-        queryFn: async () => await fetchTrendingCourses()
+        queryKey: ['trending-courses', ITEMS_LIMIT],
+        queryFn: async () => await fetchTrendingCourses(ITEMS_LIMIT)
     });
 
     if (isPending) {

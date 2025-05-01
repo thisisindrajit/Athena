@@ -14,12 +14,14 @@ interface ICSelectHolderProps {
   label: string;
   placeholder: string;
   values: string[];
+  onValueChange: (value:string) => void
 }
 
 const CSelectHolder: React.FC<ICSelectHolderProps> = ({
   label,
   placeholder,
   values,
+  onValueChange
 }) => {
   const id = useId();
 
@@ -31,7 +33,7 @@ const CSelectHolder: React.FC<ICSelectHolderProps> = ({
       >
         {label}
       </label>
-      <Select defaultValue={values[0]}>
+      <Select defaultValue={values[0]} onValueChange={onValueChange}>
         <SelectTrigger
           id={id}
           className="bg-background dark:bg-background dark:hover:bg-background min-w-32"

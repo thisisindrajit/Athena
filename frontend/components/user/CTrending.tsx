@@ -18,7 +18,8 @@ const CTrending = () => {
                     lightText="Courses 📚"
                     makeBoldTextUppercase
                 />
-                <CTrendingCourses />
+                {/* TODO: Remove showSave=false after developing save logic */}
+                <CTrendingCourses showSave={false} />
             </div>
         </TabsContent>
         <TabsContent value="modules">

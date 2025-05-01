@@ -4,7 +4,7 @@ import Error from "@/components/common/Error";
 import Loader from "@/components/common/Loader";
 import ModuleContentCard from "../cards/ModuleContentCard";
 import { Separator } from "@/components/ui/separator";
-import { PREFERENCES } from "@/constants/common";
+import { PREFERENCES, PREFERENCES_WITH_EMOJIS } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
 import { fetchCourse } from "@/queries/fetchCourse";
 import { useQuery } from "@tanstack/react-query";
@@ -36,9 +36,9 @@ const CCourse = () => {
                 {course.metadata.count.modules} modules, {course.metadata.count.lessons} lessons, {course.metadata.count.activities} activities
             </div>
             <div className="flex gap-2 flex-wrap">
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["LEVEL"].filter((pref) => pref.toLowerCase().includes(course.preferences.level.toLowerCase()))}</div>
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["DURATION"].filter((pref) => pref.toLowerCase().includes(course.preferences.duration.toLowerCase()))}</div>
-                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES["FOCUS"].filter((pref) => pref.toLowerCase().includes(course.preferences.focus.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["LEVEL"].filter((pref) => pref.toLowerCase().includes(course.preferences.level.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["DURATION"].filter((pref) => pref.toLowerCase().includes(course.preferences.duration.toLowerCase()))}</div>
+                <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["FOCUS"].filter((pref) => pref.toLowerCase().includes(course.preferences.focus.toLowerCase()))}</div>
             </div>
         </div>
         <Separator className="bg-gradient-to-r from-foreground to-transparent" />

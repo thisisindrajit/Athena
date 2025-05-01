@@ -1,7 +1,7 @@
 import { ICourse } from "@/interfaces/ICourse";
 
-export const fetchTrendingCourses = async () => {
-  const trendingCourses = await fetch(`/api/v1/courses/trending`);
+export const fetchTrendingCourses = async (limit?: number) => {
+  const trendingCourses = await fetch(limit ? `/api/v1/courses/trending?limit=${limit}` : `/api/v1/courses/trending`);
 
   if (!trendingCourses.ok) {
     throw {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Bookmark, House, TrendingUp } from "lucide-react";
+import { House, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";

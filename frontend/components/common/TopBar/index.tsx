@@ -6,6 +6,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Script from "next/script";
 import CUserMenu from "./CUserMenu";
+import CNotificationBar from "./CNotificationBar";
 
 const TopBar = async () => {
   const session = await auth.api.getSession({
@@ -34,7 +35,10 @@ const TopBar = async () => {
         <div className="flex items-center gap-2">
           <CThemeToggle />
           {session ? (
-            <CUserMenu session={session} />
+            <>
+              <CNotificationBar />
+              <CUserMenu session={session} />
+            </>
           ) : (
             <CLoginButton />
           )}

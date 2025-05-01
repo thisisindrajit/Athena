@@ -16,6 +16,7 @@ const CUserModules: FC<ICUserModulesProps> = ({ userId }) => {
     const { isPending, isError, data: userModules, error } = useQuery<IModule[]>({
         queryKey: ['user-Modules', userId],
         queryFn: async () => await fetchUserModules(userId),
+        refetchInterval: 1000 * 60 * 2, // 2 minutes
     });
 
     if (isPending) {

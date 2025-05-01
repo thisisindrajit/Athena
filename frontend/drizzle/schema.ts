@@ -128,44 +128,6 @@ export const activities = pgTable("activities", {
 		}).onDelete("cascade"),
 ]);
 
-export const userCourses = pgTable("user_courses", {
-	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
-	enrollmentId: bigint("enrollment_id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity({ name: "user_courses_enrollment_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
-	userId: text("user_id").notNull(),
-	courseId: integer("course_id").notNull(),
-	enrolledAt: timestamp("enrolled_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
-	lastAccessedAt: timestamp("last_accessed_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
-}, (table) => [
-	index("idx_user_courses").using("btree", table.userId.asc().nullsLast().op("int4_ops"), table.courseId.asc().nullsLast().op("text_ops")),
-	foreignKey({
-			columns: [table.userId],
-			foreignColumns: [user.id],
-			name: "user_courses_user_id_fkey"
-		}).onDelete("cascade"),
-	foreignKey({
-			columns: [table.courseId],
-			foreignColumns: [courses.courseId],
-			name: "user_courses_course_id_fkey"
-		}).onDelete("cascade"),
-	unique("user_courses_user_id_course_id_key").on(table.userId, table.courseId),
-]);
-
-export const snippets = pgTable("snippets", {
-	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
-	snippetId: bigint("snippet_id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity({ name: "snippets_snippet_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
-	moduleId: integer("module_id"),
-	title: text().notNull(),
-	overview: text().notNull(),
-	createdAt: timestamp("created_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
-	updatedAt: timestamp("updated_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
-}, (table) => [
-	foreignKey({
-			columns: [table.moduleId],
-			foreignColumns: [modules.moduleId],
-			name: "snippets_module_id_fkey"
-		}).onDelete("cascade"),
-]);
-
 export const userProgress = pgTable("user_progress", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	progressId: bigint("progress_id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity({ name: "user_progress_progress_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
@@ -184,6 +146,22 @@ export const userProgress = pgTable("user_progress", {
 			name: "user_progress_user_id_fkey"
 		}).onDelete("cascade"),
 	unique("user_progress_user_id_entity_type_entity_id_key").on(table.userId, table.entityType, table.entityId),
+]);
+
+export const snippets = pgTable("snippets", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	snippetId: bigint("snippet_id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity({ name: "snippets_snippet_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	moduleId: integer("module_id"),
+	title: text().notNull(),
+	overview: text().notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
+	updatedAt: timestamp("updated_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
+}, (table) => [
+	foreignKey({
+			columns: [table.moduleId],
+			foreignColumns: [modules.moduleId],
+			name: "snippets_module_id_fkey"
+		}).onDelete("cascade"),
 ]);
 
 export const snippetInteractions = pgTable("snippet_interactions", {
@@ -208,4 +186,27 @@ export const snippetInteractions = pgTable("snippet_interactions", {
 			name: "snippet_interactions_snippet_id_fkey"
 		}).onDelete("cascade"),
 	unique("snippet_interactions_user_id_snippet_id_key").on(table.userId, table.snippetId),
+]);
+
+export const userCourses = pgTable("user_courses", {
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	enrollmentId: bigint("enrollment_id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity({ name: "user_courses_enrollment_id_seq", startWith: 1, increment: 1, minValue: 1, maxValue: 9223372036854775807, cache: 1 }),
+	userId: text("user_id").notNull(),
+	courseId: integer("course_id").notNull(),
+	enrolledAt: timestamp("enrolled_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
+	lastAccessedAt: timestamp("last_accessed_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
+	isNotificationReceived: integer("is_notification_received").default(1),
+}, (table) => [
+	index("idx_user_courses").using("btree", table.userId.asc().nullsLast().op("int4_ops"), table.courseId.asc().nullsLast().op("text_ops")),
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "user_courses_user_id_fkey"
+		}).onDelete("cascade"),
+	foreignKey({
+			columns: [table.courseId],
+			foreignColumns: [courses.courseId],
+			name: "user_courses_course_id_fkey"
+		}).onDelete("cascade"),
+	unique("user_courses_user_id_course_id_key").on(table.userId, table.courseId),
 ]);

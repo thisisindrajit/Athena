@@ -13,12 +13,14 @@ import { ITEMS_LIMIT } from "@/constants/common";
 interface ITrendingCoursesProps {
     showSave?: boolean;
     className?: string;
+    setLimit?: boolean
 }
 
-const CTrendingCourses: FC<ITrendingCoursesProps> = ({ showSave = true, className }) => {
+const CTrendingCourses: FC<ITrendingCoursesProps> = ({ showSave = true, className, setLimit = false }) => {
     const { isPending, isError, data: trendingCourses, error } = useQuery<ICourse[]>({
-        queryKey: ['trending-courses', ITEMS_LIMIT],
-        queryFn: async () => await fetchTrendingCourses(ITEMS_LIMIT)
+        queryKey: setLimit ? ['trending-courses', ITEMS_LIMIT] : ['trending-courses'],
+        queryFn: setLimit ? async () => await fetchTrendingCourses(ITEMS_LIMIT) : async () => await fetchTrendingCourses(),
+        refetchInterval: 1000 * 60 * 2, // 2 minutes
     });
 
     if (isPending) {

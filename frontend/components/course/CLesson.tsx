@@ -2,7 +2,6 @@
 
 import Error from "@/components/common/Error";
 import Loader from "@/components/common/Loader";
-import { Separator } from "@/components/ui/separator";
 import { ICourse } from "@/interfaces/ICourse";
 import { fetchCourse } from "@/queries/fetchCourse";
 import { useQuery } from "@tanstack/react-query";
@@ -34,11 +33,11 @@ const CLesson = () => {
     }
 
     return <>
-        <div className="text-xl sm:text-2xl font-bold text-primary">
+        {/* <div className="text-xl sm:text-2xl font-bold text-primary">
             {lesson.title}
         </div>
-        <Separator className="bg-gradient-to-r from-foreground to-transparent" />
-        <div className="prose dark:prose-invert min-w-full leading-loose"><ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.content.value}</ReactMarkdown></div>
+        <Separator className="bg-gradient-to-r from-foreground to-transparent" /> */}
+        <div className="prose dark:prose-invert min-w-full"><ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.content.value}</ReactMarkdown></div>
     </>;
 }
 

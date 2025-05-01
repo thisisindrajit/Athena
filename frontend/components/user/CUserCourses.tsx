@@ -17,6 +17,7 @@ const CUserCourses: FC<ICUserCoursesProps> = ({ userId, showSave = true }) => {
     const { isPending, isError, data: userCourses, error } = useQuery<ICourse[]>({
         queryKey: ['user-courses', userId],
         queryFn: async () => await fetchUserCourses(userId),
+        refetchInterval: 1000 * 60 * 2, // 2 minutes
     });
 
     if (isPending) {

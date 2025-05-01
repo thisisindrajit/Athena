@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { saveCourseToDatabase, saveCourseToFile, saveToUserCourses } from "./saveHelperFunc";
+import { saveCourseToDatabase, saveToUserCourses } from "./saveHelperFunc";
 
 export async function POST(req: NextRequest) {
     try {

@@ -71,7 +71,7 @@ const CShare: FC<ICShareProps> = ({ trigger, link, label, description }) => {
                         <WhatsappShareButton
                             url={link}
                             title={description}
-                            separator=":: "
+                            separator=" - "
                         >
                             <WhatsappIcon size={32} round />
                         </WhatsappShareButton>

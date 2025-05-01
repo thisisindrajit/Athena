@@ -26,7 +26,7 @@ const CHome = () => {
         lightText="Courses 📚"
         makeBoldTextUppercase
       />
-      <CTrendingCourses showSave={false} className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" />
+      <CTrendingCourses showSave={false} className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" setLimit />
     </div>
     {/* Trending modules */}
     <div className="flex flex-col gap-4">
@@ -35,7 +35,7 @@ const CHome = () => {
         lightText="Modules 📈"
         makeBoldTextUppercase
       />
-      <CTrendingModules className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" />
+      <CTrendingModules className="grid-cols-1 md:grid-cols-2 xl:grid-cols-3" setLimit />
     </div>
   </>;
 }

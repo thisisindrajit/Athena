@@ -14,7 +14,7 @@ import { INotification } from "@/interfaces/INotification"
 import Link from "next/link"
 
 const CNotificationBar = () => {
-  const { data: session, isPending, isError, error } = useSession();
+  const { data: session, isPending, isError } = useSession();
 
   const [notifications, setNotifications] = useState<INotification[]>([])
   const [latestCreatedAt, setLatestCreatedAt] = useState<string | null>(null);
@@ -69,7 +69,7 @@ const CNotificationBar = () => {
     return () => clearInterval(intervalId);
   }, [latestCreatedAt, session?.user.id]);
 
-  return !isPending && !isError && (
+  return !isPending && !isError && session && (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button

@@ -13,10 +13,13 @@ const CHome = () => {
       <div className="hidden xxs:block md:hidden">
         <div>Where Knowledge is </div>
         <div className="text-primary">Crafted for you.</div>
+        <div className="text-sm sm:text-base mt-2 mx-2 leading-relaxed text-foreground/50">Personalized Learning, powered by AI Agents.</div>
       </div>
+
       <div className="block xxs:hidden md:block">
         Where Knowledge is{" "}
         <span className="text-primary">Crafted for You.</span>
+        <div className="text-sm md:text-lg mt-2 mx-2 leading-relaxed text-foreground/50">Personalized Learning, powered by AI Agents.</div>
       </div>
     </div>
     {/* Trending courses */}

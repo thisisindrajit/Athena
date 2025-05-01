@@ -8,15 +8,18 @@ import { FC } from "react";
 import { cn } from "@/lib/utils";
 import ModuleCard from "../cards/ModuleCard";
 import { IModule } from "@/interfaces/IModule";
+import { ITEMS_LIMIT } from "@/constants/common";
 
 interface ITrendingModulesProps {
     className?: string;
+    setLimit?: boolean
 }
 
-const CTrendingModules: FC<ITrendingModulesProps> = ({ className }) => {
+const CTrendingModules: FC<ITrendingModulesProps> = ({ className, setLimit = false }) => {
     const { isPending, isError, data: trendingModules, error } = useQuery<IModule[]>({
-        queryKey: ['trending-Modules'],
-        queryFn: async () => await fetchTrendingModules()
+        queryKey: setLimit ? ['trending-modules', ITEMS_LIMIT] : ['trending-modules'],
+        queryFn: setLimit ? async () => await fetchTrendingModules(ITEMS_LIMIT) : async () => await fetchTrendingModules(),
+        refetchInterval: 1000 * 60 * 2, // 2 minutes
     });
 
     if (isPending) {

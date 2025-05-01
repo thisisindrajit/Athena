@@ -38,7 +38,7 @@ const ModuleCard: FC<ModuleCardProps> = ({ module }) => {
         {/* Part of course */}
         <div className="flex flex-col gap-3 mt-2">
           <div className="text-sm font-medium w-fit">
-            Part of course <span className="underline text-primary">{module.courseTopic}</span>
+            Part of course <Link href={`/course/${module.courseId}`}><span className="underline text-primary">{module.courseTopic}</span></Link>
           </div>
           <div className="flex gap-2 flex-wrap">
             <div className="border border-dashed border-foreground/25 py-1 px-2 rounded-md text-sm">{PREFERENCES_WITH_EMOJIS["LEVEL"].filter((pref) => pref.toLowerCase().includes(module.preferences.level.toLowerCase()))}</div>

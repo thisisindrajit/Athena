@@ -1,6 +1,6 @@
-import { TGenerateCourseRequest } from "@/types/TGenerateCourseRequest";
+import { IGenerateCourseRequest } from "@/interfaces/IGenerateCourseRequest";
 
-export const callAzureFunctionAsync = async (requestBody: TGenerateCourseRequest) => {
+export const callAzureFunctionAsync = async (requestBody: IGenerateCourseRequest) => {
   try {
     if (!process.env.AZURE_FUNCTION_URL) {
       throw new Error("AZURE_FUNCTION_URL is not defined");
@@ -38,7 +38,7 @@ export const callAzureFunctionAsync = async (requestBody: TGenerateCourseRequest
   }
 };
 
-export const callAzureFunction = (requestBody: TGenerateCourseRequest) => {
+export const callAzureFunction = (requestBody: IGenerateCourseRequest) => {
   try {
     if (!process.env.AZURE_FUNCTION_URL) {
       throw new Error("AZURE_FUNCTION_URL is not defined");

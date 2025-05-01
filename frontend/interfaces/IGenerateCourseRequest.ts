@@ -1,6 +1,6 @@
-export type TGenerateCourseRequest = {
+export interface IGenerateCourseRequest {
     userId: string;
-    topic: String;
+    topic: string;
     preferences:  {
         level: "beginner" | "intermediate" | "advanced";
         duration: "short" | "medium" | "long";

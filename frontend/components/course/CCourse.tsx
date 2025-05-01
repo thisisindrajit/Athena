@@ -4,7 +4,7 @@ import Error from "@/components/common/Error";
 import Loader from "@/components/common/Loader";
 import ModuleContentCard from "../cards/ModuleContentCard";
 import { Separator } from "@/components/ui/separator";
-import { PREFERENCES, PREFERENCES_WITH_EMOJIS } from "@/constants/common";
+import { PREFERENCES_WITH_EMOJIS } from "@/constants/common";
 import { ICourse } from "@/interfaces/ICourse";
 import { fetchCourse } from "@/queries/fetchCourse";
 import { useQuery } from "@tanstack/react-query";

@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/relations";
-import { user, session, account, courses, modules, lessons, activities, userCourses, snippets, userProgress, snippetInteractions } from "./schema";
+import { user, session, account, courses, modules, lessons, activities, userProgress, snippets, snippetInteractions, userCourses } from "./schema";
 
 export const sessionRelations = relations(session, ({one}) => ({
 	user: one(user, {
@@ -11,9 +11,9 @@ export const sessionRelations = relations(session, ({one}) => ({
 export const userRelations = relations(user, ({many}) => ({
 	sessions: many(session),
 	accounts: many(account),
-	userCourses: many(userCourses),
 	userProgresses: many(userProgress),
 	snippetInteractions: many(snippetInteractions),
+	userCourses: many(userCourses),
 }));
 
 export const accountRelations = relations(account, ({one}) => ({
@@ -52,14 +52,10 @@ export const activitiesRelations = relations(activities, ({one}) => ({
 	}),
 }));
 
-export const userCoursesRelations = relations(userCourses, ({one}) => ({
+export const userProgressRelations = relations(userProgress, ({one}) => ({
 	user: one(user, {
-		fields: [userCourses.userId],
+		fields: [userProgress.userId],
 		references: [user.id]
-	}),
-	course: one(courses, {
-		fields: [userCourses.courseId],
-		references: [courses.courseId]
 	}),
 }));
 
@@ -71,13 +67,6 @@ export const snippetsRelations = relations(snippets, ({one, many}) => ({
 	snippetInteractions: many(snippetInteractions),
 }));
 
-export const userProgressRelations = relations(userProgress, ({one}) => ({
-	user: one(user, {
-		fields: [userProgress.userId],
-		references: [user.id]
-	}),
-}));
-
 export const snippetInteractionsRelations = relations(snippetInteractions, ({one}) => ({
 	user: one(user, {
 		fields: [snippetInteractions.userId],
@@ -86,5 +75,16 @@ export const snippetInteractionsRelations = relations(snippetInteractions, ({one
 	snippet: one(snippets, {
 		fields: [snippetInteractions.snippetId],
 		references: [snippets.snippetId]
+	}),
+}));
+
+export const userCoursesRelations = relations(userCourses, ({one}) => ({
+	user: one(user, {
+		fields: [userCourses.userId],
+		references: [user.id]
+	}),
+	course: one(courses, {
+		fields: [userCourses.courseId],
+		references: [courses.courseId]
 	}),
 }));

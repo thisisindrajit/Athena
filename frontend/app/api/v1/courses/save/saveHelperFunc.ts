@@ -1,5 +1,5 @@
 import { courses, modules, activities, lessons, userCourses } from "@/drizzle/schema";
-import { TGenerateCourseRequest } from "@/types/TGenerateCourseRequest";
+import { IGenerateCourseRequest } from "@/interfaces/IGenerateCourseRequest";
 import { db } from "@/db";
 import { IMetadata } from "@/interfaces/IMetadata";
 import { eq } from "drizzle-orm";
@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 // Save the generated course to the database
-export const saveCourseToDatabase = async (responseJson: any, requestBody: TGenerateCourseRequest) => {
+export const saveCourseToDatabase = async (responseJson: any, requestBody: IGenerateCourseRequest) => {
     // Initialize course metadata
     try {
     const courseMetadata: IMetadata = {

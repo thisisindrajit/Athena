@@ -1,7 +1,7 @@
 import { IModule } from "@/interfaces/IModule";
 
-export const fetchTrendingModules = async () => {
-  const trendingModules = await fetch(`/api/v1/modules/trending`);
+export const fetchTrendingModules = async (limit?: number) => {
+  const trendingModules = await fetch(limit ? `/api/v1/modules/trending?limit=${limit}` : `/api/v1/modules/trending`);
 
   if (!trendingModules.ok) {
     throw {

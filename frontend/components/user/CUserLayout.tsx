@@ -2,12 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, Bookmark, House, TrendingUp } from "lucide-react";
+import { ArrowRight, House, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import CSelectHolder from "@/components/holders/CSelectHolder";
 import { PREFERENCES, PREFERENCES_WITH_EMOJIS } from "@/constants/common";
-import { TGenerateCourseRequest } from "@/types/TGenerateCourseRequest";
+import { IGenerateCourseRequest } from "@/interfaces/IGenerateCourseRequest";
 import { FC } from "react"
 import { toast } from "sonner";
 
@@ -72,10 +72,12 @@ const CUserLayout: FC<ICUserLayoutProps> = ({ userId, children }) => {
                         userId: userId,
                         topic: searchTopic,
                         preferences: preferences
-                    } as TGenerateCourseRequest)
+                    } as IGenerateCourseRequest)
                 });
 
-                toast.info(`Your course request for the topic '${searchTopic}' has started generating. Once it's generated, you will be able to see the course in 'Your Courses' section.`);
+                toast.info(`Hold tight! Our AI is crafting a course on '${searchTopic}' just for you. Keep an eye on the notification bell 🔔 for updates!`, {
+                    duration: Infinity
+                });
 
                 setSearchTopic("");
                 setPreferences({
@@ -131,7 +133,7 @@ const CUserLayout: FC<ICUserLayoutProps> = ({ userId, children }) => {
                         </div>
                     </div>
                     {/* Preferences */}
-                    <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 pb-4 max-w-full no-scrollbar">
+                    <div className="flex gap-2 justify-items-stretch m-auto overflow-auto pt-2 px-2 pb-4 max-w-full no-scrollbar">
                         <CSelectHolder
                             label="Level"
                             placeholder="Select level"
@@ -161,8 +163,8 @@ const CUserLayout: FC<ICUserLayoutProps> = ({ userId, children }) => {
                             <Link href={route.href} key={route.href}>
                                 <div
                                     className={`w-full p-3 rounded-md flex items-center gap-3 font-medium select-none ${route.active
-                                            ? "text-primary-foreground bg-primary"
-                                            : "text-primary hover:bg-primary/10 transition-all cursor-pointer"
+                                        ? "text-primary-foreground bg-primary"
+                                        : "text-primary hover:bg-primary/10 transition-all cursor-pointer"
                                         }`}
                                 >
                                     <route.icon className="h-5 w-5" />

@@ -6,7 +6,7 @@ The database schema for Athena is designed to support modular course generation,
 
 ## Schema Diagram
 
-![Database Schema](./schema.png)
+![Database Schema](./Schema.png)
 
 ---
 

@@ -37,14 +37,8 @@ const Footer = () => {
           <div>
             {`This multi-agent approach overcomes the "one-size-fits-all" limitation of traditional learning resources, providing a dynamic, efficient, and effective learning experience tailored just for you! 🚀`}
           </div>
-          <Separator className="bg-gradient-to-r from-primary to-transparent" />
-          <div>Project created by Dhilip for the Github AI Agents hackathon.</div>
         </div>
       </CDialogHolder>
-      <div className="hidden xsm:block">|</div>
-      <div className="hidden xsm:block">
-        Created by <span className="font-bold">Dhilip</span>
-      </div>
     </div>
   );
 };

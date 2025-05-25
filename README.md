@@ -70,7 +70,3 @@ Athena addresses these challenges by employing a collaborative multi-agent syste
 - User Progress for courses modules, lessons & quizzes
 - Add Snippets for modules
 - Custom Rendering Engine (for supporting different types of content like images, video, etc.)
-
----
-
-**Project created by Dhilip for the [Github AI Agents hackathon](https://microsoft.github.io/AI_Agents_Hackathon/)**
